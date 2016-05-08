@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<title><?php echo $pg_title; ?></title>
-		<link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+		<link rel="shortcut icon" type="image/png" href="img/favicon.png" />
 
 <?php
 	include "inc/header.php";
