@@ -22,7 +22,11 @@
 						include "about.php"; 
 					} elseif ( $page == "config" ) {
 						include "admin/admin_config.php"; 
+					} else {
+						include "dash.php"; 
 					}
+				} else {
+					include "dash.php"; 
 				}
 				
 			?>
