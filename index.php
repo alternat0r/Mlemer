@@ -4,6 +4,8 @@
 <html>
 	<head>
 		<title><?php echo $pg_title; ?></title>
+		<link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+
 <?php
 	include "inc/header.php";
 	$page = mysqli_real_escape_string( $link, $_REQUEST['p'] );
