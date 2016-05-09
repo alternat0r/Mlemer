@@ -21,11 +21,13 @@
 						$result = mysqli_query( $link, $sql );
 						while( $row = mysqli_fetch_assoc( $result ) ) {
 							$user_count++;
-							echo "<tr>\n";
-							echo "	<td>" . $user_count . "</td>\n";
-							echo "	<td>" . $row['user_realname'] . "</td>\n";
-							echo "	<td>10</td>\n";
-							echo "</tr>\n";
+							if ( $row['user_realname'] != "Administrator" ) {
+								echo "<tr>\n";
+								echo "	<td>" . $user_count . "</td>\n";
+								echo "	<td>" . $row['user_realname'] . "</td>\n";
+								echo "	<td>10</td>\n";
+								echo "</tr>\n";
+							}
 						}
 	              ?>
 	              </tbody>

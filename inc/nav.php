@@ -16,9 +16,9 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+              <li><a href="?p=login">Login</a></li>
+              <li><a href="?p=register">Register</a></li>
               <li><a href="?p=about">About</a></li>
-              <li><a href="#">Register</a></li>
-              <li><a href="#">Login</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="?p=config"><strong>Config</strong></a></li>
