@@ -14,6 +14,23 @@ body {
   color: #777;
   border-top: 1px solid #e5e5e5;
 }
+
+.divider-vertical {
+	height: 50px;
+	margin: 0 9px;
+	border-left: 1px solid #F2F2F2;
+	border-right: 1px solid #FFF;
+}
+.navbar-inverse .divider-vertical {
+    border-right-color: #222222;
+    border-left-color: #111111;
+}
+
+@media (max-width: 767px) {
+    .navbar-collapse .nav > .divider-vertical {
+        display: none;
+     }
+}
 </style>
 
 <!-- Latest compiled and minified CSS -->

@@ -44,6 +44,8 @@
 						include "login.php"; 
 					} elseif ( $page == "config" ) {
 						include "admin/admin_config.php"; 
+					} elseif ( $page == "manager" ) {
+						include "admin/admin_manager.php"; 
 					} else {
 						include "dash.php";
 					}
