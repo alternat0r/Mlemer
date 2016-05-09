@@ -1,4 +1,6 @@
 <?php
+
+    
 	require_once "inc/config.php";
 
 	if ( isset( $_REQUEST['p'] ) ) {
@@ -46,6 +48,8 @@
 						include "admin/admin_config.php"; 
 					} elseif ( $page == "manager" ) {
 						include "admin/admin_manager.php"; 
+					} elseif ( $page == "logout" ) {
+						include "logout.php";
 					} else {
 						include "dash.php";
 					}

@@ -1,3 +1,7 @@
+<?php
+	session_start();	
+?>
+
 <style>
 body {
   padding-top: 20px;

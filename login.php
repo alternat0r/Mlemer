@@ -1,16 +1,33 @@
+<?php
+    error_reporting(0);
+    
+    if ( isset( $_POST['submit'] ) ) {
+      if ( empty( $_POST['username'] ) || empty( $_POST['password'] ) ) {
+        echo "Username or Password is invalid";
+      } else {
+        $username = $_REQUEST['username'];
+        $_SESSION['login_user'] = $username;
+        echo "TESTING: " . $username;
+        //session_start();
+
+        //header("location: ?p=home");
+      }
+    }
+?>
+
 <h2 class="page-header">Login</h2>
 
 <form class="form-horizontal" action="" method="post">
   <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputEmail3" placeholder="Username">
+      <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="Username">
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+      <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
     </div>
   </div>
   <div class="form-group">
@@ -24,7 +41,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Sign in</button>
+      <button type="submit" name="submit" class="btn btn-default">Sign in</button>
     </div>
   </div>
 </form>
