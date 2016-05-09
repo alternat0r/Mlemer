@@ -1,3 +1,3 @@
 # Mlemer
 
-![Progress](https://img.shields.io/badge/Progress-Local%20Dev.-orange.svg)
+![Progress](https://img.shields.io/badge/Progress-Incomplete-orange.svg)
