@@ -19,8 +19,10 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <?php
-                //echo "--->" . $username;
-                if ( !isset( $username ) ) {
+                $curr_ip = @$_SERVER['REMOTE_ADDR'];
+                $curr_uid = UniqueMachineID();
+                $curr_hostname = getenv('COMPUTERNAME');
+                if ( do_they_register_yet( $curr_ip, $curr_hostname, $curr_uid ) == false ) {
                   //echo '<li><a href="?p=login">Login</a></li>';
                   echo '<li><a href="?p=register">Register</a></li>';
                 }

@@ -1,6 +1,6 @@
 <?php
 	require_once "inc/config.php";
-	error_reporting(0);
+	//error_reporting(0);
 	if ( isset( $_REQUEST['p'] ) ) {
 		$page = mysqli_real_escape_string( $link, $_REQUEST['p'] );
 
@@ -10,6 +10,7 @@
 		if ( $page == "manager" ) { $page_name = "Manager"; }
 		if ( $page == "register" ) { $page_name = "Register"; }
 		if ( $page == "login" ) { $page_name = "Login"; }
+		if ( $page == "account" ) { $page_name = "Account"; }
 	}
 
 	function UniqueMachineID($salt = "") {
@@ -22,7 +23,7 @@
 	            return stripos($line,"ID:")!==false;
 	        });
 	        if(count($result)>0) {
-	            $result = array_shift(array_values($result));
+	            $result = @array_shift(array_values($result));
 	            $result = explode(":",$result);
 	            $result = trim(end($result));       
 	        } else $result = $output;       
@@ -56,7 +57,8 @@
 		if ( mysqli_num_rows( $query ) > 0 ) {
     		return true;
 		} else {
-    		if ( !mysqli_query( $link,$query ) ) {
+			global $link;
+    		if ( @!mysqli_query( $link, $query ) ) {
         		return false;
     		}
 		}
@@ -133,6 +135,8 @@
 						include "admin/admin_config.php"; 
 					} elseif ( $page == "manager" ) {
 						include "admin/admin_manager.php"; 
+					} elseif ( $page == "account" ) {
+						include "account.php";
 					} elseif ( $page == "logout" ) {
 						include "logout.php";
 					} else {

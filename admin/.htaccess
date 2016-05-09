@@ -2,4 +2,4 @@ AuthUserFile C:\wamp\www\Mlemer\admin\.htpasswd
 AuthName "Adminitrative Area"
 AuthType Basic
 
-require user kamil
+require user admin
