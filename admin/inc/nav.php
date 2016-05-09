@@ -3,7 +3,7 @@
 ?>
 
 <!-- Static navbar -->
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-custom">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -20,6 +20,7 @@
               <li><a href="?p=about">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+              <li><a href="?p=users"><strong>Users</strong></a></li>
               <li><a href="?p=config"><strong>Config</strong></a></li>
               <li><a href="?p=manager"><strong>Manager</strong></a></li>
               <!-- <li class="divider-vertical"><a href="?p=logout"><strong>Log Out</strong></a></li> -->

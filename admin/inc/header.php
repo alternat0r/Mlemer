@@ -35,6 +35,33 @@ body {
         display: none;
      }
 }
+
+.navbar-custom {
+    background-color:#9b59b6;
+    color:#8e44ad;
+    border-radius:0;
+}
+.navbar-custom .navbar-nav > li > a {
+    color:#ecdbff;
+}
+
+.navbar-custom .navbar-nav > li > a:hover {
+    color:#8e44ad;
+}
+
+.navbar-custom .navbar-nav > li:hover {
+    color:#8e44ad;
+}
+
+.navbar-custom .navbar-nav > .active > a,
+.navbar-nav > .active > a:hover,
+.navbar-nav > .active > a:focus {
+    color: #8e44ad;
+    background-color:transparent;
+}
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
 </style>
 
 <!-- Latest compiled and minified CSS -->

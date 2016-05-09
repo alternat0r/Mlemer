@@ -12,6 +12,7 @@
 		if ( $page == "manager" ) { $page_name = "Manager"; }
 		if ( $page == "register" ) { $page_name = "Register"; }
 		if ( $page == "login" ) { $page_name = "Login"; }
+		if ( $page == "users" ) { $page_name = "Users"; }
 	}
 ?>
 <html>
@@ -50,6 +51,8 @@
 						include "admin_config.php"; 
 					} elseif ( $page == "manager" ) {
 						include "admin_manager.php"; 
+					} elseif ( $page == "users" ) {
+						include "admin_users.php";
 					} elseif ( $page == "logout" ) {
 						include "logout.php";
 					} else {

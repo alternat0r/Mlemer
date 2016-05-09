@@ -9,7 +9,7 @@
 	<form action="" method="post">
 		<div class="form-group">
     		<label for="pg_productname">Username</label>
-    		<input class="form-control" id="pg_productname" placeholder="Your User Name">
+    		<input class="form-control" id="pg_productname" placeholder="Your user name for login purpose">
   		</div>
 
 		<div class="form-group">
@@ -18,7 +18,7 @@
   		</div>
   		<div class="form-group">
     		<label for="pg_company">Password</label>
-    		<input class="form-control" id="pg_company" type="password" placeholder="Password">
+    		<input class="form-control" id="pg_company" type="password" placeholder="Enter new password to change. Otherwise, leave it.">
   		</div>
   		<div class="text-right">
   			<button type="submit" class="btn btn-primary">Save Changes</button>
