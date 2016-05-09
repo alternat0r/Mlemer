@@ -21,7 +21,7 @@
 						$result = mysqli_query( $link, $sql );
 						while( $row = mysqli_fetch_assoc( $result ) ) {
 							$user_count++;
-							if ( $row['user_realname'] != "Administrator" ) {
+							if ( $row['user_realname'] != "Administrator" and $row['user_realname'] != "" ) {
 								echo "<tr>\n";
 								echo "	<td>" . $user_count . "</td>\n";
 								echo "	<td>" . $row['user_realname'] . "</td>\n";

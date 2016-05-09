@@ -21,16 +21,15 @@
               <?php
                 //echo "--->" . $username;
                 if ( !isset( $username ) ) {
-                  echo '<li><a href="?p=login">Login</a></li>';
+                  //echo '<li><a href="?p=login">Login</a></li>';
                   echo '<li><a href="?p=register">Register</a></li>';
                 }
               ?>
               <li><a href="?p=about">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="?p=config"><strong>Config</strong></a></li>
-              <li><a href="?p=manager"><strong>Manager</strong></a></li>
-              <li class="divider-vertical"><a href="?p=logout"><strong>Log Out</strong></a></li>
+              <li><a href="?p=account"><strong>Account</strong></a></li>
+              <!-- <li class="divider-vertical"><a href="?p=logout"><strong>Log Out</strong></a></li> -->
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
