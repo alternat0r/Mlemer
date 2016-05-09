@@ -22,7 +22,9 @@
 			<label for="pg_about">About</label>
 			<textarea id="pg_about" class="form-control" rows="3"></textarea>	
   		</div>
-  		<button type="submit" class="btn btn-default">Save Changes</button>
+      <div class="text-right">
+  		  <button type="submit" class="btn btn-primary">Save Changes</button>
+      </div>
   	</form>
 
 

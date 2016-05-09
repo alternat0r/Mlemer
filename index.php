@@ -73,8 +73,6 @@
     $curr_url = parse_url($curr_url);
     //var_dump( $curr_url );
     //echo $curr_url['path'];
-
-
    
     //echo $curr_uid."\n".$curr_ip."\n".$hostname."\n".$curr_hostname;
 
