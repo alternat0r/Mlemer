@@ -30,7 +30,11 @@
               <li><a href="?p=about">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="?p=account"><strong>Account</strong></a></li>
+              <?php
+                if ( do_they_register_yet( $curr_ip, $curr_hostname, $curr_uid ) == true ) {
+                  echo '<li><a href="?p=account"><strong>Account</strong></a></li>';
+                }
+              ?>
               <!-- <li class="divider-vertical"><a href="?p=logout"><strong>Log Out</strong></a></li> -->
             </ul>
           </div><!--/.nav-collapse -->

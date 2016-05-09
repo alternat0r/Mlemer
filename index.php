@@ -85,11 +85,12 @@
 
 		if ( do_they_register_yet( $curr_ip, $curr_hostname, $curr_uid ) == false ) {
 			//echo "not yet, proceed register";
-			if ( $page_name == "Register" ) {
-				//echo "DO NOTHIGN";
-			} else {
-				echo '<META http-equiv="refresh" content="0;URL=http://'.$curr_url['path'].'?p=register">';
-			}
+				if ( @$page_name == "Register" ) {
+					//echo "DO NOTHIGN";
+				} else {
+					echo '<META http-equiv="refresh" content="0;URL=http://'.$curr_url['path'].'?p=register">';
+				}
+			
 		} else {
 			// already register, proceed to main page
 		}

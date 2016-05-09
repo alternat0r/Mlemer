@@ -8,7 +8,8 @@
 			$curr_ip = @$_SERVER['REMOTE_ADDR'];
 			$curr_uid = UniqueMachineID();
 			mysqli_query( $link, "UPDATE users SET user_loginname='$regUsername', user_realname='$regRealname',user_password='$regPassword' WHERE user_uid='$curr_uid'");
-			echo "SUCCESSFULLY REGISTER!";
+			//echo "SUCCESSFULLY REGISTER!";
+			echo '<META http-equiv="refresh" content="0;URL=http://'.$curr_url['path'].'?p=home">';
 		}
 	}
 ?>
