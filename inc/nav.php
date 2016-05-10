@@ -23,11 +23,14 @@
                 $curr_uid = GenUniqueID(); //UniqueMachineID();
                 $curr_hostname = getenv('COMPUTERNAME');
                 if ( do_they_register_yet( $curr_ip, $curr_hostname, $curr_uid ) == false ) {
-                  //echo '<li><a href="?p=login">Login</a></li>';
                   echo '<li><a href="?p=register">Register</a></li>';
                 }
+
+                if ( do_they_register_yet( $curr_ip, $curr_hostname, $curr_uid ) == true ) {
+                  echo '<li><a href="?p=about">About</a></li>';
+                }
               ?>
-              <li><a href="?p=about">About</a></li>
+              
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <?php

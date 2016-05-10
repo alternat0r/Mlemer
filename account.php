@@ -28,6 +28,6 @@
 	<div class="bs-callout bs-callout-danger" id="callout-input-needs-type">
 		<h4>Remove Account</h4>
 		<p>Here you can remove your current account if you want to re-register.</p>
-		<input class="btn btn-danger" type="submit" value="Remove Account">
+    <a href="?p=removeaccount" class="btn btn-danger">Remove Account</a>
 	</div>
 

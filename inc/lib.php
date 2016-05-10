@@ -27,7 +27,11 @@
 		$query = mysqli_query( $link, "SELECT * FROM users WHERE (user_ip='".$ip."' AND user_hostname='".$hostname."' AND user_uid='".$uid."' AND user_loginname IS NOT NULL)" );
 
 		if ( mysqli_num_rows( $query ) > 0 ) {
-    		return true;
+			if ( isset( $_COOKIE["stayalive"] ) )  {
+				if ( $_COOKIE["stayalive"] == GenUniqueID() ) {
+    				return true;
+    			}
+    		}
 		} else {
 			global $link;
     		if ( @!mysqli_query( $link, $query ) ) {

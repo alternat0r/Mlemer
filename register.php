@@ -20,6 +20,8 @@
 			mysqli_query( $link, "UPDATE users SET user_loginname='$regUsername', user_realname='$regRealname',user_password='$regPassword' WHERE user_uid='$curr_uid'");
 			//echo "SUCCESSFULLY REGISTER!";
 			echo '<META http-equiv="refresh" content="0;URL=http://'.$curr_url['path'].'?p=home">';
+			setcookie( "stayalive", $curr_uid, time() + 777600 ); // 9 days to live
+
 		}
 	}
 ?>
@@ -33,20 +35,20 @@
 	  <div class="form-group">
 	    <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
 	    <div class="col-sm-10">
-	      <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="User Name">
+	      <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="User Name" required="true">
 	    </div>
 	  </div>
   	  <div class="form-group">
 	    <label for="inputEmail3" class="col-sm-2 control-label">Real Name</label>
 	    <div class="col-sm-10">
-	      <input type="text" name="realname" class="form-control" id="inputEmail3" placeholder="Real Name">
+	      <input type="text" name="realname" class="form-control" id="inputEmail3" placeholder="Real Name" required="true">
 	    </div>
 	  </div>
 
 	  <div class="form-group">
 	    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 	    <div class="col-sm-10">
-	      <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+	      <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password (Optional)">
 	    </div>
 	  </div>
 	  <div class="form-group">
