@@ -20,7 +20,7 @@
   		</div>
 		<div class="form-group">
 			<label for="pg_about">About</label>
-			<textarea id="pg_about" class="form-control" rows="3"></textarea>	
+			<textarea id="pg_about" class="form-control" rows="3" placeholder="Description about the exercise or event."></textarea>	
   		</div>
       <div class="text-right">
   		  <button type="submit" class="btn btn-primary">Save Changes</button>
