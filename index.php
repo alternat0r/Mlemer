@@ -13,6 +13,7 @@
 		if ( $page == "register" ) { $page_name = "Register"; }
 		if ( $page == "login" ) { $page_name = "Login"; }
 		if ( $page == "account" ) { $page_name = "Account"; }
+		if ( $page == "Exercise" ) { $page_name = "Exercise"; }
 	}
 
 	$curr_ip = getHostByName(getHostName()); // @$_SERVER['REMOTE_ADDR'];
@@ -89,6 +90,8 @@
 						include "admin/admin_config.php"; 
 					} elseif ( $page == "manager" ) {
 						include "admin/admin_manager.php"; 
+					} elseif ( $page == "exercise" ) {
+						include "admin/admin_exercise.php"; 
 					} elseif ( $page == "account" ) {
 						include "account.php";
 					} elseif ( $page == "logout" ) {

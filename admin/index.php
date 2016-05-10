@@ -13,6 +13,8 @@
 		if ( $page == "register" ) { $page_name = "Register"; }
 		if ( $page == "login" ) { $page_name = "Login"; }
 		if ( $page == "users" ) { $page_name = "Users"; }
+		if ( $page == "quest" ) { $page_name = "Questionaire"; }
+		if ( $page == "exercise" ) { $page_name = "Exercise"; }
 	}
 ?>
 <html>
@@ -24,7 +26,7 @@
 				echo '<title>' . $pg_title . '</title>' . PHP_EOL;
 			}
 		?>
-		<link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+		<link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
 
 <?php
 	include "inc/header.php";
@@ -42,7 +44,7 @@
 					} elseif ( $page == "about" ) {
 						include "../about.php"; 
 					} elseif ( $page == "usermode" ) {
-						header('Refresh: 1; URL = ../');
+						header('Refresh: 0; URL = ../');
 					} elseif ( $page == "register" ) {
 						include "register.php"; 
 					} elseif ( $page == "login" ) {
@@ -55,6 +57,10 @@
 						include "admin_users.php";
 					} elseif ( $page == "logout" ) {
 						include "logout.php";
+					} elseif ( $page == "exercise" ) {
+						include "admin_exercise.php";
+					} elseif ( $page == "quest" ) {
+						include "admin_quest.php";
 					} else {
 						include "../dash.php";
 					}
