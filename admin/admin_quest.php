@@ -6,24 +6,28 @@
 </ul>
 <br/>
 
+	<form action="?p=home" method="post">
 	<label for="selectE">Select Exercise:</label>
-		<div class="selectContainer">
-            <select name="language" id="selectE" class="form-control">
-            	<?php
-	              	$sql = "SELECT * FROM exercise";
-	              	$user_count = "";
-					$result = mysqli_query( $link, $sql );
-					while( $row = @mysqli_fetch_assoc( $result ) ) {
-						$user_count++;
-						if ( $user_count == 1 ) {
-							echo "	<option selected=\"selected\">" . $row['exer_name'] . "</option>\n";
-						} else {
-							echo "	<option>" . $row['exer_name'] . "</option>\n";
-						}
+	<div class="selectContainer">
+        <select id="selectE" class="form-control" onchange='if(this.value != 0) { this.form.submit(); }'>
+        	<?php
+              	$sql = "SELECT * FROM exercise";
+              	$user_count = "";
+				$result = mysqli_query( $link, $sql );
+				while( $row = @mysqli_fetch_assoc( $result ) ) {
+					$user_count++;
+					if ( $user_count == 1 ) {
+						echo "	<option value=\"".$row['id']."\" selected=\"selected\">" . $row['exer_name'] . "</option>\n";
+					} else {
+						echo "	<option value=\"".$row['id']."\">" . $row['exer_name'] . "</option>\n";
 					}
-	            ?>
-            </select>
-        </div>
+				}
+            ?>
+        </select>
+    </div>
+    <input type="submit" hidden="hidden">
+    </form>
+
     
 
 <h3 class="sub-header">List of Question</h3>
@@ -33,21 +37,21 @@
 	                <tr>
 	                  <th>#</th>
 	                  <th>Question</th>
-	                  <th>Total Question</th>
+	                  <th>Answer</th>
 	                  <th>Menu</th>
 	                </tr>
 	              </thead>
 	              <tbody>
 	              <?php
-		              	$sql = "SELECT * FROM exercise";
+		              	$sql = "SELECT * FROM questionaire";
 		              	$user_count = "";
 						$result = mysqli_query( $link, $sql );
 						while( $row = @mysqli_fetch_assoc( $result ) ) {
 							$user_count++;
 								echo "<tr>\n";
 								echo "	<td>" . $user_count . "</td>\n";
-								echo "	<td>" . $row['exer_name'] . "</td>\n";
-								echo "	<td></td>\n";
+								echo "	<td>" . $row['question'] . "</td>\n";
+								echo "	<td>" . $row['answer'] . "</td>\n";
 								echo "	<td><a href=\"#\" class=\"glyphicon glyphicon-edit\"></a>&nbsp;<a href=\"#\" class=\"glyphicon glyphicon-remove\"></a></td>\n";
 								echo "</tr>\n";
 						}

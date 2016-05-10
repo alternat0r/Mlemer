@@ -3,19 +3,29 @@
 ?>
 
 			<h2 class="page-header">Dashboard</h2>
-<h3 class="sub-header">Available Exercise</h3>
-	<div class="row">
+			<h3 class="sub-header">Available Exercise</h3>
 
-        <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-        </div>
+			<style>
+				.hoverDiv:hover { background: #E0F2F7; }
+				.NoUnderLine { text-decoration: none !important; }
+			</style>
+			
+				<?php
+	              	$sql = "SELECT * FROM exercise";
+	              	$user_count = "";
+					$result = mysqli_query( $link, $sql );
+					while( $row = @mysqli_fetch_assoc( $result ) ) {
+						$user_count++;
+						echo "<a class=\"NoUnderLine\" href=\"#\">";
+						echo "<div class=\"bs-callout bs-callout-info hoverDiv\" id=\"callout-input-needs-type\">\n";
+						echo "	<h4>" . $row['exer_name'] . "</h4>";
+						echo "	<p>" . $row['exer_description'] . "</p>\n";
+						echo "</div>\n";
+						echo "</a>";
 
-        <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-        </div>
-     </div>
+					}
+				?>
+ 			
 
 			<h3 class="sub-header">Top Scorer</h3>
 	          <div class="table-responsive">

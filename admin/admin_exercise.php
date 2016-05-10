@@ -12,9 +12,10 @@
 	            <table class="table table-hover">
 	              <thead>
 	                <tr>
-	                  <th>#</th>
+	                  <th style="text-align: center">#</th>
 	                  <th>Exercise Name</th>
-	                  <th>Total Question</th>
+	                  <th style="text-align: center">Total Question</th>
+	                  <th style="text-align: center">Activated?</th>
 	                  <th>Menu</th>
 	                </tr>
 	              </thead>
@@ -26,9 +27,10 @@
 						while( $row = @mysqli_fetch_assoc( $result ) ) {
 							$user_count++;
 							echo "<tr>\n";
-							echo "	<td>" . $user_count . "</td>\n";
+							echo "	<td align=\"center\">" . $user_count . "</td>\n";
 							echo "	<td>" . $row['exer_name'] . "</td>\n";
-							echo "	<td></td>\n";
+							echo "	<td align=\"center\">5</td>\n";
+							echo "	<td align=\"center\">" . $row['activated'] . "</td>\n";
 							echo "	<td><a href=\"#\" class=\"glyphicon glyphicon-edit\"></a>&nbsp;<a href=\"#\" class=\"glyphicon glyphicon-remove\"></a></td>\n";
 							echo "</tr>\n";
 						}
