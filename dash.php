@@ -21,7 +21,6 @@
 						echo "	<p>" . $row['exer_description'] . "</p>\n";
 						echo "</div>\n";
 						echo "</a>";
-
 					}
 				?>
  			
