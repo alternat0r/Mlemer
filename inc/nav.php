@@ -1,6 +1,6 @@
 <?php
     require_once "inc/config.php";
-    //session_start();
+    require_once "inc/lib.php";
     
 ?>
 
@@ -19,8 +19,8 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <?php
-                $curr_ip = @$_SERVER['REMOTE_ADDR'];
-                $curr_uid = UniqueMachineID();
+                $curr_ip = @getHostByName(getHostName());
+                $curr_uid = GenUniqueID(); //UniqueMachineID();
                 $curr_hostname = getenv('COMPUTERNAME');
                 if ( do_they_register_yet( $curr_ip, $curr_hostname, $curr_uid ) == false ) {
                   //echo '<li><a href="?p=login">Login</a></li>';
@@ -32,6 +32,7 @@
             <ul class="nav navbar-nav navbar-right">
               <?php
                 if ( do_they_register_yet( $curr_ip, $curr_hostname, $curr_uid ) == true ) {
+                  echo '<li><a href="#">Welcome <strong>'.get_user_realname().'</strong></a></li>';
                   echo '<li><a href="?p=account"><strong>Account</strong></a></li>';
                 }
               ?>
