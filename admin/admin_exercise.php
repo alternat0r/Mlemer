@@ -3,6 +3,7 @@
 <ul class="nav nav-tabs">
   <li role="presentation" class="active"><a href="?p=exercise">Exercise</a></li>
   <li role="presentation"><a href="?p=quest">Questionaire</a></li>
+  <li role="presentation"><a href="?p=quest">Category</a></li>
 </ul>
 <br/>
 <!-- Button trigger modal - Add New Exercise -->
@@ -12,6 +13,7 @@
 
 <h3 class="sub-header">List of Exercises</h3>
 	          <div class="table-responsive">
+	          <div class="panel panel-default">
 	            <table class="table table-hover table-bordered">
 	              <thead>
 	                <tr>
@@ -33,13 +35,19 @@
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
 							echo "	<td style=\"vertical-align: middle;\">" . $row['exer_name'] . "</td>\n";
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">5</td>\n";
-							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $row['activated'] . "</td>\n";
+							if ( $row['activated'] == "1" ) {
+								$activated = "<span class=\"glyphicon glyphicon-ok\" style=\"color:green\"></span>";
+							} else {
+								$activated = "<span class=\"glyphicon glyphicon-ok\" style=\"color:#E6E6E6\"></span>";
+							}
+							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $activated . "</td>\n";
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"#\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
 							echo "</tr>\n";
 						}
 	              ?>
 	              </tbody>
 	            </table>
+	            </div>
 	            <h4>Total Exercise: <?php echo $user_count; ?></h4>
 	          </div>
 

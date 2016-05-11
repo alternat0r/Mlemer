@@ -3,6 +3,7 @@
 <ul class="nav nav-tabs">
   <li role="presentation"><a href="?p=exercise">Exercise</a></li>
   <li role="presentation" class="active"><a href="?p=quest">Questionaire</a></li>
+  <li role="presentation"><a href="?p=quest">Category</a></li>
 </ul>
 	<form action="?p=home" method="post">
 	<label for="selectE"><h3 class="sub-header">Select Exercise:</h3></label>
@@ -37,7 +38,7 @@
 	          <div class="table-responsive">
 	          	<div class="panel panel-default">
 		            <table class="table table-hover table-bordered">
-		              <thead class="thead-inverse" bgcolor="#9b59b6" style="color: white">
+		              <thead>
 		                <tr>
 		                  <th>#</th>
 		                  <th>Question</th>

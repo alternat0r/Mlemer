@@ -18,20 +18,20 @@
 	<form action="" method="post">
 		<div class="form-group">
     		<label for="pg_productname">Product Name</label>
-    		<input class="form-control" name="pg_productname" id="pg_productname" placeholder="Product Name" value="<?php echo GetProductName(); ?>" required="true">
+    		<input class="form-control" name="pg_productname" id="pg_productname" placeholder="Product Name" value="<?php echo htmlentities( GetProductName() ); ?>" required="true">
   		</div>
 
 		<div class="form-group">
     		<label for="pg_title">Title</label>
-    		<input class="form-control" name="pg_title" id="pg_title" placeholder="Page Title" value="<?php echo GetTitle(); ?>" required="true">
+    		<input class="form-control" name="pg_title" id="pg_title" placeholder="Page Title" value="<?php echo htmlentities( GetTitle() ); ?>" required="true">
   		</div>
   		<div class="form-group">
     		<label for="pg_company">Company Name</label>
-    		<input class="form-control" name="pg_company" id="pg_company" placeholder="Company Name" value="<?php echo GetCompanyName(); ?>" required="true">
+    		<input class="form-control" name="pg_company" id="pg_company" placeholder="Company Name" value="<?php echo htmlentities( GetCompanyName() ); ?>" required="true">
   		</div>
 		<div class="form-group">
 			<label for="pg_about">About</label>
-			<textarea id="pg_about" name="pg_about" class="form-control" rows="5" placeholder="General description about the exercise or event." required="true"><?php echo GetAbout(); ?></textarea>	
+			<textarea id="pg_about" name="pg_about" class="form-control" rows="5" placeholder="General description about the exercise or event." required="true"><?php echo htmlentities( GetAbout() ); ?></textarea>	
   		</div>
       <div class="text-right">
   		  <button type="submit" name="pgConfigSave" class="btn btn-primary">Save Changes</button>
