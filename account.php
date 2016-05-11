@@ -21,14 +21,16 @@
     		<input class="form-control" id="pg_company" type="password" placeholder="Enter new password to change. Otherwise, leave it." value="<?php echo get_current_userpassword(); ?>">        
   		</div>
 
-      <div class="checkbox">
-      <label for="ShowPwd">Show password?</label>
-        <input class="styled" type="checkbox" id="ShowPwd" onclick="if(pg_company.type=='text')pg_company.type='password'; else pg_company.type='text';" />
-      </div>
 
-  		<div class="text-right">
-  			<button type="submit" class="btn btn-primary">Save Changes</button>
-  		</div>
+      <div class="row">
+        <div class="col-md-6">
+         <label for="ShowPwd">Show password?</label>
+        <input class="styled" type="checkbox" id="ShowPwd" onclick="if(pg_company.type=='text')pg_company.type='password'; else pg_company.type='text';" />
+        </div>
+        <div class="col-md-6 text-right">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+        </div>
   	</form>
 
 	<div class="bs-callout bs-callout-danger" id="callout-input-needs-type">

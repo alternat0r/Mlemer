@@ -27,12 +27,13 @@
 
 			<h3 class="sub-header">Top Scorer</h3>
 	          <div class="table-responsive">
-	            <table class="table table-hover">
+	          <div class="panel panel-default">
+	            <table class="table table-hover table-bordered">
 	              <thead>
 	                <tr>
-	                  <th>#</th>
+	                  <th style="text-align: center;">#</th>
 	                  <th>Player Name</th>
-	                  <th>Point</th>
+	                  <th style="text-align: center;">Point</th>
 	                </tr>
 	              </thead>
 	              <tbody>
@@ -44,14 +45,15 @@
 							$user_count++;
 							if ( $row['user_realname'] != "Administrator" and $row['user_realname'] != "" ) {
 								echo "<tr>\n";
-								echo "	<td>" . $user_count . "</td>\n";
+								echo "	<td style=\"text-align: center;\">" . $user_count . "</td>\n";
 								echo "	<td>" . $row['user_realname'] . "</td>\n";
-								echo "	<td>10</td>\n";
+								echo "	<td style=\"text-align: center;\">10</td>\n";
 								echo "</tr>\n";
 							}
 						}
 	              ?>
 	              </tbody>
 	            </table>
+	            </div>
 	          </div>
 
