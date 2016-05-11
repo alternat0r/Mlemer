@@ -6,11 +6,9 @@
 			<th>#</th>
 			<th>Timestamp</th>
 			<th>User Name</th>
-			<th>Full Name</th>
-			<th>IP Address</th>
-			<th>Hostname</th>
+			<th>IP/Hostname</th>
 			<th>UID</th>
-			<th>Menu</th>
+			<th align="center"><div class="glyphicon glyphicon-cog"></div></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -22,14 +20,18 @@
 							$user_count++;
 							if ( $row['user_realname'] != "Administrator" and $row['user_realname'] != "" ) {
 								echo "<tr>\n";
-								echo "	<td>" . $user_count . "</td>\n";
-								echo "	<td>" . $row['timestamp'] . "</td>\n";
-								echo "	<td>" . $row['user_loginname'] . "</td>\n";
-								echo "	<td>" . $row['user_realname'] . "</td>\n";
-								echo "	<td>" . $row['user_ip'] . "</td>\n";
-								echo "	<td>" . $row['user_hostname'] . "</td>\n";
-								echo "	<td>" . $row['user_uid'] . "</td>\n";
-								echo "	<td><a href=\"#\" class=\"glyphicon glyphicon-edit\"></a>&nbsp;<a href=\"#\" class=\"glyphicon glyphicon-remove\"></a></td>\n";
+								echo "	<td style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
+								echo "	<td style=\"vertical-align: middle;\">" . $row['timestamp'] . "</td>\n";
+								echo "	<td style=\"vertical-align: middle;\">";
+								echo $row['user_loginname']."<br/>";
+								echo "		<i>".$row['user_realname']."</i>";
+								echo "	</td>\n";
+								echo "	<td style=\"vertical-align: middle;\">";
+								echo $row['user_ip']."<br/>";
+								echo "		<i>".$row['user_hostname']."</i>";
+								echo "	</td>\n";
+								echo "	<td style=\"vertical-align: middle;\">" . $row['user_uid'] . "</td>\n";
+								echo "	<td style=\"vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"#\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
 								echo "</tr>\n";
 							}
 						}

@@ -4,10 +4,8 @@
   <li role="presentation"><a href="?p=exercise">Exercise</a></li>
   <li role="presentation" class="active"><a href="?p=quest">Questionaire</a></li>
 </ul>
-<br/>
-
 	<form action="?p=home" method="post">
-	<label for="selectE">Select Exercise:</label>
+	<label for="selectE"><h3 class="sub-header">Select Exercise:</h3></label>
 	<div class="selectContainer">
         <select id="selectE" class="form-control" onchange='if(this.value != 0) { this.form.submit(); }'>
         	<?php
@@ -30,7 +28,10 @@
 
     
 
-<h3 class="sub-header">List of Question</h3>
+		<h3 class="sub-header">List of Question</h3>
+		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#BtnAddNewQuestion">
+			Add New Question
+		</button>
 	          <div class="table-responsive">
 	            <table class="table table-hover">
 	              <thead>
@@ -58,5 +59,5 @@
 	              ?>
 	              </tbody>
 	            </table>
-	            <h4>Total Exercise: <?php echo $user_count; ?></h4>
+	            <h4>Total Question: <?php echo $user_count; ?></h4>
 	          </div>

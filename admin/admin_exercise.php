@@ -5,7 +5,10 @@
   <li role="presentation"><a href="?p=quest">Questionaire</a></li>
 </ul>
 <br/>
-<button type="button" class="btn btn-success">Add New Exercise</button>
+<!-- Button trigger modal - Add New Exercise -->
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#BtnAddNewExercise">
+	Add New Exercise
+</button>
 
 <h3 class="sub-header">List of Exercises</h3>
 	          <div class="table-responsive">
@@ -39,3 +42,37 @@
 	            </table>
 	            <h4>Total Exercise: <?php echo $user_count; ?></h4>
 	          </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="BtnAddNewExercise" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add New Exercise</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+			<label for="inExerciseName">Exercise Name:</label>
+        	<input class="form-control" type="text" id="inExerciseName" placeHolder="Enter your exercise name" />
+        </div>
+        <div class="form-group">
+			<label for="inExerciseDesc">Exercise Description:</label>
+        	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter your exercise description" />
+        </div>
+        <div class="form-group">
+			<label for="inExerciseCategory">Category:</label>
+        	<input class="form-control" type="text" id="inExerciseCategory" placeHolder="Choose your category" />
+        </div>
+        <div class="checkbox">
+  			<label><input type="checkbox" value="">Activated?</label>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add New Exercise</button>
+      </div>
+    </div>
+  </div>
+</div>
