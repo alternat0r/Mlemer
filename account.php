@@ -24,13 +24,13 @@
 
       <div class="row">
         <div class="col-md-6">
-         <label for="ShowPwd">Show password?</label>
-        <input class="styled" type="checkbox" id="ShowPwd" onclick="if(pg_company.type=='text')pg_company.type='password'; else pg_company.type='text';" />
+          <input class="styled" type="checkbox" id="ShowPwd" onclick="if(pg_company.type=='text')pg_company.type='password'; else pg_company.type='text';" />
+          <label for="ShowPwd">Show password?</label>
         </div>
         <div class="col-md-6 text-right">
           <button type="submit" class="btn btn-primary">Save Changes</button>
         </div>
-        </div>
+      </div>
   	</form>
 
 	<div class="bs-callout bs-callout-danger" id="callout-input-needs-type">
