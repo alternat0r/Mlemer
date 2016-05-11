@@ -14,7 +14,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="?p=home"><strong><?php echo $pg_title; ?></strong></a>
+            <a class="navbar-brand" href="?p=home"><strong><?php echo GetProductName(); ?></strong></a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -35,7 +35,7 @@
             <ul class="nav navbar-nav navbar-right">
               <?php
                 if ( do_they_register_yet( $curr_ip, $curr_hostname, $curr_uid ) == true ) {
-                  echo '<li><a href="#">Welcome <strong>'.get_user_realname().'</strong></a></li>';
+                  echo '<li><a href="#">Welcome <strong>'.get_current_user_realname().'</strong></a></li>';
                   echo '<li><a href="?p=account"><strong>Account</strong></a></li>';
                 }
               ?>

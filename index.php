@@ -7,6 +7,8 @@
 	} else {
 		//echo "NO COOKIE SET!";
 	}
+
+	$start = explode(' ', microtime())[0] + explode(' ', microtime())[1];
 	
 
 	//error_reporting(0);
@@ -56,9 +58,9 @@
 	<head>
 		<?php
 			if ( isset( $page_name ) ) {
-				echo '<title>' . $pg_title . ' - ' . $page_name . '</title>' . PHP_EOL;
+				echo '<title>' . GetTitle() . ' - ' . $page_name . '</title>' . PHP_EOL;
 			} else {
-				echo '<title>' . $pg_title . '</title>' . PHP_EOL;
+				echo '<title>' . GetTitle() . '</title>' . PHP_EOL;
 			}
 		?>
 		<link rel="shortcut icon" type="image/png" href="img/favicon.png" />

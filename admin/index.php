@@ -2,6 +2,9 @@
 
     
 	require_once "inc/config.php";
+	require_once "../inc/lib.php";
+
+	$start = explode(' ', microtime())[0] + explode(' ', microtime())[1];
 
 	if ( isset( $_REQUEST['p'] ) ) {
 		$page = mysqli_real_escape_string( $link, $_REQUEST['p'] );
@@ -21,9 +24,9 @@
 	<head>
 		<?php
 			if ( isset( $page_name ) ) {
-				echo '<title>' . $pg_title . ' - ' . $page_name . '</title>' . PHP_EOL;
+				echo '<title>' . GetTitle() . ' - ' . $page_name . '</title>' . PHP_EOL;
 			} else {
-				echo '<title>' . $pg_title . '</title>' . PHP_EOL;
+				echo '<title>' . GetTitle() . '</title>' . PHP_EOL;
 			}
 		?>
 		<link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
