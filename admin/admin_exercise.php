@@ -12,14 +12,14 @@
 
 <h3 class="sub-header">List of Exercises</h3>
 	          <div class="table-responsive">
-	            <table class="table table-hover">
+	            <table class="table table-hover table-bordered">
 	              <thead>
 	                <tr>
 	                  <th style="text-align: center">#</th>
 	                  <th>Exercise Name</th>
 	                  <th style="text-align: center">Total Question</th>
 	                  <th style="text-align: center">Activated?</th>
-	                  <th>Menu</th>
+	                  <th style="text-align: center"><div class="glyphicon glyphicon-cog"></div></th>
 	                </tr>
 	              </thead>
 	              <tbody>
@@ -30,11 +30,11 @@
 						while( $row = @mysqli_fetch_assoc( $result ) ) {
 							$user_count++;
 							echo "<tr>\n";
-							echo "	<td align=\"center\">" . $user_count . "</td>\n";
-							echo "	<td>" . $row['exer_name'] . "</td>\n";
-							echo "	<td align=\"center\">5</td>\n";
-							echo "	<td align=\"center\">" . $row['activated'] . "</td>\n";
-							echo "	<td><a href=\"#\" class=\"glyphicon glyphicon-edit\"></a>&nbsp;<a href=\"#\" class=\"glyphicon glyphicon-remove\"></a></td>\n";
+							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
+							echo "	<td style=\"vertical-align: middle;\">" . $row['exer_name'] . "</td>\n";
+							echo "	<td align=\"center\" style=\"vertical-align: middle;\">5</td>\n";
+							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $row['activated'] . "</td>\n";
+							echo "	<td align=\"center\" style=\"vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"#\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
 							echo "</tr>\n";
 						}
 	              ?>
@@ -55,15 +55,15 @@
       <div class="modal-body">
         <div class="form-group">
 			<label for="inExerciseName">Exercise Name:</label>
-        	<input class="form-control" type="text" id="inExerciseName" placeHolder="Enter your exercise name" />
+        	<input class="form-control" type="text" id="inExerciseName" placeHolder="Enter your exercise name" required="true" />
         </div>
         <div class="form-group">
 			<label for="inExerciseDesc">Exercise Description:</label>
-        	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter your exercise description" />
+        	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter your exercise description" required="true"/>
         </div>
         <div class="form-group">
 			<label for="inExerciseCategory">Category:</label>
-        	<input class="form-control" type="text" id="inExerciseCategory" placeHolder="Choose your category" />
+        	<input class="form-control" type="text" id="inExerciseCategory" placeHolder="Choose your category" required="true"/>
         </div>
         <div class="checkbox">
   			<label><input type="checkbox" value="">Activated?</label>

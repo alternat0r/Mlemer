@@ -8,7 +8,7 @@
 			<th>User Name</th>
 			<th>IP/Hostname</th>
 			<th>UID</th>
-			<th align="center"><div class="glyphicon glyphicon-cog"></div></th>
+			<th style="text-align: center"><div class="glyphicon glyphicon-cog"></div></th>
 		</tr>
 	</thead>
 	<tbody>
