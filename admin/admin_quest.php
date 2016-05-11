@@ -55,9 +55,9 @@
 								$user_count++;
 									echo "<tr>\n";
 									echo "	<td style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
-									echo "	<td style=\"vertical-align: middle;\">" . $row['question'] . "</td>\n";
+									echo "	<td style=\"vertical-align: middle;\">" . shorten( $row['question'], 50) . "</td>\n";
 									echo "	<td style=\"vertical-align: middle;\">" . $row['answer'] . "</td>\n";
-									echo "	<td style=\"vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"#\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
+									echo "	<td style=\"text-align: center; vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"#\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
 									echo "</tr>\n";
 							}
 		              ?>

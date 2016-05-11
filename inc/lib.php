@@ -161,4 +161,19 @@
 			return $final_msg;
 		}
 	}
+
+	/**
+	 * truncate a string provided by the maximum limit without breaking a word
+	 * @param string $str
+	 * @param integer $maxlen
+	 * @return string
+	 */
+	function shorten($str, $maxlen) {
+	    if (strlen($str) <= $maxlen) return $str;
+
+	    $newstr = substr($str, 0, $maxlen);
+	    if (substr($newstr, -1, 1) != ' ') $newstr = substr($newstr, 0, strrpos($newstr, " "));
+
+	    return $newstr . "...";
+	}
 ?>

@@ -17,11 +17,12 @@
 	            <table class="table table-hover table-bordered">
 	              <thead>
 	                <tr>
-	                  <th style="text-align: center">#</th>
-	                  <th>Exercise Name</th>
-	                  <th style="text-align: center">Total Question</th>
-	                  <th style="text-align: center">Activated?</th>
-	                  <th style="text-align: center"><div class="glyphicon glyphicon-cog"></div></th>
+	                  <th style="text-align: center; vertical-align: middle">#</th>
+	                  <th style="vertical-align: middle">Exercise Name</th>
+	                  <th style="vertical-align: middle">Description</th>
+	                  <th style="text-align: center; vertical-align: middle">Total Question</th>
+	                  <th style="text-align: center; vertical-align: middle">Activated?</th>
+	                  <th style="text-align: center; vertical-align: middle"><div class="glyphicon glyphicon-cog"></div></th>
 	                </tr>
 	              </thead>
 	              <tbody>
@@ -34,6 +35,7 @@
 							echo "<tr>\n";
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
 							echo "	<td style=\"vertical-align: middle;\">" . $row['exer_name'] . "</td>\n";
+							echo "	<td style=\"vertical-align: middle;\" title=\"".$row['exer_description']."\">" . shorten( $row['exer_description'], 35) . "</td>\n";
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">5</td>\n";
 							if ( $row['activated'] == "1" ) {
 								$activated = "<span class=\"glyphicon glyphicon-ok\" style=\"color:green\"></span>";
