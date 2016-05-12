@@ -18,6 +18,7 @@
 		if ( $page == "users" ) { $page_name = "Users"; }
 		if ( $page == "quest" ) { $page_name = "Questionaire"; }
 		if ( $page == "exercise" ) { $page_name = "Exercise"; }
+		if ( $page == "category" ) { $page_name = "Category"; }
 	}
 ?>
 <html>
@@ -64,6 +65,8 @@
 						include "admin_exercise.php";
 					} elseif ( $page == "quest" ) {
 						include "admin_quest.php";
+					} elseif ( $page == "category" ) {
+						include "admin_category.php";
 					} else {
 						include "../dash.php";
 					}

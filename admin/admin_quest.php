@@ -3,7 +3,7 @@
 <ul class="nav nav-tabs">
   <li role="presentation"><a href="?p=exercise">Exercise</a></li>
   <li role="presentation" class="active"><a href="?p=quest">Questionaire</a></li>
-  <li role="presentation"><a href="?p=quest">Category</a></li>
+  <li role="presentation"><a href="?p=category">Category</a></li>
 </ul>
 
 	<form action="?p=home" method="post">
@@ -86,7 +86,7 @@
 			<label for="inExerciseDesc">The Answer:</label>
         	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter the answer for the question" required="true"/>
         </div>
-		<label for="selectE">Select Category:</label>
+		<label for="selectE">Select Exercise:</label>
 		<div class="selectContainer">
 	        <select id="selectE" class="form-control" onchange='if(this.value != 0) { this.form.submit(); }'>
 	        	<?php

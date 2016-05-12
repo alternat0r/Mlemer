@@ -3,7 +3,7 @@
 <ul class="nav nav-tabs">
   <li role="presentation" class="active"><a href="?p=exercise">Exercise</a></li>
   <li role="presentation"><a href="?p=quest">Questionaire</a></li>
-  <li role="presentation"><a href="?p=quest">Category</a></li>
+  <li role="presentation"><a href="?p=category">Category</a></li>
 </ul>
 <br/>
 <!-- Button trigger modal - Add New Exercise -->
@@ -72,7 +72,7 @@
         	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter your exercise description" required="true"/>
         </div>
         <div class="form-group">
-			<label for="inExerciseCategory">Category:</label>
+			<label for="inExerciseCategory">Exercise Category:</label>
         	<input class="form-control" type="text" id="inExerciseCategory" placeHolder="Choose your category" required="true"/>
         </div>
         <div class="checkbox">
