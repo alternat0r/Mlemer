@@ -1,5 +1,33 @@
 <?php
-	
+    require_once "inc/lib.php";
+
+    $curr_ip = getHostByName(getHostName());
+      $curr_hostname = gethostname();
+      $curr_uid = GenUniqueID(); 
+
+    /*if ( do_they_register_yet( $curr_ip, $curr_hostname, $curr_uid ) == true ) {
+      echo '<META http-equiv="refresh" content="0;URL=http://'.$curr_url['path'].'?p=home">';
+    }*/
+
+    global $link;
+    if ( isset( $_REQUEST['submit'] ) ) {
+      if ( isset( $_REQUEST['username'] ) && isset( $_REQUEST['realname'] ) && isset( $_REQUEST['password'] ) ) {
+
+        if ( isset( $_REQUEST['username'] ) or isset( $_REQUEST['password'] ) ) {
+          $regUsername = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['username'] ) );
+          $regRealname = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['realname'] ) );
+          $regPassword = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['password'] ) );
+        }
+
+        $curr_ip = @$_SERVER['REMOTE_ADDR'];
+        $curr_uid = GenUniqueID();
+        mysqli_query( $link, "UPDATE users SET user_loginname='$regUsername', user_realname='$regRealname',user_password='$regPassword' WHERE user_uid='$curr_uid'");
+        //echo "SUCCESSFULLY REGISTER!";
+        echo '<META http-equiv="refresh" content="0;URL=http://'.$curr_url['path'].'?p=account">';
+        setcookie( "stayalive", $curr_uid, time() + 777600 ); // 9 days to live
+
+      }
+    }
 ?>
 	<h2 class="page-header">
 		Account
@@ -11,16 +39,16 @@
       <form action="" method="post">
         <div class="form-group">
             <label for="pg_productname">Username</label>
-            <input class="form-control" id="pg_productname" placeholder="Your user name for login purpose" value="<?php echo get_current_username(); ?>">
+            <input class="form-control" name="username" id="pg_productname" placeholder="Your user name for login purpose" value="<?php echo get_current_username(); ?>">
           </div>
 
         <div class="form-group">
             <label for="pg_title">Real Name</label>
-            <input class="form-control" id="pg_title" placeholder="Your Real Name (Your name will be displayed)" value="<?php echo get_current_user_realname(); ?>" required="true">
+            <input class="form-control" name="realname" id="pg_title" placeholder="Your Real Name (Your name will be displayed)" value="<?php echo get_current_user_realname(); ?>" required="true">
           </div>
           <div class="form-group">
             <label for="pg_company">Password</label>
-            <input class="form-control" id="pg_company" type="password" placeholder="Enter new password to change. Otherwise, leave it." value="<?php echo get_current_userpassword(); ?>">        
+            <input class="form-control" name="password" id="pg_company" type="password" placeholder="Enter a new password to change. Otherwise, leave it." value="<?php echo get_current_userpassword(); ?>">        
           </div>
 
 
@@ -30,7 +58,7 @@
               <label for="ShowPwd">Show password?</label>
             </div>
             <div class="col-md-6 text-right">
-              <button type="submit" class="btn btn-primary">Save Changes</button>
+              <button type="submit" name="submit" class="btn btn-primary">Save Changes</button>
             </div>
           </div>
       </form>
