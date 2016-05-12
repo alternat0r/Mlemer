@@ -183,4 +183,15 @@
 
 	    return $newstr . "...";
 	}
+
+	function count_registered_user() {
+		global $link;
+		$sql = "SELECT * FROM users";
+      	$user_count = "";
+		$result = mysqli_query( $link, $sql );
+		while( $row = @mysqli_fetch_assoc( $result ) ) {
+			$user_count++;
+		}
+		return $user_count;
+	}
 ?>
