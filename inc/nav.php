@@ -27,6 +27,7 @@
                 }
 
                 if ( do_they_register_yet( $curr_ip, $curr_hostname, $curr_uid ) == true ) {
+                  echo '<li><a href="?p=dash">Dashboard</a></li>';
                   echo '<li><a href="?p=about">About</a></li>';
                 }
               ?>

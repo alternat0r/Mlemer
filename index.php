@@ -22,7 +22,7 @@
 		if ( $page == "register" ) { $page_name = "Register"; }
 		if ( $page == "login" ) { $page_name = "Login"; }
 		if ( $page == "account" ) { $page_name = "Account"; }
-		if ( $page == "Exercise" ) { $page_name = "Exercise"; }
+		if ( $page == "exercise" ) { $page_name = "Exercise"; }
 		if ( $page == "play" ) { $page_name = "Exercise"; }
 	}
 

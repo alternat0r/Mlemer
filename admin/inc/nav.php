@@ -16,6 +16,7 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+              <li><a href="?p=dash">Dashboard</a></li>
               <li><a href="?p=usermode">UserMode</a></li>
               <li><a href="?p=about">About</a></li>
             </ul>
