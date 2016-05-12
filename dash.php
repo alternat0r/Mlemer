@@ -18,13 +18,18 @@
 		              	$user_count = "";
 						$result = mysqli_query( $link, $sql );
 						while( $row = @mysqli_fetch_assoc( $result ) ) {
-							$user_count++;
-							echo "<a class=\"NoUnderLine\" href=\"?p=play\">";
-							echo "<div class=\"bs-callout bs-callout-info hoverDiv\" id=\"callout-input-needs-type\">\n";
-							echo "	<h4>" . $row['exer_name'] . "</h4>";
-							echo "	<p>" . $row['exer_description'] . "</p>\n";
-							echo "</div>\n";
-							echo "</a>";
+							if ( $row['activated'] == "1" ) {
+								$user_count++;
+								echo "<a class=\"NoUnderLine\" href=\"?p=play\">";
+								echo "<div class=\"bs-callout bs-callout-info hoverDiv\" id=\"callout-input-needs-type\">\n";
+								echo "	<h4>" . $row['exer_name'] . "</h4>";
+								echo "	<p>" . $row['exer_description'] . "</p>\n";
+								echo "</div>\n";
+								echo "</a>";
+							}
+						}
+						if ( $user_count == 0 ) {
+							echo "No exercise available. Contact administrator.";
 						}
 					?>
 					</div>
