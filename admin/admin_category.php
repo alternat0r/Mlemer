@@ -56,11 +56,11 @@
       <div class="modal-body">
         <div class="form-group">
 			<label for="inExerciseName">Category Name:</label>
-        	<input class="form-control" type="text" id="inExerciseName" placeHolder="Enter your exercise name" required="true" />
+        	<input class="form-control" type="text" id="inExerciseName" placeHolder="Enter category name" required="true" />
         </div>
         <div class="form-group">
 			<label for="inExerciseDesc">Category Description:</label>
-        	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter your exercise description" required="true"/>
+        	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter category description" required="true"/>
         </div>
       </div>
       <div class="modal-footer">

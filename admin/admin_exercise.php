@@ -71,10 +71,18 @@
 			<label for="inExerciseDesc">Exercise Description:</label>
         	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter your exercise description" required="true"/>
         </div>
-        <div class="form-group">
-			<label for="inExerciseCategory">Exercise Category:</label>
-        	<input class="form-control" type="text" id="inExerciseCategory" placeHolder="Choose your category" required="true"/>
-        </div>
+		<label for="selectE">Select Category:</label>
+		<div class="selectContainer">
+	        <select id="selectE" class="form-control" onchange='if(this.value != 0) { this.form.submit(); }'>
+	        	<?php
+	              	$sql = "SELECT * FROM category";
+					$result = mysqli_query( $link, $sql );
+					while( $row = @mysqli_fetch_assoc( $result ) ) {
+							echo "	<option value=\"".$row['id']."\" selected=\"selected\">" . $row['category_name'] . "</option>\n";
+					}
+	            ?>
+	        </select>
+	    </div>
         <div class="checkbox">
   			<label><input type="checkbox" value="">Activated?</label>
 		</div>
