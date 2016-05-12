@@ -1,5 +1,5 @@
 <?php
-	$exer_id = $_REQUEST['e'];
+	$exer_id = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['e'] ) );
 
 	$sql = "SELECT * FROM exercise WHERE id='$exer_id';";
 	$result = mysqli_query( $link, $sql );
@@ -10,3 +10,32 @@
 <h2 class="page-header"><?php echo $exer_name; ?></h2>
 
 <h3 class="sub-header">Question</h3>
+
+<div class="table-responsive">
+	<div class="panel panel-default">
+		<table class="table table-hover table-bordered">
+			<thead>
+	            <tr>
+	              <th style="text-align: center; vertical-align: middle">#</th>
+	              <th>Question</th>
+	              <th>Answer</th>
+	            </tr>
+            </thead>
+			<tbody>				
+              <?php
+	              	$sql = "SELECT * FROM questionaire WHERE exercise_id='$exer_id'";
+	              	$user_count = "";
+					$result = mysqli_query( $link, $sql );
+					while( $row = @mysqli_fetch_assoc( $result ) ) {
+						$user_count++;
+							echo "<tr>\n";
+							echo "	<td style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
+							echo "	<td style=\"vertical-align: middle;\">" . $row['question'] . "</td>\n";
+							echo "	<td><input type=\"text\" class=\"form-control\" placeHolder=\"Enter your answer\"></td>";
+							echo "</tr>\n";
+					}
+              ?>
+			</tbody>
+		</table>
+	</div>
+</div>
