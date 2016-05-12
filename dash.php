@@ -19,7 +19,7 @@
 						while( $row = @mysqli_fetch_assoc( $result ) ) {
 							if ( $row['activated'] == "1" ) {
 								$user_count++;
-								echo "<a class=\"NoUnderLine\" href=\"?p=play\">";
+								echo "<a class=\"NoUnderLine\" href=\"?p=play&e=".$row['id']."\">";
 								echo "<div class=\"bs-callout bs-callout-info hoverDiv\" id=\"callout-input-needs-type\">\n";
 								echo "	<h4>" . $row['exer_name'] . "</h4>";
 								echo "	<p>" . $row['exer_description'] . "</p>\n";
