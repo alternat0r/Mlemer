@@ -35,6 +35,33 @@ body {
         display: none;
      }
 }
+
+.navbar-custom {
+    background-color:#1b809e;
+    color:#186F8A;
+    border-radius:0;
+}
+.navbar-custom .navbar-nav > li > a {
+    color:#ffffff;
+}
+
+.navbar-custom .navbar-nav > li > a:hover {
+    color:#186F8A;
+}
+
+.navbar-custom .navbar-nav > li:hover {
+    color:#8e44ad;
+}
+
+.navbar-custom .navbar-nav > .active > a,
+.navbar-nav > .active > a:hover,
+.navbar-nav > .active > a:focus {
+    color: #186F8A;
+    background-color:transparent;
+}
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
 </style>
 
 <link rel="stylesheet" href="http://getbootstrap.com/assets/css/docs.min.css">

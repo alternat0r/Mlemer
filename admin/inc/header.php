@@ -42,7 +42,7 @@ body {
     border-radius:0;
 }
 .navbar-custom .navbar-nav > li > a {
-    color:#ecdbff;
+    color:#ffffff;
 }
 
 .navbar-custom .navbar-nav > li > a:hover {

@@ -45,7 +45,7 @@
   	  <div class="form-group">
 	    <label for="inputEmail3" class="col-sm-2 control-label">Real Name</label>
 	    <div class="col-sm-10">
-	      <input type="text" name="realname" class="form-control" id="inputEmail3" placeholder="Real Name" required="true">
+	      <input type="text" name="realname" class="form-control" id="inputEmail3" placeholder="Real Name (Your name will be displayed)" required="true">
 	    </div>
 	  </div>
 
@@ -57,7 +57,7 @@
 	  </div>
 	  <div class="form-group">
 	    <div class="col-sm-offset-2 col-sm-10">
-	      <button type="submit" name="submit" class="btn btn-default">Register</button>
+	      <button type="submit" name="submit" class="btn btn-success" title="Click to submit your registration.">Register</button>
 	    </div>
 	  </div>
 	</form>

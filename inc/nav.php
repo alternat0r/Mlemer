@@ -5,7 +5,7 @@
 ?>
 
 <!-- Static navbar -->
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-custom">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -35,7 +35,7 @@
             <ul class="nav navbar-nav navbar-right">
               <?php
                 if ( do_they_register_yet( $curr_ip, $curr_hostname, $curr_uid ) == true ) {
-                  echo '<li><a href="#">Welcome <strong>'.get_current_user_realname().'</strong></a></li>';
+                  echo '<li><a href="?p=account">Welcome <strong>'.get_current_user_realname().'</strong></a></li>';
                   echo '<li><a href="?p=account"><strong>Account</strong></a></li>';
                 }
               ?>

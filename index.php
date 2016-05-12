@@ -23,6 +23,7 @@
 		if ( $page == "login" ) { $page_name = "Login"; }
 		if ( $page == "account" ) { $page_name = "Account"; }
 		if ( $page == "Exercise" ) { $page_name = "Exercise"; }
+		if ( $page == "play" ) { $page_name = "Exercise"; }
 	}
 
 	$curr_ip = getHostByName(getHostName()); // @$_SERVER['REMOTE_ADDR'];
@@ -98,6 +99,8 @@
 						include "account.php";
 					} elseif ( $page == "removeaccount" ) {
 						include "remove.php";
+					} elseif ( $page == "play" ) {
+						include "play.php";
 					} elseif ( $page == "logout" ) {
 						include "logout.php";
 					} else {
