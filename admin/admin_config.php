@@ -10,7 +10,7 @@
 
       //TODO: Update DB.
       update_config( $pg_productname, $pg_title, $pg_company, $pg_about );
-      echo error_msg( "success", "Configuration successfully updated." );
+      echo error_msg( "success", "SUCCESS!", "Configuration successfully updated." , "1");
     }
 
 ?>

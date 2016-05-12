@@ -138,7 +138,7 @@
 		mysqli_query( $link, "UPDATE config SET pg_product='$pg_product', pg_title='$pg_title', pg_company='$pg_company', pg_about='$pg_about';");
 	}
 
-	function error_msg( $type, $msg ) {
+	function error_msg( $type, $title, $msg, $dismissible ) {
 		if ( isset( $msg ) ) {
 			if ( $type == "success" ) {
 				$type = "success";
@@ -152,11 +152,18 @@
 				$type = "info";
 			}
 
-			$final_msg = "<div class=\"alert alert-".$type." alert-dismissible\" role=\"alert\">";
-  			$final_msg .= " 	<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
-  			$final_msg .= "		<strong>UPDATE!</strong> " . $msg;
-			$final_msg .= "</div>";
-
+			if ( $dismissible == "1" ) {
+				$final_msg = "<div class=\"popup alert alert-".$type." alert-dismissible\" role=\"alert\">";
+	  			$final_msg .= " 	<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
+	  			$final_msg .= "		<strong>".$title."</strong> " . $msg;
+				$final_msg .= "</div>";
+			} else {
+				$final_msg = "<br/><div class=\"panel panel-".$type."\">";
+				$final_msg .= "	<div class=\"panel-heading\">";
+				$final_msg .= "		<h3 class=\"panel-title\">".$msg."</h3>";
+				$final_msg .= "	</div>";
+				$final_msg .= "</div>";
+			}
 
 			return $final_msg;
 		}

@@ -7,12 +7,11 @@
 				.hoverDiv:hover { background: #E0F2F7; }
 				.NoUnderLine { text-decoration: none !important; }
 			</style>
-
-
+			<div style="margin-top: -10px"></div>
 			<div class="row">
   				<div class="col-md-6">
   					<h3 class="sub-header">Available Exercise</h3>
-  					<div style="margin-top: -10px">
+  					<div style="margin-top: -9px">
   					<?php
 		              	$sql = "SELECT * FROM exercise";
 		              	$user_count = "";
@@ -29,7 +28,7 @@
 							}
 						}
 						if ( $user_count == 0 ) {
-							echo "No exercise available. Contact administrator.";
+							echo error_msg( "warning", "OPS!", "No exercise available. Contact administrator." , "0");
 						}
 					?>
 					</div>

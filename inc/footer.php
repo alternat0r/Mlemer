@@ -13,3 +13,10 @@
 			</div>
 		</div>
       </footer>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>    
+
+  		<script>
+		$(".popup").delay(4000).slideUp(200, function() {
+    		$(this).alert('close');
+		});
+		</script>
