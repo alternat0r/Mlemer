@@ -6,6 +6,9 @@
 	$row = mysqli_fetch_assoc( $result );
 	$exer_name = $row['exer_name'];
 	$exer_description = $row['exer_description'];
+	if ( empty( $exer_description ) ) {
+		$exer_description = "Not available.";
+	}
 	$exer_long = $row['exer_long'];
 	if ( empty( $exer_long ) ) {
 		$exer_long = "Not available.";
@@ -15,7 +18,7 @@
 <h2 class="page-header"><?php echo $exer_name; ?></h2>
 
 <div class="panel panel-default" style="border-color: #186F8A">
-  <div class="panel-heading" style="border-color: #186F8A; color: #186F8A; background-color: #E0F2F7"><?php echo $exer_description; ?></div>
+  <div class="panel-heading" style="border-color: #186F8A; color: #ffffff; background-color: #1b809e"><?php echo $exer_description; ?></div>
   <div class="panel-body">
     <?php echo $exer_long; ?>
   </div>

@@ -57,7 +57,7 @@
 											echo "<tr>\n";
 											echo "	<td style=\"text-align: center;\">" . $user_count . "</td>\n";
 											echo "	<td>" . $row['user_realname'] . "</td>\n";
-											echo "	<td style=\"text-align: center;\">10</td>\n";
+											echo "	<td style=\"text-align: center;\">".$row['user_point']."</td>\n";
 											echo "</tr>\n";
 										}
 									}

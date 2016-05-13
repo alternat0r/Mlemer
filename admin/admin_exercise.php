@@ -71,6 +71,10 @@
 			<label for="inExerciseDesc">Exercise Description:</label>
         	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter your exercise description" required="true"/>
         </div>
+        <div class="form-group">
+			<label for="inExerciseDesc">Exercise Description (Long):</label>
+        	<textarea rows="7" class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter your exercise long description" required="true"></textarea>
+        </div>
 		<label for="selectE">Select Category:</label>
 		<div class="selectContainer">
 	        <select id="selectE" class="form-control" onchange='if(this.value != 0) { this.form.submit(); }'>
