@@ -35,7 +35,7 @@
 
 						echo "	<td style=\"vertical-align: middle;\"><div style=\"color:#E6E6E6\" id=\"demo\"><div class=\"glyphicon glyphicon-question-sign\"  style=\"color:#E6E6E6\" ></div></div></td>";
 
-						echo "	<td style=\"text-align: center; \">";
+						echo "	<td style=\"text-align: center; vertical-align: middle; \">";
 						echo "		<div class=\"input-group\">";
 						echo "			<input class=\"form-control\" type=\"text\" id=\"userInput\" placeholder=\"Answer here\" />";
 						echo "			<span class=\"input-group-btn\">";

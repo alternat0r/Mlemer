@@ -45,6 +45,7 @@
 		                  <th>#</th>
 		                  <th>Question</th>
 		                  <th>Answer</th>
+		                  <th style="text-align: center; vertical-align: middle;">Point</th>
 		                  <th style="text-align: center; vertical-align: middle;"><div class="glyphicon glyphicon-cog"></div></th>
 		                </tr>
 		              </thead>
@@ -59,6 +60,7 @@
 									echo "	<td style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
 									echo "	<td style=\"vertical-align: middle;\">" . shorten( $row['question'], 50) . "</td>\n";
 									echo "	<td style=\"vertical-align: middle;\">" . $row['answer'] . "</td>\n";
+									echo "	<td style=\"text-align: center; vertical-align: middle;\">10</td>\n";
 									echo "	<td style=\"text-align: center; vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"#\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
 									echo "</tr>\n";
 							}
@@ -86,6 +88,11 @@
 			<label for="inExerciseDesc">The Answer:</label>
         	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter the answer for the question" required="true"/>
         </div>
+        <div class="form-group">
+			<label for="inExerciseDesc">Worth Point:</label>
+        	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter point number worth for answering this question. Example: 10" required="true"/>
+        </div>
+
 		<label for="selectE">Select Exercise:</label>
 		<div class="selectContainer">
 	        <select id="selectE" class="form-control" onchange='if(this.value != 0) { this.form.submit(); }'>
