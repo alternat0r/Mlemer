@@ -27,8 +27,11 @@
 	              	$sql = "SELECT * FROM questionaire WHERE exercise_id='$exer_id'";
 	              	$user_count = "";
 					$result = mysqli_query( $link, $sql );
+					$js_valid = "";
 					while( $row = @mysqli_fetch_assoc( $result ) ) {
 						$user_count++;
+						$quest_id = $row['id'];
+
 						echo "<tr>\n";
 						echo "	<td style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
 						echo "	<td width=\"70%\" style=\"vertical-align: middle;\">" . $row['question'] . "</td>\n";
@@ -46,6 +49,8 @@
 						echo "		</div>\n";
 						echo "	</td>\n";
 						echo "</tr>\n";
+
+						$js_valid .= "butt( \"".$quest_id."\", \"button".$user_count."\", \"userInput".$user_count."\", \"a".$user_count."\");\n";
 					}
               ?>
 			</tbody>
@@ -56,15 +61,16 @@
 <script>
 $(document).ready(function() {    
 	<?php
-		for ($i=1; $i<$user_count+1; $i++) {
+		/*for ($i=1; $i<$user_count+1; $i++) {
 			echo "	butt(\"button".$i."\", \"userInput".$i."\", \"a".$i."\");\n";
-		}
+		}*/
+		echo $js_valid;
 	?>
 });
-function butt( button, userInput, outputId ) {
+function butt( quest_id, button, userInput, outputId ) {
     $(button).click(function() {
         var userInput1 = document.getElementById(userInput).value; // unserInput = to take user input
-        $.post("valid.php", { answer: userInput1 },
+        $.post("valid.php", { answer: userInput1, qid: quest_id },
         function( data, status ) {
            	document.getElementById(outputId).innerHTML = data; //a2 = place to display       
         });
