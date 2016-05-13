@@ -1,6 +1,7 @@
 <?php
 	require_once "inc/config.php";
 ?>
+
 			<h2 class="page-header">Dashboard</h2>
 			
 			<style>

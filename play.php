@@ -5,11 +5,21 @@
 	$result = mysqli_query( $link, $sql );
 	$row = mysqli_fetch_assoc( $result );
 	$exer_name = $row['exer_name'];
+	$exer_description = $row['exer_description'];
+	$exer_long = $row['exer_long'];
+	if ( empty( $exer_long ) ) {
+		$exer_long = "Not available.";
+	}
 ?>
 
 <h2 class="page-header"><?php echo $exer_name; ?></h2>
 
-<h3 class="sub-header">Question</h3>
+<div class="panel panel-default" style="border-color: #186F8A">
+  <div class="panel-heading" style="border-color: #186F8A; color: #186F8A; background-color: #E0F2F7"><?php echo $exer_description; ?></div>
+  <div class="panel-body">
+    <?php echo $exer_long; ?>
+  </div>
+</div>
 
 <div class="table-responsive">
 	<div class="panel panel-default">
