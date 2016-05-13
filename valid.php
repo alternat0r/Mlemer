@@ -9,6 +9,17 @@
 		}
 	}
 
-	//echo "	<td style=\"vertical-align: middle;\"><div class=\"glyphicon glyphicon-question-sign\"  style=\"color:#E6E6E6\" id=\"demo\"></div></td>";
+	function check_answer_on_db( $answer ) {
+		global $link;
+		$sql = "SELECT * FROM questionaire";
+  		$result = mysqli_query( $link, $sql );
+  		$row = mysqli_fetch_assoc( $result );
+  		$answer_db = $row['answer'];
+  		if ( $answer_db == $answer ) {
+  			return true;
+  		} else {
+  			return false;	
+  		}
+	}
 	
 ?>
