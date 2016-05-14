@@ -5,6 +5,8 @@
 
 **SUCH FILES, MANY BUGS, MUCH CODE, NO WOW**
 
+**Mlemer** is a quiz, exercise, CTF or questionnaire system designed for trainer. It is designed meant to be simplified and easy to manage. This system is not suitable to be used for public access. It is designed for local network only and to assist trainer. Used at your own risk. 
+
 ## Requirement
 
 The requirement to get started is fairly simple. You need the following:
@@ -29,6 +31,10 @@ To install, follow these step:
 ## Usage
 
 This system is not suitable to be used for public access. It is designed for local network only and to assist the trainer. Used at your own risk.
+
+## Wiki
+
+In progress. Will be ready soon.
 
 ## Credit
 
