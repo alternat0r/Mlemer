@@ -67,10 +67,35 @@
         <div class="bs-callout bs-callout-danger" id="callout-input-needs-type">
           <h4>Remove Account</h4>
           <p>Here you can remove your current account permenantly. You can register again after removal.</p>
-          <a href="?p=removeaccount" class="btn btn-danger">Remove Account</a>
+          <!-- Button trigger modal - Remove Account -->
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#BtnRemoveAccount">
+              Remove Account
+          </button>
         </div>
     </div>
   </div>
+
+
+<!-- Modal BtnRemoveAccount-->
+<div class="modal fade" id="BtnRemoveAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Remove Account Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <div class="checkbox">
+          <label><input type="checkbox" value="">I understand this will permenantly remove.</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger">Remove Now</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
