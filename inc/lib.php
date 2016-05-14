@@ -207,4 +207,14 @@
 		}
 		return $user_count;
 	}
+
+	function get_last_answer( $exer_id, $qid ) {
+		global $link;
+		$user_id = get_current_user_id();
+
+		$query = mysqli_query( $link, "SELECT * FROM users_answer WHERE (user_id='".$user_id."' AND user_last_exercise_id='".$exer_id."' AND user_last_qid='".$qid."' )" );
+  		$row = mysqli_fetch_assoc( $query );
+  		$answer_db = $row['user_last_answer'];
+  		return $answer_db;
+	}
 ?>

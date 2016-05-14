@@ -1,4 +1,6 @@
 <?php
+	require_once "inc/lib.php";
+
 	$exer_id = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['e'] ) );
 
 	$sql = "SELECT * FROM exercise WHERE id='$exer_id';";
@@ -45,6 +47,8 @@
 						$user_count++;
 						$quest_id = $row['id'];
 
+						$last_answer = get_last_answer( $exer_id, $quest_id );
+
 						echo "<tr>\n";
 						echo "	<td style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
 						echo "	<td width=\"70%\" style=\"vertical-align: middle;\">" . $row['question'] . "</td>\n";
@@ -53,7 +57,7 @@
 
 						echo "	<td style=\"text-align: center; vertical-align: middle; \">\n";
 						echo "		<div class=\"input-group\">\n";
-						echo "			<input class=\"form-control\" type=\"text\" id=\"userInput".$user_count."\" placeholder=\"Answer here\" />\n";
+						echo "			<input class=\"form-control\" type=\"text\" id=\"userInput".$user_count."\" placeholder=\"Answer here\" value=\"".$last_answer."\" />\n";
 						echo "			<span class=\"input-group-btn\">\n";
 						echo "				<button".$user_count." type=\"button\" class=\"checkAnswer btn btn-default \" title=\"Click to check your answer\">\n";
 						echo "					<span class=\"glyphicon glyphicon-circle-arrow-right\"></span>&nbsp;\n";

@@ -47,8 +47,6 @@
 		mysqli_query( $link, $sql );
 	}
 
-	function get_last_answer( $qid ) {
 
-	}
 	
 ?>
