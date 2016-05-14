@@ -33,7 +33,7 @@
 	            <tr>
 	              <th style="text-align: center; vertical-align: middle">#</th>
 	              <th>Question</th>
-	              <th style="text-align: center; vertical-align: middle"><span class="glyphicon glyphicon-question-sign" title="Determine whether your answer correct or not"></span></th>
+	              <th style="text-align: center; vertical-align: middle"><span class="glyphicon glyphicon-question-sign" title="Determine whether your answer is correct or not"></span></th>
 	              <th>Answer</th>
 	            </tr>
             </thead>

@@ -1,14 +1,87 @@
 <?php
 	require_once "inc/config.php";
 ?>
-
 			<h2 class="page-header">Dashboard</h2>
 			
 			<style>
 				.hoverDiv:hover { background: #E0F2F7; }
 				.NoUnderLine { text-decoration: none !important; }
+
 			</style>
 			<div style="margin-top: -10px"></div>
+
+			<link rel="stylesheet" href="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css">
+			<style>
+				body {
+					background-color: white;
+				}
+			</style>
+
+<div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-comments fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php echo count_total_available_question(); ?></div>
+                                    <div>Total Question</div>
+                                </div>
+                            </div>
+                        </div>
+                  
+                    </div>
+                </div>
+                <div class=" col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php echo count_total_question_taken(); ?></div>
+                                    <div>Question Taken</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php echo count_registered_user(); ?></div>
+                                    <div>Total Player</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">12</div>
+                                    <div>Overall Point</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
 			<div class="row">
   				<div class="col-md-6">
   					<h3 class="sub-header">Available Exercise</h3>

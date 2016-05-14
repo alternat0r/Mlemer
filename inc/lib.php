@@ -197,6 +197,22 @@
 	    return $newstr . "...";
 	}
 
+	function count_total_available_question() {
+		global $link;
+		$sql = "SELECT DISTINCT id FROM questionaire";
+		$result = mysqli_query( $link, $sql );
+		$q_count = mysqli_num_rows( $result );
+		printf( "%d", $q_count );
+	}
+
+	function count_total_question_taken() {
+		global $link;
+		$sql = "SELECT DISTINCT exercise_id FROM questionaire";
+		$result = mysqli_query( $link, $sql );
+		$q_count = mysqli_num_rows( $result );
+		printf( "%d", $q_count );
+	}
+
 	function count_registered_user() {
 		global $link;
 		$sql = "SELECT * FROM users";
