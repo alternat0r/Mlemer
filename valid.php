@@ -15,15 +15,21 @@
 		store_last_answer( $exer_id, $quest_id, $answer );
 	}
 
-	function check_answer_on_db( $id, $answer ) {
+	function check_answer_on_db( $quest_id, $answer ) {
 		global $link;
-		$sql = "SELECT * FROM questionaire WHERE id='$id';";
+		$sql = "SELECT * FROM questionaire WHERE id='$quest_id';";
   		$result = mysqli_query( $link, $sql );
   		$row = mysqli_fetch_assoc( $result );
-  		$answer_db = $row['answer'];
+  		$curr_userid = get_current_user_id();
+  		$exer_id = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['eid'] ) );
+  		$answer_db = strtolower( $row['answer'] );
   		if ( $answer_db == $answer ) {
+  			$sql = "UPDATE users_answer SET correct='yes' WHERE user_id='".$curr_userid."' AND user_last_exercise_id='".$exer_id."' AND user_last_qid='".$quest_id."';";
+  			mysqli_query( $link, $sql );
   			return true;
   		} else {
+  			$sql = "UPDATE users_answer SET correct='no' WHERE user_id='".$curr_userid."' AND user_last_exercise_id='".$exer_id."' AND user_last_qid='".$quest_id."';";
+  			mysqli_query( $link, $sql );
   			return false;	
   		}
 	}

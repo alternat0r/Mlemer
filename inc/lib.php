@@ -96,7 +96,7 @@
 
 	function get_current_username() {
 		global $link;
-		$curr_ip = getHostByName(getHostName()); // @$_SERVER['REMOTE_ADDR'];
+		$curr_ip = getHostByName( getHostName() ); // @$_SERVER['REMOTE_ADDR'];
     	$curr_hostname = gethostname();
 
 		$sql = "SELECT * FROM users WHERE user_ip='$curr_ip' AND user_hostname='$curr_hostname';";
@@ -109,7 +109,7 @@
 
 	function get_current_user_id() {
 		global $link;
-		$curr_ip = getHostByName(getHostName()); // @$_SERVER['REMOTE_ADDR'];
+		$curr_ip = getHostByName( getHostName() ); // @$_SERVER['REMOTE_ADDR'];
     	$curr_hostname = gethostname();
 
 		$sql = "SELECT * FROM users WHERE user_ip='$curr_ip' AND user_hostname='$curr_hostname';";
@@ -122,7 +122,7 @@
 
 	function get_current_userpassword() {
 		global $link;
-		$curr_ip = getHostByName(getHostName()); // @$_SERVER['REMOTE_ADDR'];
+		$curr_ip = getHostByName( getHostName() ); // @$_SERVER['REMOTE_ADDR'];
     	$curr_hostname = gethostname();
 
 		$sql = "SELECT * FROM users WHERE user_ip='$curr_ip' AND user_hostname='$curr_hostname';";
@@ -215,6 +215,16 @@
 		$query = mysqli_query( $link, "SELECT * FROM users_answer WHERE (user_id='".$user_id."' AND user_last_exercise_id='".$exer_id."' AND user_last_qid='".$qid."' )" );
   		$row = mysqli_fetch_assoc( $query );
   		$answer_db = $row['user_last_answer'];
+  		return $answer_db;
+	}
+
+	function check_last_answer_is_correct_or_not( $exer_id, $qid ) {
+		global $link;
+		$user_id = get_current_user_id();
+
+		$query = mysqli_query( $link, "SELECT * FROM users_answer WHERE (user_id='".$user_id."' AND user_last_exercise_id='".$exer_id."' AND user_last_qid='".$qid."' )" );
+  		$row = mysqli_fetch_assoc( $query );
+  		$answer_db = $row['correct'];
   		return $answer_db;
 	}
 ?>

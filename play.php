@@ -52,9 +52,11 @@
 						echo "<tr>\n";
 						echo "	<td style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
 						echo "	<td width=\"70%\" style=\"vertical-align: middle;\">" . $row['question'] . "</td>\n";
-
-						echo "	<td style=\"vertical-align: middle;\"><div style=\"color:#E6E6E6\" id=\"a".$user_count."\"><div class=\"glyphicon glyphicon-question-sign\"  style=\"color:#E6E6E6\" ></div></div></td>\n";
-
+						if ( check_last_answer_is_correct_or_not( $exer_id, $quest_id ) == "yes" ) {
+							echo "	<td style=\"vertical-align: middle;\"><div style=\"color:#E6E6E6\" id=\"a".$user_count."\"><div class=\"glyphicon glyphicon-ok-circle\"  style=\"color:#01DF3A\" ></div></div></td>\n";
+						} else {
+							echo "	<td style=\"vertical-align: middle;\"><div style=\"color:#E6E6E6\" id=\"a".$user_count."\"><div class=\"glyphicon glyphicon-question-sign\"  style=\"color:#E6E6E6\" ></div></div></td>\n";
+						}
 						echo "	<td style=\"text-align: center; vertical-align: middle; \">\n";
 						echo "		<div class=\"input-group\">\n";
 						echo "			<input class=\"form-control\" type=\"text\" id=\"userInput".$user_count."\" placeholder=\"Answer here\" value=\"".$last_answer."\" />\n";
