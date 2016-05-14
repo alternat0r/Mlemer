@@ -63,7 +63,7 @@
 						echo "	</td>\n";
 						echo "</tr>\n";
 
-						$js_valid .= "butt( \"".$quest_id."\", \"button".$user_count."\", \"userInput".$user_count."\", \"a".$user_count."\");\n";
+						$js_valid .= "butt( \"".$exer_id."\", \"".$quest_id."\", \"button".$user_count."\", \"userInput".$user_count."\", \"a".$user_count."\");\n";
 					}
               ?>
 			</tbody>
@@ -80,10 +80,10 @@ $(document).ready(function() {
 		echo $js_valid;
 	?>
 });
-function butt( quest_id, button, userInput, outputId ) {
+function butt( exer_id, quest_id, button, userInput, outputId ) {
     $(button).click(function() {
         var userInput1 = document.getElementById(userInput).value; // unserInput = to take user input
-        $.post("valid.php", { answer: userInput1, qid: quest_id },
+        $.post("valid.php", { answer: userInput1, qid: quest_id, eid: exer_id },
         function( data, status ) {
            	document.getElementById(outputId).innerHTML = data; //a2 = place to display       
         });

@@ -107,6 +107,19 @@
 		return $curr_username;
 	}
 
+	function get_current_user_id() {
+		global $link;
+		$curr_ip = getHostByName(getHostName()); // @$_SERVER['REMOTE_ADDR'];
+    	$curr_hostname = gethostname();
+
+		$sql = "SELECT * FROM users WHERE user_ip='$curr_ip' AND user_hostname='$curr_hostname';";
+		$result = mysqli_query( $link, $sql );
+		$row = mysqli_fetch_assoc( $result );
+	
+		$curr_userid = $row['id'];
+		return $curr_userid;
+	}
+
 	function get_current_userpassword() {
 		global $link;
 		$curr_ip = getHostByName(getHostName()); // @$_SERVER['REMOTE_ADDR'];
