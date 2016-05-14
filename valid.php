@@ -8,9 +8,9 @@
 		$quest_id = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['qid'] ) );
 
 		if ( check_answer_on_db( $quest_id, $answer ) == true ) {
-			echo "	<td style=\"vertical-align: middle;\"><div class=\"glyphicon glyphicon-ok-circle\"  style=\"color:#01DF3A\" ></div></td>";
+			echo "	<td style=\"vertical-align: middle;\"><div class=\"glyphicon glyphicon-ok-circle\" title=\"Your answer is correct.\" style=\"color:#01DF3A\" ></div></td>";
 		} else {
-			echo "	<td style=\"vertical-align: middle;\"><div class=\"glyphicon glyphicon-remove-circle\"  style=\"color:#FF0040\" ></div></td>";
+			echo "	<td style=\"vertical-align: middle;\"><div class=\"glyphicon glyphicon-remove-circle\" title=\"Your answer is wrong. Try again.\" style=\"color:#FF0040\" ></div></td>";
 		}
 		store_last_answer( $exer_id, $quest_id, $answer );
 	}
@@ -22,8 +22,8 @@
   		$row = mysqli_fetch_assoc( $result );
   		$curr_userid = get_current_user_id();
   		$exer_id = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['eid'] ) );
-  		$answer_db = strtolower( $row['answer'] );
-  		if ( $answer_db == $answer ) {
+  		$answer_db = $row['answer'];
+  		if ( strtolower( $answer_db ) == strtolower( $answer ) ) {
   			$sql = "UPDATE users_answer SET correct='yes' WHERE user_id='".$curr_userid."' AND user_last_exercise_id='".$exer_id."' AND user_last_qid='".$quest_id."';";
   			mysqli_query( $link, $sql );
   			return true;

@@ -66,7 +66,7 @@
     <div class="col-md-6">
         <div class="bs-callout bs-callout-danger" id="callout-input-needs-type">
           <h4>Remove Account</h4>
-          <p>Here you can remove your current account if you want to re-register.</p>
+          <p>Here you can remove your current account permenantly. You can register again after removal.</p>
           <a href="?p=removeaccount" class="btn btn-danger">Remove Account</a>
         </div>
     </div>
