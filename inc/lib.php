@@ -390,12 +390,27 @@
 
 	function admin_add_category( $cat_name, $cat_description ) {
 		global $link;
+		//TODO: Check if $cat_name is already exist.
+
 		$sql = "INSERT INTO category (category_name,category_description) VALUES  ('$cat_name', '$cat_description');";
 
 		if ( !mysqli_query( $link, $sql ) ) {
 			echo error_msg("danger", "ERROR:", mysqli_error( $link ), "1");
 		} else {
 			echo error_msg("success", "SUCCESS", "New category has been added.", "1");
+		}
+	}
+
+	function admin_del_category( $cat_id ) {
+		global $link;
+		//TODO: Check if $cat_name is already exist.
+
+		$sql = "DELETE FROM category WHERE id='$cat_id'";
+
+		if ( !mysqli_query( $link, $sql ) ) {
+			echo error_msg("danger", "ERROR:", mysqli_error( $link ), "1");
+		} else {
+			echo error_msg("success", "SUCCESS", "Category has been deleted.", "1");
 		}
 	}
 ?>

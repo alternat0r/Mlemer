@@ -1,14 +1,16 @@
 <?php
+	require_once "../inc/config.php";
+    require_once "../inc/lib.php";
+
 	if ( isset( $_REQUEST['inCatName'] ) && isset( $_REQUEST['inCatDesc'] ) && isset( $_REQUEST['AddNewCategory'] ) ) {
-		$inCatName = $_REQUEST['inCatName'];
-		$inCatDesc = $_REQUEST['inCatDesc'];
-		$btnAddCat = $_REQUEST['AddNewCategory'];
+		$inCatName = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['inCatName'] ) );
+		$inCatDesc = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['inCatDesc'] ) );
+		$btnAddCat = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['AddNewCategory'] ) );
 
 		admin_add_category( $inCatName, $inCatDesc );
 		//echo "".$inCatName.",".$inCatDesc.",".$btnAddCat;
 	}
 
-	
 ?>
 
 <h2 class="page-header">Manager</h2>
@@ -43,11 +45,12 @@
 						$result = mysqli_query( $link, $sql );
 						while( $row = @mysqli_fetch_assoc( $result ) ) {
 							$user_count++;
+							$cat_id = $row['id'];
 							echo "<tr>\n";
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
 							echo "	<td style=\"vertical-align: middle;\">" . $row['category_name'] . "</td>\n";
 							echo "	<td style=\"vertical-align: middle;\" title=\"".$row['category_description']."\">" . shorten( $row['category_description'], 35) . "</td>\n";
-							echo "	<td align=\"center\" style=\"vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"#\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
+							echo "	<td align=\"center\" style=\"vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"?catid=".$cat_id."\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
 							echo "</tr>\n";
 						}
 	              ?>

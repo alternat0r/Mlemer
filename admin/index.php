@@ -42,6 +42,13 @@
 			<?php include "inc/nav.php"; ?>
 
 			<?php
+
+				if ( isset( $_REQUEST['catid'] ) ) {
+					$catid = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['catid'] ) );
+					admin_del_category( $catid );
+					header("Location: ?p=category");
+				}
+
 				if ( isset($page) && !empty($page) ) {
 					if ( $page == "dashboard" or $page == "home") {
 						include "../dash.php";
