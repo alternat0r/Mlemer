@@ -77,6 +77,7 @@
 
 
 <!-- Modal BtnRemoveAccount-->
+<form method="post" action="?p=removeaccount" >
 <div class="modal fade" id="BtnRemoveAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -86,7 +87,7 @@
       </div>
       <div class="modal-body">
         <div class="checkbox">
-          <label><input type="checkbox" value="">I understand this will permenantly remove.</label>
+          <label><input type="checkbox" value="">I understand this will remove permenantly.</label>
         </div>
       </div>
       <div class="modal-footer">
@@ -96,6 +97,6 @@
     </div>
   </div>
 </div>
-
+</form>
 
 

@@ -1,5 +1,6 @@
 <?php
 	require_once "inc/config.php";
+
 ?>
 			<h2 class="page-header">Dashboard</h2>
 			
@@ -72,8 +73,8 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>Overall Point</div>
+                                    <div class="huge"><?php echo calculate_point(); ?></div>
+                                    <div>Cumulative Point</div>
                                 </div>
                             </div>
                         </div>

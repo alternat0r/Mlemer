@@ -15,7 +15,10 @@
 	if ( empty( $exer_long ) ) {
 		$exer_long = "Not available.";
 	}
+
 ?>
+
+
 
 <h2 class="page-header"><?php echo $exer_name; ?></h2>
 
@@ -76,7 +79,7 @@
 		</table>
 	</div>
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>   
 <script>
 $(document).ready(function() {    
 	<?php

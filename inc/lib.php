@@ -234,6 +234,21 @@
   		return $answer_db;
 	}
 
+	function check_last_answer_if_correct_return_point( $exer_id, $qid ) {
+		global $link;
+		$user_id = get_current_user_id();
+
+		$query = mysqli_query( $link, "SELECT * FROM users_answer WHERE (user_id='".$user_id."' AND user_last_exercise_id='".$exer_id."' AND user_last_qid='".$qid."' )" );
+  		$row = mysqli_fetch_assoc( $query );
+  		$answer_db = $row['correct'];
+
+  		if ( $answer_db == "yes" ) {
+  			return get_quest_point( $exer_id, $qid);
+  		} else {
+  			return "0";
+  		}
+	}
+
 	function check_last_answer_is_correct_or_not( $exer_id, $qid ) {
 		global $link;
 		$user_id = get_current_user_id();
@@ -241,14 +256,15 @@
 		$query = mysqli_query( $link, "SELECT * FROM users_answer WHERE (user_id='".$user_id."' AND user_last_exercise_id='".$exer_id."' AND user_last_qid='".$qid."' )" );
   		$row = mysqli_fetch_assoc( $query );
   		$answer_db = $row['correct'];
-  		return $answer_db;
+		return $answer_db;
 	}
 
-	function calculate_point( $user_id, $exer_id ) {
+	function calculate_point() {
 		/* TODO:
 			Calculation is based on the following:
 				- How many correct answer on per-exercise.
 				- Sum up all correct answer based on pre-defined worth point.
+				- Every question may have different point.
 
 				Example:
 					Correct answer on Exercise x 5
@@ -261,8 +277,25 @@
 				
 					Total Scored: 43 point
 		*/
+		global $link;
+		$sql = "SELECT * FROM users_answer";
+      	$user_count = "";
+      	$total = "";
+		$result = mysqli_query( $link, $sql );
+		while( $row = @mysqli_fetch_assoc( $result ) ) {
+			$user_count++;
+			$total_correct = $row['correct'];
+			$exer_id = $row['user_last_exercise_id'];
+			$qid = $row['user_last_qid'];
+			if ( $total_correct == "yes" ) {
+				$total = $total + check_last_answer_if_correct_return_point( $exer_id, $qid );
+			}
+		}
+		return $total;
 
 	}
+
+
 
 	function count_how_many_correct_answer( $user_id, $exer_id, $quest_id ) {
 		global $link;

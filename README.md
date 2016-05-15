@@ -21,11 +21,11 @@ The requirement to get started is fairly simple. You need the following:
 To install, follow these step:
 
   * Download latest release.
-  * Extract into your web public directory (Eg: _C:\Wamp\www\mlemer_ ).
-  * Create MySQL database lets say _mlem_db_.
-  * Import _mlem_db.sql_ into your database.
-  * Almost done, navigate to http://localhost/mlemer/admin/
-  * Default username and password is admin:adminadmin987
+  * Extract into your web public directory (Eg: `C:\Wamp\www\mlemer` ).
+  * Create MySQL database lets say `_mlem_db_`.
+  * Import `mlem_db.sql` into your database.
+  * Almost done, navigate to `http://localhost/mlemer/admin/`
+  * Default username and password is `admin:adminadmin987`
   * Now you system is ready.
 
 ## Usage
