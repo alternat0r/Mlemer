@@ -32,6 +32,14 @@ To install, follow these step:
 
 This system is not suitable to be used for public access. It is designed for local network only and to assist the trainer. Used at your own risk.
 
+As a player or training participant:
+  * Once admin have setup everything, go to the following URL: `http://localhost/mlemer/`
+  * At this point, system will automatically record your IP address, hostname and generate unique ID.
+  * You will be prompt to register your username, real name and password (optional).
+  * Once you have registered, you will be taken to the Dashboard page.
+  * You are ready to take an exercise if available.
+
+
 ## Screenshot
 
 Here some screenshot on working system:
