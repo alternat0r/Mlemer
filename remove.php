@@ -1,7 +1,9 @@
 <?php
 	require_once "inc/lib.php";
-	remove_user_from_db( get_current_user_id() );
-	
+	$user_id = get_current_user_id();
+	remove_user_from_db( $user_id );
+	remove_user_from_answer( $user_id );
+
 	$curr_uid = GenUniqueID();
 	unset( $_COOKIE["stayalive"] );
 	setcookie( "stayalive", $curr_uid, time()-1 );

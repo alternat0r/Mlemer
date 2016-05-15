@@ -11,31 +11,31 @@
 			</style>
 			<div style="margin-top: -10px"></div>
 
-			<link rel="stylesheet" href="http://blackrockdigital.github.io/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css">
+			<link rel="stylesheet" href="css/sb-admin-2.css">
 			<style>
 				body {
 					background-color: white;
 				}
 			</style>
 
-<div class="row">
-                <div class="col-lg-3 col-md-6">
+			<div class="row">
+                <div class="col-md-3">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"><?php echo count_total_available_question(); ?></div>
-                                    <div>Total Question</div>
-                                </div>
+                        	<div class="row">
+	                            <div class="col-xs-3">
+	                                <i class="fa fa-tasks fa-5x"></i>
+	                            </div>
+	                            <div class="col-xs-9 text-right">
+									<div class="huge"><?php echo count_total_available_question(); ?></div>
+									<div>Total Question</div>
+	                            </div>
                             </div>
                         </div>
                   
                     </div>
                 </div>
-                <div class=" col-lg-3 col-md-6">
+                <div class="col-md-3">
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-                <div class=" col-lg-3 col-md-6">
+                <div class="col-md-3">
                     <div class="panel panel-yellow">
                         <div class="panel-heading">
                             <div class="row">
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                 </div>
-                <div class=" col-lg-3 col-md-6">
+				<div class="col-md-3">
                     <div class="panel panel-red">
                         <div class="panel-heading">
                             <div class="row">
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                 </div>
-
+				
             </div>
 
 			<div class="row">
@@ -94,12 +94,13 @@
 						while( $row = @mysqli_fetch_assoc( $result ) ) {
 							if ( $row['activated'] == "1" ) {
 								$user_count++;
-								echo "<a class=\"NoUnderLine\" href=\"?p=play&e=".$row['id']."\">";
 								echo "<div class=\"bs-callout bs-callout-info hoverDiv\" id=\"callout-input-needs-type\">\n";
+								echo "<a class=\"NoUnderLine\" href=\"javascript:void(0)\" onclick=\"window.location.href='?p=play&e=".$row['id']."'\">";
 								echo "	<h4>" . $row['exer_name'] . "</h4>";
 								echo "	<p>" . $row['exer_description'] . "</p>\n";
-								echo "</div>\n";
 								echo "</a>";
+								echo "</div>\n";
+								
 							}
 						}
 						if ( $user_count == 0 ) {
@@ -131,7 +132,7 @@
 											echo "<tr>\n";
 											echo "	<td style=\"text-align: center;\">" . $user_count . "</td>\n";
 											echo "	<td>" . $row['user_realname'] . "</td>\n";
-											echo "	<td style=\"text-align: center;\">".get_perplayer_total_point( $row['id'] )."</td>\n";
+											echo "	<td data-sortable=\"true\" style=\"text-align: center;\">".get_perplayer_total_point( $row['id'] )."</td>\n";
 											echo "</tr>\n";
 										}
 									}

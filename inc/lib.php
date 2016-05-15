@@ -279,18 +279,19 @@
 		*/
 		global $link;
 		$sql = "SELECT * FROM users_answer";
-      	$user_count = "";
-      	$total = "";
+      	$user_count = 0;
+      	$total = 0;
 		$result = mysqli_query( $link, $sql );
 		while( $row = @mysqli_fetch_assoc( $result ) ) {
-			$user_count++;
 			$total_correct = $row['correct'];
-			$exer_id = $row['user_last_exercise_id'];
-			$qid = $row['user_last_qid'];
 			if ( $total_correct == "yes" ) {
+				$user_count++;
+				$exer_id = $row['user_last_exercise_id'];
+				$qid = $row['user_last_qid'];				
 				$total = $total + check_last_answer_if_correct_return_point( $exer_id, $qid );
 			}
 		}
+		//echo "COUNT: ".$user_count."----> ".$total."<br/>";
 		return $total;
 
 	}
@@ -301,14 +302,15 @@
       	$user_count = "";
       	$total = "";
 		$result = mysqli_query( $link, $sql );
+		$total = "0"; //default
 		while( $row = @mysqli_fetch_assoc( $result ) ) {
 			$user_count++;
 			$total_correct = $row['correct'];
 			$exer_id = $row['user_last_exercise_id'];
 			$qid = $row['user_last_qid'];
 			if ( $total_correct == "yes" ) {
-				$total = check_peruser_last_answer_if_correct_return_point( $user_id, $exer_id, $qid );
-			}
+				$total = $total + check_peruser_last_answer_if_correct_return_point( $user_id, $exer_id, $qid );
+			} 
 		}
 		return $total;
 			
@@ -358,6 +360,17 @@
 	function remove_user_from_db( $user_id ) {
 		global $link;
 		$sql = "DELETE FROM users WHERE id='$user_id'";
+
+		if ( mysqli_query( $link, $sql ) ) {
+		    echo "User deleted successfully";
+		} else {
+		    echo "Error deleting record: " . mysqli_error($conn);
+		}
+	}
+
+	function remove_user_from_answer( $user_id ) {
+		global $link;
+		$sql = "DELETE FROM users_answer WHERE user_id='$user_id'";
 
 		if ( mysqli_query( $link, $sql ) ) {
 		    echo "User deleted successfully";
