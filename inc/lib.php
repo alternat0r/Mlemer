@@ -166,7 +166,8 @@
 			}
 
 			if ( $dismissible == "1" ) {
-				$final_msg = "<div class=\"popup alert alert-".$type." alert-dismissible\" role=\"alert\">";
+				$final_msg = "<br/>";
+				$final_msg .= "<div class=\"popup alert alert-".$type." alert-dismissible\" role=\"alert\">";
 	  			$final_msg .= " 	<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
 	  			$final_msg .= "		<strong>".$title."</strong> " . $msg;
 				$final_msg .= "</div>";
@@ -384,6 +385,17 @@
 		    //echo "User deleted successfully";
 		} else {
 		    //echo "Error deleting record: " . mysqli_error($conn);
+		}
+	}
+
+	function admin_add_category( $cat_name, $cat_description ) {
+		global $link;
+		$sql = "INSERT INTO category (category_name,category_description) VALUES  ('$cat_name', '$cat_description');";
+
+		if ( !mysqli_query( $link, $sql ) ) {
+			echo error_msg("danger", "ERROR:", mysqli_error( $link ), "1");
+		} else {
+			echo error_msg("success", "SUCCESS", "New category has been added.", "1");
 		}
 	}
 ?>

@@ -1,3 +1,16 @@
+<?php
+	if ( isset( $_REQUEST['inCatName'] ) && isset( $_REQUEST['inCatDesc'] ) && isset( $_REQUEST['AddNewCategory'] ) ) {
+		$inCatName = $_REQUEST['inCatName'];
+		$inCatDesc = $_REQUEST['inCatDesc'];
+		$btnAddCat = $_REQUEST['AddNewCategory'];
+
+		admin_add_category( $inCatName, $inCatDesc );
+		//echo "".$inCatName.",".$inCatDesc.",".$btnAddCat;
+	}
+
+	
+?>
+
 <h2 class="page-header">Manager</h2>
 
 <ul class="nav nav-tabs">
@@ -46,6 +59,7 @@
 
 
 <!-- Modal -->
+<form method="post" action="">
 <div class="modal fade" id="BtnAddNewCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -56,17 +70,18 @@
       <div class="modal-body">
         <div class="form-group">
 			<label for="inExerciseName">Category Name:</label>
-        	<input class="form-control" type="text" id="inExerciseName" placeHolder="Enter category name" required="true" />
+        	<input class="form-control" type="text" name="inCatName" id="inExerciseName" placeHolder="Enter category name" required="true" />
         </div>
         <div class="form-group">
 			<label for="inExerciseDesc">Category Description:</label>
-        	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter category description" required="true"/>
+        	<input class="form-control" type="text" name="inCatDesc" id="inExerciseDesc" placeHolder="Enter category description" required="true"/>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add New Category</button>
+        <button type="submit" name="AddNewCategory" class="btn btn-primary">Add New Category</button>
       </div>
     </div>
   </div>
 </div>
+</form>

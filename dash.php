@@ -11,6 +11,7 @@
 			<div style="margin-top: -10px"></div>
 
 			<link rel="stylesheet" href="css/sb-admin-2.css">
+			<link rel="stylesheet" href="../css/sb-admin-2.css"> <!-- Admin page -->
 			<style>
 				body {
 					background-color: white;

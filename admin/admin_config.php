@@ -3,10 +3,10 @@
     require_once "../inc/lib.php";
 
     if ( isset( $_REQUEST['pg_productname'] ) or isset( $_REQUEST['pg_title'] ) ) {
-      $pg_productname = $_REQUEST['pg_productname'];
-      $pg_title = $_REQUEST['pg_title'];
-      $pg_company = $_REQUEST['pg_company'];
-      $pg_about = $_REQUEST['pg_about'];
+      $pg_productname = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_productname'] ) );
+      $pg_title = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_title'] ) );
+      $pg_company = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_company'] ) );
+      $pg_about = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_about'] ) );
 
       //TODO: Update DB.
       update_config( $pg_productname, $pg_title, $pg_company, $pg_about );
