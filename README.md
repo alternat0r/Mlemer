@@ -28,6 +28,41 @@ To install, follow these step:
   * Default username and password is `admin:adminadmin987`
   * Now your system is ready.
 
+Configure config file:
+
+  * Navigate and find `inc/config_sample.php`.
+  * Rename `config_sample.php` to `config.php`.
+  * Edit and enter your server configuration and database.
+
+  * Navigate and find another admin file `.htaccess` and `.htpasswd`.
+  * Edit `.htaccess` file as the following:
+
+```
+AuthUserFile <YOUR WEB PATH>\.htpasswd
+AuthName "Adminitrative Area"
+AuthType Basic
+
+require user <YOUR ADMIN NAME>
+```
+
+Example `.htaccess` file:
+```
+AuthUserFile C:\wamp\www\Mlemer\admin\.htpasswd
+AuthName "Adminitrative Area"
+AuthType Basic
+
+require user admin
+```
+
+  * Then you need to edit `.htpasswd` file.
+  * The content format should be look like this `admin:$apr1$xQj29hba$wl0DuaxDk8Or9RIi8XPJ70`
+  * To generate your own password hash you can use the following link:
+    * http://www.htaccesstools.com/htpasswd-generator/ , or
+    * https://www.transip.nl/htpasswd/
+
+  * You can add multiple administrator username and password separated per line.
+
+
 ## Usage
 
 This system is not suitable to be used for public access. It is designed for local network only and to assist the trainer. Used at your own risk.
