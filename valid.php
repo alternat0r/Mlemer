@@ -13,6 +13,7 @@
 			echo "	<td style=\"vertical-align: middle;\"><div class=\"glyphicon glyphicon-remove-circle\" title=\"Your answer is wrong. Try again.\" style=\"color:#FF0040\" ></div></td>";
 		}
 		store_last_answer( $exer_id, $quest_id, $answer );
+		save_user_point( get_current_user_id() );
 	}
 
 	function check_answer_on_db( $quest_id, $answer ) {

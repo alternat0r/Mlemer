@@ -1,6 +1,5 @@
 <?php
 	require_once "inc/config.php";
-
 ?>
 			<h2 class="page-header">Dashboard</h2>
 			
@@ -113,7 +112,7 @@
 					<h3 class="sub-header">Player List</h3>
 			        <div class="table-responsive">
 				        <div class="panel panel-default">
-				            <table class="table table-hover table-bordered">
+				            <table id="topscore" class="table table-hover table-bordered">
 				              <thead>
 				                <tr>
 				                  <th style="text-align: center;">#</th>
@@ -123,7 +122,7 @@
 				              </thead>
 				              <tbody>
 				              <?php
-					              	$sql = "SELECT * FROM users";
+					              	$sql = "SELECT * FROM users ORDER BY user_point DESC";
 					              	$user_count = "";
 									$result = mysqli_query( $link, $sql );
 									while( $row = mysqli_fetch_assoc( $result ) ) {

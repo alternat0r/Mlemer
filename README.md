@@ -26,11 +26,15 @@ To install, follow these step:
   * Import `mlem_db.sql` into your database.
   * Almost done, navigate to `http://localhost/mlemer/admin/`
   * Default username and password is `admin:adminadmin987`
-  * Now you system is ready.
+  * Now your system is ready.
 
 ## Usage
 
 This system is not suitable to be used for public access. It is designed for local network only and to assist the trainer. Used at your own risk.
+
+## Screenshot
+
+Here some screenshot on working system:
 
 ## Wiki
 

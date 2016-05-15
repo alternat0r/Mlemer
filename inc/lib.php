@@ -207,7 +207,7 @@
 
 	function count_total_question_taken() {
 		global $link;
-		$sql = "SELECT DISTINCT exercise_id FROM questionaire";
+		$sql = "SELECT DISTINCT id FROM users_answer";
 		$result = mysqli_query( $link, $sql );
 		$q_count = mysqli_num_rows( $result );
 		printf( "%d", $q_count );
@@ -316,6 +316,14 @@
 			
 	}
 
+	function save_user_point( $user_id ) {
+		global $link;
+		$user_point = get_perplayer_total_point( $user_id );
+		if ( !mysqli_query( $link, "UPDATE users SET user_point='$user_point' WHERE id='$user_id';") ) {
+			echo mysqli_error( $link );
+		}
+	}
+
 	function check_peruser_last_answer_if_correct_return_point( $user_id, $exer_id, $qid ) {
 		global $link;
 		//$user_id = get_current_user_id();
@@ -362,9 +370,9 @@
 		$sql = "DELETE FROM users WHERE id='$user_id'";
 
 		if ( mysqli_query( $link, $sql ) ) {
-		    echo "User deleted successfully";
+		    //echo "User deleted successfully";
 		} else {
-		    echo "Error deleting record: " . mysqli_error($conn);
+		    //echo "Error deleting record: " . mysqli_error($conn);
 		}
 	}
 
@@ -373,9 +381,9 @@
 		$sql = "DELETE FROM users_answer WHERE user_id='$user_id'";
 
 		if ( mysqli_query( $link, $sql ) ) {
-		    echo "User deleted successfully";
+		    //echo "User deleted successfully";
 		} else {
-		    echo "Error deleting record: " . mysqli_error($conn);
+		    //echo "Error deleting record: " . mysqli_error($conn);
 		}
 	}
 ?>
