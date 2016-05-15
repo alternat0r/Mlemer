@@ -87,12 +87,12 @@
       </div>
       <div class="modal-body">
         <div class="checkbox">
-          <label><input type="checkbox" value="">I understand this will remove permenantly.</label>
+          <label>By pressing '<code>Remove Now</code>' button you will understand that your account will be removed permenantly.</label>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger">Remove Now</button>
+        <button type="submit" name="remove_now" class="btn btn-danger">Remove Now</button>
       </div>
     </div>
   </div>

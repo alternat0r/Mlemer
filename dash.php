@@ -131,7 +131,7 @@
 											echo "<tr>\n";
 											echo "	<td style=\"text-align: center;\">" . $user_count . "</td>\n";
 											echo "	<td>" . $row['user_realname'] . "</td>\n";
-											echo "	<td style=\"text-align: center;\">".$row['user_point']."</td>\n";
+											echo "	<td style=\"text-align: center;\">".get_perplayer_total_point( $row['id'] )."</td>\n";
 											echo "</tr>\n";
 										}
 									}

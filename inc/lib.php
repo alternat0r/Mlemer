@@ -295,7 +295,39 @@
 
 	}
 
+	function get_perplayer_total_point( $user_id ) {
+		global $link;
+		$sql = "SELECT * FROM users_answer WHERE user_id='$user_id';";
+      	$user_count = "";
+      	$total = "";
+		$result = mysqli_query( $link, $sql );
+		while( $row = @mysqli_fetch_assoc( $result ) ) {
+			$user_count++;
+			$total_correct = $row['correct'];
+			$exer_id = $row['user_last_exercise_id'];
+			$qid = $row['user_last_qid'];
+			if ( $total_correct == "yes" ) {
+				$total = check_peruser_last_answer_if_correct_return_point( $user_id, $exer_id, $qid );
+			}
+		}
+		return $total;
+			
+	}
 
+	function check_peruser_last_answer_if_correct_return_point( $user_id, $exer_id, $qid ) {
+		global $link;
+		//$user_id = get_current_user_id();
+
+		$query = mysqli_query( $link, "SELECT * FROM users_answer WHERE (user_id='".$user_id."' AND user_last_exercise_id='".$exer_id."' AND user_last_qid='".$qid."' )" );
+  		$row = mysqli_fetch_assoc( $query );
+  		$answer_db = $row['correct'];
+
+  		if ( $answer_db == "yes" ) {
+  			return get_quest_point( $exer_id, $qid);
+  		} else {
+  			return "0";
+  		}
+	}
 
 	function count_how_many_correct_answer( $user_id, $exer_id, $quest_id ) {
 		global $link;
@@ -323,4 +355,14 @@
   		return $qpoint;
 	}
 
+	function remove_user_from_db( $user_id ) {
+		global $link;
+		$sql = "DELETE FROM users WHERE id='$user_id'";
+
+		if ( mysqli_query( $link, $sql ) ) {
+		    echo "User deleted successfully";
+		} else {
+		    echo "Error deleting record: " . mysqli_error($conn);
+		}
+	}
 ?>

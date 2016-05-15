@@ -27,15 +27,22 @@
 	}
 
 	$curr_ip = getHostByName(getHostName()); // @$_SERVER['REMOTE_ADDR'];
+	$curr_hostname = gethostname();
 	$curr_uid = GenUniqueID(); //UniqueMachineID();
-    $curr_hostname = gethostname();
-
+    
     $curr_url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     $curr_url = parse_url($curr_url);
 
 	if ( check_data( $curr_ip, $curr_hostname, $curr_uid ) == false ) {
 		//echo "data not exist, proceed auto-register";
+		global $link;
 		mysqli_query( $link, "INSERT INTO users (`user_ip`,`user_hostname`,`user_uid`) VALUES ('".$curr_ip."','".$curr_hostname."','".$curr_uid."')" );
+		/*if ( mysqli_query( $link, "INSERT INTO users (user_ip,user_hostname,user_uid) VALUES ('$curr_ip','$curr_hostname','$curr_uid')" ) ) {
+			echo "Success";
+		} else {
+			echo "Error: " . $sql . "<br>" . mysqli_error($link);
+		}
+		echo "AUTO-REGISTER: ".$curr_ip."-".$curr_hostname."-".$curr_uid;*/
 		echo '<META http-equiv="refresh" content="0;URL=http://'.$curr_url['path'].'?p=home">';
 	} else {
 		//echo "data exist";
