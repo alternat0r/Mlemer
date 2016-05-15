@@ -45,8 +45,8 @@
 			$sql = "UPDATE users_answer SET user_id='$curr_userid', user_last_exercise_id='$exer_id', user_last_qid='$qid', user_last_answer='$last_answer' WHERE user_id='".$curr_userid."' AND user_last_exercise_id='".$exer_id."' AND user_last_qid='".$qid."';";
 			//echo "DATA ALREADY EXIST!";
 		} else {	
-    		if ( @!mysqli_query( $link,$query ) ) {
-    			$sql = "INSERT INTO users_answer (user_id,user_last_exercise_id,user_last_qid,user_last_answer) VALUES  ('$curr_userid', '$exer_id', '$qid', '$last_answer');";
+			$sql = "INSERT INTO users_answer (user_id,user_last_exercise_id,user_last_qid,user_last_answer) VALUES  ('$curr_userid', '$exer_id', '$qid', '$last_answer');";
+    		if ( !mysqli_query( $link, $sql ) ) {
     			//echo "NEW DATA ADDED!";
     		}
 		}
