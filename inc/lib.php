@@ -459,4 +459,17 @@
 		}
 	}
 
+	function admin_del_question( $quest_id ) {
+		global $link;
+		//TODO: Check if $cat_name is already exist.
+
+		$sql = "DELETE FROM questionaire WHERE id='$quest_id'";
+
+		if ( !mysqli_query( $link, $sql ) ) {
+			echo error_msg("danger", "ERROR:", mysqli_error( $link ), "1");
+		} else {
+			echo error_msg("success", "SUCCESS", "Question has been deleted.", "1");
+		}
+	}
+
 ?>

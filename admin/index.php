@@ -54,6 +54,11 @@
 					admin_del_exercise( $exerid );
 					header("Location: ?p=exercise");
 				}
+				if ( isset( $_REQUEST['questid'] ) ) {
+					$questid = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['questid'] ) );
+					admin_del_question( $questid );
+					header("Location: ?p=quest");
+				}
 
 				if ( isset($page) && !empty($page) ) {
 					if ( $page == "dashboard" or $page == "home") {
