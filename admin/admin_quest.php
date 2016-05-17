@@ -14,6 +14,12 @@
 
 		admin_add_question( $inqQuestion, $inqAnswer, $inqPoint, $inqExer );
 	}
+
+	if ( isset($_REQUEST['exer_id']) ) {
+		$exer_id = $_REQUEST['exer_id'];
+	} else {
+		$exer_id = "1";
+	}
 ?>
 <h2 class="page-header">Manager</h2>
 
@@ -23,18 +29,18 @@
   <li role="presentation"><a href="?p=category">Category</a></li>
 </ul>
 
-	<form action="?p=home" method="post">
+	<form action="?p=quest&exer_id=<?php echo $exer_id; ?>&select=" method="post">
 	<label for="selectE"><h3 class="sub-header">Select Exercise:</h3></label>
 	<div class="selectContainer">
-        <select id="selectE" class="form-control input-lg" onchange='if(this.value != 0) { this.form.submit(); }'>
+        <select id="selectE" name="exer_id" class="form-control input-lg" onchange='if(this.value != 0) { this.form.submit(); }'>
         	<?php
               	$sql = "SELECT * FROM exercise";
-              	$user_count = "";
+              	$exer_count = "";
 				$result = mysqli_query( $link, $sql );
 				while( $row = @mysqli_fetch_assoc( $result ) ) {
-					$user_count++;
-					if ( $user_count == 1 ) {
-						echo "	<option value=\"".$row['id']."\" selected=\"selected\">" . $row['exer_name'] . "</option>\n";
+					$exer_count++;
+					if ( $row['id'] == $exer_id ) {
+						echo "	<option value=\"".$row['id']."\" selected>" . $row['exer_name'] . "</option>\n";
 					} else {
 						echo "	<option value=\"".$row['id']."\">" . $row['exer_name'] . "</option>\n";
 					}
@@ -68,7 +74,7 @@
 		              </thead>
 		              <tbody>
 		              <?php
-			              	$sql = "SELECT * FROM questionaire";
+			              	$sql = "SELECT * FROM questionaire WHERE exercise_id='$exer_id'";
 			              	$user_count = "";
 							$result = mysqli_query( $link, $sql );
 							while( $row = @mysqli_fetch_assoc( $result ) ) {
