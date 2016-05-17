@@ -431,4 +431,18 @@
 		}
 	}
 
+
+	function admin_del_exercise( $exer_id ) {
+		global $link;
+		//TODO: Check if $cat_name is already exist.
+
+		$sql = "DELETE FROM exercise WHERE id='$exer_id'";
+
+		if ( !mysqli_query( $link, $sql ) ) {
+			echo error_msg("danger", "ERROR:", mysqli_error( $link ), "1");
+		} else {
+			echo error_msg("success", "SUCCESS", "Exercise has been deleted.", "1");
+		}
+	}
+
 ?>

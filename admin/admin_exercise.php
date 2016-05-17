@@ -62,6 +62,7 @@
 						$result = mysqli_query( $link, $sql );
 						while( $row = @mysqli_fetch_assoc( $result ) ) {
 							$user_count++;
+							$exer_id = $row['id'];
 							echo "<tr>\n";
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
 							echo "	<td style=\"vertical-align: middle;\">" . $row['exer_name'] . "</td>\n";
@@ -73,7 +74,7 @@
 								$activated = "<span class=\"glyphicon glyphicon-ok\" style=\"color:#E6E6E6\"></span>";
 							}
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $activated . "</td>\n";
-							echo "	<td align=\"center\" style=\"vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"#\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
+							echo "	<td align=\"center\" style=\"vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"?exerid=".$exer_id."\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
 							echo "</tr>\n";
 						}
 	              ?>

@@ -49,6 +49,12 @@
 					header("Location: ?p=category");
 				}
 
+				if ( isset( $_REQUEST['exerid'] ) ) {
+					$exerid = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['exerid'] ) );
+					admin_del_exercise( $exerid );
+					header("Location: ?p=exercise");
+				}
+
 				if ( isset($page) && !empty($page) ) {
 					if ( $page == "dashboard" or $page == "home") {
 						include "../dash.php";
