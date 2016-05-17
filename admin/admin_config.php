@@ -5,8 +5,8 @@
     if ( isset( $_REQUEST['pg_productname'] ) or isset( $_REQUEST['pg_title'] ) ) {
       $pg_productname = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_productname'] ) );
       $pg_title = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_title'] ) );
-      $pg_company = mysqli_real_escape_string( $link, $_REQUEST['pg_company'] );
-      $pg_about = mysqli_real_escape_string( $link, $_REQUEST['pg_about'] );
+      $pg_company = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_company'] ), "<a>");
+      $pg_about = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_about'] ) , "<a>");
 
       //TODO: Update DB.
       update_config( $pg_productname, $pg_title, $pg_company, $pg_about );
