@@ -445,4 +445,18 @@
 		}
 	}
 
+	//admin_add_question( $inqQuestion, $inqAnswer, $inqPoint, $inqExer );
+	function admin_add_question( $inqQuestion, $inqAnswer, $inqPoint, $inqExer ) {
+		global $link;
+		//TODO: Check if $exer_name is already exist.
+
+		$sql = "INSERT INTO questionaire (exercise_id,question,answer,point) VALUES ('$inqExer', '$inqQuestion', '$inqAnswer', '$inqPoint');";
+
+		if ( !mysqli_query( $link, $sql ) ) {
+			echo error_msg("danger", "ERROR:", mysqli_error( $link ), "1");
+		} else {
+			echo error_msg("success", "SUCCESS", "New Question has been added.".mysqli_error( $link ), "1");
+		}
+	}
+
 ?>

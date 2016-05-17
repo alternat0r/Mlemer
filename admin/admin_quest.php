@@ -1,3 +1,20 @@
+<?php
+	require_once "../inc/config.php";
+    require_once "../inc/lib.php";
+
+	if ( isset( $_REQUEST['qQuestion'] ) && 
+		isset( $_REQUEST['qAnswer'] ) &&
+		isset( $_REQUEST['qPoint'] ) &&
+		isset( $_REQUEST['qExer'] ) ) {
+
+		$inqQuestion = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['qQuestion'] ) );
+		$inqAnswer = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['qAnswer'] ) );
+		$inqPoint = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['qPoint'] ) );
+		$inqExer = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['qExer'] ) );
+
+		admin_add_question( $inqQuestion, $inqAnswer, $inqPoint, $inqExer );
+	}
+?>
 <h2 class="page-header">Manager</h2>
 
 <ul class="nav nav-tabs">
@@ -72,6 +89,7 @@
 	          </div>
 
 <!-- Modal -->
+<form action="" method="post">
 <div class="modal fade" id="BtnAddNewQuestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -82,20 +100,20 @@
       <div class="modal-body">
         <div class="form-group">
 			<label for="inExerciseName">Question:</label>
-        	<textarea rows="5" class="form-control" type="text" id="inExerciseName" placeHolder="Enter your question" required="true" /></textarea>
+        	<textarea rows="5" class="form-control" type="text" name="qQuestion" id="inExerciseName" placeHolder="Enter your question" required="true" /></textarea>
         </div>
         <div class="form-group">
 			<label for="inExerciseDesc">The Answer:</label>
-        	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter the answer for the question" required="true"/>
+        	<input class="form-control" type="text" id="inExerciseDesc" name="qAnswer" placeHolder="Enter the answer for the question" required="true"/>
         </div>
         <div class="form-group">
 			<label for="inExerciseDesc">Worth Point:</label>
-        	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter point number worth for answering this question. Example: 10" required="true"/>
+        	<input class="form-control" type="text" id="inExerciseDesc" name="qPoint" placeHolder="Enter point number worth for answering this question. Example: 10" required="true"/>
         </div>
 
 		<label for="selectE">Select Exercise:</label>
 		<div class="selectContainer">
-	        <select id="selectE" class="form-control" onchange='if(this.value != 0) { this.form.submit(); }'>
+	        <select id="selectE" class="form-control" name="qExer">
 	        	<?php
 	              	$sql = "SELECT * FROM exercise";
 	              	$user_count = "";
@@ -103,9 +121,9 @@
 					while( $row = @mysqli_fetch_assoc( $result ) ) {
 						$user_count++;
 						if ( $user_count == 1 ) {
-							echo "	<option value=\"".$row['id']."\" selected=\"selected\">" . $row['exer_name'] . "</option>\n";
+							echo "	<option value=\"".$row['id']."\" selected=\"selected\" name=\"qExer\">" . $row['exer_name'] . "</option>\n";
 						} else {
-							echo "	<option value=\"".$row['id']."\">" . $row['exer_name'] . "</option>\n";
+							echo "	<option value=\"".$row['id']."\" name=\"qExer\">" . $row['exer_name'] . "</option>\n";
 						}
 					}
 	            ?>
@@ -114,8 +132,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add New Question</button>
+        <button type="submit" name="qSubmit" class="btn btn-primary">Add New Question</button>
       </div>
     </div>
   </div>
 </div>
+</form>
