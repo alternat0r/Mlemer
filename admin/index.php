@@ -60,6 +60,13 @@
 					header("Location: ?p=quest");
 				}
 
+				if ( isset( $_REQUEST['deluid'] ) ) {
+					$deluid = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['deluid'] ) );
+					admin_del_user( $deluid );
+					header("Location: ?p=users");
+				}
+
+
 				if ( isset($page) && !empty($page) ) {
 					if ( $page == "dashboard" or $page == "home") {
 						include "../dash.php";

@@ -472,4 +472,18 @@
 		}
 	}
 
+
+	function admin_del_user( $user_id ) {
+		global $link;
+		//TODO: Check if $cat_name is already exist.
+
+		$sql = "DELETE FROM users WHERE id='$user_id'";
+
+		if ( !mysqli_query( $link, $sql ) ) {
+			echo error_msg("danger", "ERROR:", mysqli_error( $link ), "1");
+		} else {
+			echo error_msg("success", "SUCCESS", "User has been deleted.", "1");
+		}
+	}
+
 ?>

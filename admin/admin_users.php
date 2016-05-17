@@ -1,3 +1,8 @@
+<?php
+
+?>
+
+
 <h2 class="page-header">User Management</h2>
 <div class="row">
   <div class="col-xs-12 col-md-8">
@@ -35,6 +40,7 @@
 						$result = mysqli_query( $link, $sql );
 						while( $row = mysqli_fetch_assoc( $result ) ) {
 							$user_count++;
+							$userid = $row['id'];
 							if ( $row['user_realname'] != "Administrator" and $row['user_realname'] != "" ) {
 								echo "<tr>\n";
 								echo "	<td style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
@@ -54,7 +60,7 @@
 									$activated = "<span class=\"glyphicon glyphicon-ok\" style=\"color:#E6E6E6\"></span>";
 								}
 								echo "	<td style=\"text-align: center; vertical-align: middle;\">".$activated."</td>\n";
-								echo "	<td style=\"text-align: center; vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"#\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
+								echo "	<td style=\"text-align: center; vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"?deluid=".$userid."\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
 								echo "</tr>\n";
 							}
 						}
@@ -63,6 +69,7 @@
 </table>
 
 <!-- Modal -->
+<form method="post" action="" >
 <div class="modal fade" id="BtnAddNewUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -93,8 +100,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add New User</button>
+        <button type="submit" class="btn btn-primary">Add New User</button>
       </div>
     </div>
   </div>
 </div>
+</form>
