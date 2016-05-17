@@ -413,4 +413,22 @@
 			echo error_msg("success", "SUCCESS", "Category has been deleted.", "1");
 		}
 	}
+
+	function admin_add_exercise( $exer_name, $exer_desc, $exer_desc_long, $exer_cat_id, $exer_active ) {
+		global $link;
+		//TODO: Check if $exer_name is already exist.
+		//die("BABAI");
+
+		$sql = "INSERT INTO exercise (exer_name,exer_description,exer_long,exer_cat_id,activated) 
+		VALUES ('$exer_name', '$exer_desc', '$exer_desc_long', '$exer_cat_id', '$exer_active');";
+
+		//die($sql);
+
+		if ( !mysqli_query( $link, $sql ) ) {
+			echo error_msg("danger", "ERROR:", mysqli_error( $link ), "1");
+		} else {
+			echo error_msg("success", "SUCCESS", "New exercise has been added.".mysqli_error( $link ), "1");
+		}
+	}
+
 ?>

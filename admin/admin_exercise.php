@@ -1,3 +1,33 @@
+<?php
+	require_once "../inc/config.php";
+    require_once "../inc/lib.php";
+
+	if ( isset( $_REQUEST['inExerciseName'] ) && 
+		isset( $_REQUEST['inExerciseDesc'] ) && 
+		isset( $_REQUEST['inExerciseDescLong'] ) &&
+		isset( $_REQUEST['cat_id'] ) &&
+		isset( $_REQUEST['activated'] ) ) {
+
+		$inCatName = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['inExerciseName'] ) );
+		$inCatDesc = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['inExerciseDesc'] ) );
+		$inCatDescLong = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['inExerciseDescLong'] ) );
+		$inCatId = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['cat_id'] ) );
+		$inCatActive = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['activated'] ) );
+		if ( isset( $_REQUEST['activated'] ) ) {
+			$inCatActive = "1";
+		} else {
+			$inCatActive = "0";
+		}
+
+		admin_add_exercise( $inCatName, $inCatDesc, $inCatDescLong, $inCatId, $inCatActive );
+		//die("just dai");
+		//echo "ADDED: ".$inCatName."-".$inCatDesc."-".$inCatDescLong."-".$inCatId."-".$inCatActive;
+		//printf("DONE! %s,%s,%s,%s,%s", $inCatName, $inCatDesc, $inCatDescLong, $inCatId, $inCatActive);
+	}
+?>
+
+
+
 <h2 class="page-header">Manager</h2>
 
 <ul class="nav nav-tabs">
@@ -55,6 +85,7 @@
 
 
 <!-- Modal -->
+<form action="" method="post">
 <div class="modal fade" id="BtnAddNewExercise" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -65,36 +96,37 @@
       <div class="modal-body">
         <div class="form-group">
 			<label for="inExerciseName">Exercise Name:</label>
-        	<input class="form-control" type="text" id="inExerciseName" placeHolder="Enter your exercise name" required="true" />
+        	<input class="form-control" type="text" name="inExerciseName" id="inExerciseName" placeHolder="Enter your exercise name" required="true" />
         </div>
         <div class="form-group">
 			<label for="inExerciseDesc">Exercise Description:</label>
-        	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter your exercise description" required="true"/>
+        	<input class="form-control" type="text" id="inExerciseDesc" name="inExerciseDesc" placeHolder="Enter your exercise description" required="true"/>
         </div>
         <div class="form-group">
 			<label for="inExerciseDesc">Exercise Description (Long):</label>
-        	<textarea rows="7" class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter your exercise long description" required="true"></textarea>
+        	<textarea rows="7" class="form-control" type="text" name="inExerciseDescLong" id="inExerciseDescLong" placeHolder="Enter your exercise long description" required="true"></textarea>
         </div>
 		<label for="selectE">Select Category:</label>
 		<div class="selectContainer">
-	        <select id="selectE" class="form-control" onchange='if(this.value != 0) { this.form.submit(); }'>
+	        <select id="selectE" name="cat_id" class="form-control" >
 	        	<?php
 	              	$sql = "SELECT * FROM category";
 					$result = mysqli_query( $link, $sql );
 					while( $row = @mysqli_fetch_assoc( $result ) ) {
-							echo "	<option value=\"".$row['id']."\" selected=\"selected\">" . $row['category_name'] . "</option>\n";
+							echo "	<option value=\"".$row['id']."\" name=\"cat_id\" selected=\"selected\">" . $row['category_name'] . "</option>\n";
 					}
 	            ?>
 	        </select>
 	    </div>
         <div class="checkbox">
-  			<label><input type="checkbox" value="">Activated?</label>
+  			<label><input name="activated" type="checkbox" checked>Activated?</label>
 		</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add New Exercise</button>
+        <button type="submit" name="btnAddNewExercise" class="btn btn-primary">Add New Exercise</button>
       </div>
     </div>
   </div>
 </div>
+</form>
