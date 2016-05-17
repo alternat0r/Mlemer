@@ -206,6 +206,14 @@
 		printf( "%d", $q_count );
 	}
 
+	function count_available_question_by_exercise( $exer_id ) {
+		global $link;
+		$sql = "SELECT * FROM questionaire WHERE exercise_id='$exer_id'";
+		$result = mysqli_query( $link, $sql );
+		$q_count = mysqli_num_rows( $result );
+		return $q_count;
+	}
+
 	function count_total_question_taken() {
 		global $link;
 		$sql = "SELECT DISTINCT id FROM users_answer";
@@ -475,7 +483,6 @@
 
 	function admin_del_user( $user_id ) {
 		global $link;
-		//TODO: Check if $cat_name is already exist.
 
 		$sql = "DELETE FROM users WHERE id='$user_id'";
 

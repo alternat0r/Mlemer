@@ -67,7 +67,8 @@
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
 							echo "	<td style=\"vertical-align: middle;\">" . $row['exer_name'] . "</td>\n";
 							echo "	<td style=\"vertical-align: middle;\" title=\"".$row['exer_description']."\">" . shorten( $row['exer_description'], 35) . "</td>\n";
-							echo "	<td align=\"center\" style=\"vertical-align: middle;\">5</td>\n";
+							echo "	<td align=\"center\" style=\"vertical-align: middle;\">".count_available_question_by_exercise( $exer_id )."</td>\n";
+
 							if ( $row['activated'] == "1" ) {
 								$activated = "<span class=\"glyphicon glyphicon-ok\" style=\"color:green\"></span>";
 							} else {
