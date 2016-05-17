@@ -45,6 +45,7 @@
 	              	$sql = "SELECT * FROM questionaire WHERE exercise_id='$exer_id'";
 	              	$user_count = "";
 					$result = mysqli_query( $link, $sql );
+
 					$js_valid = "";
 					while( $row = @mysqli_fetch_assoc( $result ) ) {
 						$user_count++;
@@ -74,10 +75,16 @@
 
 						$js_valid .= "butt( \"".$exer_id."\", \"".$quest_id."\", \"button".$user_count."\", \"userInput".$user_count."\", \"a".$user_count."\");\n";
 					}
+
               ?>
 			</tbody>
 		</table>
 	</div>
+			<?php 
+				if ( mysqli_num_rows( $result ) == 0 ) {
+					echo error_msg( "warning", "OPS!", "There is no question available. Please ask administrator.", "0");
+				}
+			?>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>   
 <script>
