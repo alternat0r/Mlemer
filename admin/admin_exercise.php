@@ -70,9 +70,9 @@
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">".count_available_question_by_exercise( $exer_id )."</td>\n";
 
 							if ( $row['activated'] == "1" ) {
-								$activated = "<span class=\"glyphicon glyphicon-ok\" style=\"color:green\"></span>";
+								$activated = "<span class=\"glyphicon glyphicon-ok\" title=\"Activated\" style=\"color:green\"></span>";
 							} else {
-								$activated = "<span class=\"glyphicon glyphicon-ok\" style=\"color:#E6E6E6\"></span>";
+								$activated = "<span class=\"glyphicon glyphicon-ok\" title=\"Deactivated\" style=\"color:#E6E6E6\"></span>";
 							}
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $activated . "</td>\n";
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"?exerid=".$exer_id."\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";

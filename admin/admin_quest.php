@@ -77,6 +77,7 @@
 			              	$sql = "SELECT * FROM questionaire WHERE exercise_id='$exer_id'";
 			              	$user_count = "";
 							$result = mysqli_query( $link, $sql );
+							$q_count = mysqli_num_rows( $result );
 							while( $row = @mysqli_fetch_assoc( $result ) ) {
 								$user_count++;
 								$quest_id = $row['id'];
@@ -84,7 +85,7 @@
 								echo "	<td style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
 								echo "	<td style=\"vertical-align: middle;\">" . shorten( $row['question'], 50) . "</td>\n";
 								echo "	<td style=\"vertical-align: middle;\">" . $row['answer'] . "</td>\n";
-								echo "	<td style=\"text-align: center; vertical-align: middle;\">10</td>\n";
+								echo "	<td style=\"text-align: center; vertical-align: middle;\">".$row['point']."</td>\n";
 								echo "	<td style=\"text-align: center; vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"?questid=".$quest_id."\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
 								echo "</tr>\n";
 							}
@@ -92,6 +93,12 @@
 		              </tbody>
 		            </table>
 		        </div>
+		        <?php 
+		        	if ( $q_count == 0 ) {
+		        		echo error_msg( "warning", "OPS!", "No question available. Please add some.", "0" );
+		        		$user_count = 0;
+		        	}
+		        ?>
 	            <h4>Total Question: <?php echo $user_count; ?></h4>
 	          </div>
 
