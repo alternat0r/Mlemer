@@ -409,6 +409,16 @@
 		}
 	}
 
+	function admin_edit_category( $cat_id, $cat_name, $cat_description ) {
+		global $link;
+		//TODO: Check if $cat_name is already exist.
+		if ( !mysqli_query( $link, "UPDATE category SET category_name='$cat_name', category_description='$cat_description' WHERE id='$cat_id';") ) {
+			echo error_msg("danger", "ERROR:", mysqli_error( $link ), "1");
+		} else {
+			echo error_msg("success", "SUCCESS", "Category has been edited.", "1");
+		}
+	}
+
 	function admin_del_category( $cat_id ) {
 		global $link;
 		//TODO: Check if $cat_name is already exist.

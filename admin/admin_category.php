@@ -8,8 +8,17 @@
 		$btnAddCat = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['AddNewCategory'] ) );
 
 		admin_add_category( $inCatName, $inCatDesc );
-		//echo "".$inCatName.",".$inCatDesc.",".$btnAddCat;
 	}
+
+	if ( isset( $_REQUEST['cat_id'] ) && isset( $_REQUEST['inCatName'] ) && isset( $_REQUEST['inCatDesc'] ) && isset( $_REQUEST['EditCategory'] ) ) {
+		$inCatId = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['cat_id'] ) );
+		$inCatName = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['inCatName'] ) );
+		$inCatDesc = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['inCatDesc'] ) );
+		$btnAddCat = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['EditCategory'] ) );
+
+		admin_edit_category( $inCatId, $inCatName, $inCatDesc );
+	}
+	
 
 ?>
 
@@ -46,12 +55,47 @@
 						while( $row = @mysqli_fetch_assoc( $result ) ) {
 							$user_count++;
 							$cat_id = $row['id'];
+							$cat_name = $row['category_name'];
+							$cat_desc = $row['category_description'];
 							echo "<tr>\n";
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
-							echo "	<td style=\"vertical-align: middle;\">" . $row['category_name'] . "</td>\n";
-							echo "	<td style=\"vertical-align: middle;\" title=\"".$row['category_description']."\">" . shorten( $row['category_description'], 35) . "</td>\n";
-							echo "	<td align=\"center\" style=\"vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"?catid=".$cat_id."\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
+							echo "	<td style=\"vertical-align: middle;\">" . $cat_name . "</td>\n";
+							echo "	<td style=\"vertical-align: middle;\" title=\"".$cat_desc."\">" . shorten( $cat_desc, 35) . "</td>\n";
+							echo "	<td align=\"center\" style=\"vertical-align: middle;\">";
+							echo " 		<button type=\"button\" class=\"btn btn-default glyphicon glyphicon-pencil\" data-toggle=\"modal\" data-target=\"#BtnEditCategory".$cat_id."\" title=\"Edit Category\"></button>";
+							//echo "		<a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;";
+							echo "		<a href=\"?catid=".$cat_id."\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
 							echo "</tr>\n";
+
+							echo "<form method=\"post\" action=\"\">";
+							echo "<div class=\"modal fade\" id=\"BtnEditCategory".$cat_id."\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">";
+							echo "  <div class=\"modal-dialog\" role=\"document\">";
+							echo "    <div class=\"modal-content\">";
+							echo "      <div class=\"modal-header\">";
+							echo "        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
+							echo "        <h4 class=\"modal-title\" id=\"myModalLabel\">Edit Category</h4>";
+							echo "      </div>";
+							echo "      <div class=\"modal-body\">";
+							echo "        <div class=\"form-group\">";
+							echo "			<input type=\"hidden\" name=\"cat_id\" value=\"".$cat_id."\">";
+							echo "			<label for=\"inExerciseName\">Category Name:</label>";
+							echo "        	<input class=\"form-control\" type=\"text\" name=\"inCatName\" id=\"inExerciseName\" placeHolder=\"Enter category name\" required=\"true\" value=\"".$cat_name."\" />";
+							echo "        </div>";
+							echo "        <div class=\"form-group\">";
+							echo "			<label for=\"inExerciseDesc\">Category Description:</label>";
+							echo "        	<input class=\"form-control\" type=\"text\" name=\"inCatDesc\" id=\"inExerciseDesc\" placeHolder=\"Enter category description\" required=\"true\" value=\"".$cat_desc."\" />";
+							echo "        </div>";
+							echo "      </div>";
+							echo "      <div class=\"modal-footer\">";
+							echo "        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>";
+							echo "        <button type=\"submit\" name=\"EditCategory\" class=\"btn btn-primary\">Save Changes</button>";
+							echo "      </div>";
+							echo "    </div>";
+							echo "  </div>";
+							echo "</div>";
+							echo "</form>";
+
+
 						}
 	              ?>
 	              </tbody>
@@ -61,7 +105,7 @@
 	          </div>
 
 
-<!-- Modal -->
+<!-- Modal Add Category-->
 <form method="post" action="">
 <div class="modal fade" id="BtnAddNewCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -88,3 +132,4 @@
   </div>
 </div>
 </form>
+
