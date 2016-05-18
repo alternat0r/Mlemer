@@ -78,6 +78,7 @@ As a player or training participant:
 ## Screenshot
 
 Here some screenshot on working system:
+![main-player-dash](https://cloud.githubusercontent.com/assets/1006000/15361660/faf92ab0-1d44-11e6-8d1e-c3fa18c5b621.png "Image show you player dashboard.")
 
 ## Wiki
 
