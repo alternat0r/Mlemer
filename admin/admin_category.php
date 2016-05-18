@@ -64,8 +64,34 @@
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">";
 							echo " 		<button type=\"button\" class=\"btn btn-default glyphicon glyphicon-pencil\" data-toggle=\"modal\" data-target=\"#BtnEditCategory".$cat_id."\" title=\"Edit Category\"></button>";
 							//echo "		<a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;";
-							echo "		<a href=\"?catid=".$cat_id."\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
+							echo " 		<button type=\"button\" class=\"btn btn-danger glyphicon glyphicon-trash\" data-toggle=\"modal\" data-target=\"#BtnDeleteCategory".$cat_id."\" title=\"Delete Category\"></button>";
+							//echo "		<a href=\"?catid=".$cat_id."\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
 							echo "</tr>\n";
+
+
+							// Delete category prompt
+							echo "<form method=\"post\" action=\"?cat_id=".$cat_id."\">";
+							echo "<div class=\"modal fade\" id=\"BtnDeleteCategory".$cat_id."\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">";
+							echo "  <div class=\"modal-dialog\" role=\"document\">";
+							echo "    <div class=\"modal-content\">";
+							echo "      <div class=\"modal-header\">";
+							echo "        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
+							echo "        <h4 class=\"modal-title\" id=\"myModalLabel\">Delete Category</h4>";
+							echo "      </div>";
+							echo "      <div class=\"modal-body\">";
+							echo "        <div class=\"form-group\">";
+							echo "			<input type=\"hidden\" name=\"cat_id\" value=\"".$cat_id."\">";
+							echo "			<label>By pressing '<code>Delete Now</code>' button you will permanently remove the '".$cat_name."' category.</label>";
+							echo "        </div>";
+							echo "      </div>";
+							echo "      <div class=\"modal-footer\">";
+							echo "        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>";
+							echo "        <button type=\"submit\" name=\"DeleteCategory\" class=\"btn btn-danger\">Delete Now</button>";
+							echo "      </div>";
+							echo "    </div>";
+							echo "  </div>";
+							echo "</div>";
+							echo "</form>";
 
 							echo "<form method=\"post\" action=\"\">";
 							echo "<div class=\"modal fade\" id=\"BtnEditCategory".$cat_id."\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">";
