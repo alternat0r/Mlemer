@@ -70,7 +70,7 @@
 
 
 							// Delete category prompt
-							echo "<form method=\"post\" action=\"?cat_id=".$cat_id."\">";
+							echo "<form method=\"post\" action=\"?catid=".$cat_id."\">";
 							echo "<div class=\"modal fade\" id=\"BtnDeleteCategory".$cat_id."\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">";
 							echo "  <div class=\"modal-dialog\" role=\"document\">";
 							echo "    <div class=\"modal-content\">";
