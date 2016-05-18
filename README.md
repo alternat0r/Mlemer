@@ -7,6 +7,16 @@
 
 **Mlemer** is a quiz, exercise, CTF or questionnaire system designed for trainer. It is designed meant to be simplified and easy to manage. This system is not suitable to be used for public access. It is designed for local network only and to assist trainer. Used at your own risk. 
 
+## Table of Content
+  1. [Requirement](#requirement)
+  2. [Installation](#installation)
+  3. [Usage](#usage)
+  4. [Screenshot](#screenshot)
+  5. [Wiki](#wiki)
+  6. [Credit](#credit)
+  7. [License](#license)
+
+
 ## Requirement
 
 The requirement to get started is fairly simple. You need the following:
