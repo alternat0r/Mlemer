@@ -1,13 +1,11 @@
 <?php
-
+	$start = explode(' ', microtime())[0] + explode(' ', microtime())[1];
     
 	require_once "inc/config.php";
 	require_once "../inc/lib.php";
 
-	$start = explode(' ', microtime())[0] + explode(' ', microtime())[1];
-
 	if ( isset( $_REQUEST['p'] ) ) {
-		$page = mysqli_real_escape_string( $link, $_REQUEST['p'] );
+		$page = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['p'] ) );
 
 		if ( $page == "about" ) { $page_name = "About"; }
 		if ( $page == "dash" or $page == "home" or $page == "" ) { $page_name = "Dashboard"; }
