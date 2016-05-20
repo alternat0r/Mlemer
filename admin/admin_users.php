@@ -1,5 +1,16 @@
 <?php
-
+	if (isset( $REQUEST['user_name'] ) &&
+	isset( $REQUEST['user_real'] ) &&
+	isset( $REQUEST['user_ip'] ) &&
+	isset( $REQUEST['user_hostname'] ) &&
+	isset( $REQUEST['user_activate'] ) ) {
+		$user_name = $REQUEST['user_name'];
+		$user_real = $REQUEST['user_real'];
+		$user_ip = $REQUEST['user_ip'];
+		$user_hostname = $REQUEST['user_hostname'];
+		$user_activate = $REQUEST['user_activate'];
+	}
+	
 ?>
 
 
@@ -68,7 +79,7 @@
 	</tbody>
 </table>
 
-<!-- Modal -->
+<!-- Modal Add New User -->
 <form method="post" action="" >
 <div class="modal fade" id="BtnAddNewUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -80,22 +91,22 @@
       <div class="modal-body">
         <div class="form-group">
 			<label for="inExerciseName">User Login Name:</label>
-        	<input class="form-control" type="text" id="inExerciseName" placeHolder="Enter user login name" required="true" />
+        	<input class="form-control" type="text" name="user_name" id="inExerciseName" placeHolder="Enter user login name" required="true" />
         </div>
         <div class="form-group">
 			<label for="inExerciseDesc">Real Name:</label>
-        	<input class="form-control" type="text" id="inExerciseDesc" placeHolder="Enter user real name" required="true"/>
+        	<input class="form-control" type="text" name="user_real" id="inExerciseDesc" placeHolder="Enter user real name" required="true"/>
         </div>
         <div class="form-group">
 			<label for="inExerciseCategory">IP Address:</label>
-        	<input class="form-control" type="text" id="inExerciseCategory" placeHolder="Enter IP address" required="true"/>
+        	<input class="form-control" type="text" name="user_ip" id="inExerciseCategory" placeHolder="Enter IP address" required="true"/>
         </div>
         <div class="form-group">
 			<label for="inExerciseCategory">Hostname:</label>
-        	<input class="form-control" type="text" id="inExerciseCategory" placeHolder="Enter Hostname" required="true"/>
+        	<input class="form-control" type="text" name="user_hostname" id="inExerciseCategory" placeHolder="Enter Hostname" required="true"/>
         </div>
         <div class="checkbox">
-  			<label><input type="checkbox" value="">Activated?</label>
+  			<label><input type="checkbox" name="user_activate" value="" checked>Activated?</label>
 		</div>
       </div>
       <div class="modal-footer">
