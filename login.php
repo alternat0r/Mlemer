@@ -3,11 +3,10 @@
     
     if ( isset( $_POST['submit'] ) ) {
       if ( empty( $_POST['username'] ) || empty( $_POST['password'] ) ) {
-        echo "Username or Password is invalid";
+        error_msg( "danger", "OPS!", "Username or Password is invalid" , "1");
       } else {
         $username = $_REQUEST['username'];
         $_SESSION['login_user'] = $username;
-        echo "TESTING: " . $username;
         //session_start();
 
         //header("location: ?p=home");
