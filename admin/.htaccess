@@ -1,5 +1,8 @@
+
+# Change the AuthUserFile path pointing to your right directory.
 AuthUserFile C:\wamp\www\Mlemer\admin\.htpasswd
 AuthName "Adminitrative Area"
 AuthType Basic
 
+# NOTE: You can add multiple user per line.
 require user admin
