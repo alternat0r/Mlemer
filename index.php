@@ -10,10 +10,9 @@
 
 	$start = explode(' ', microtime())[0] + explode(' ', microtime())[1];
 	
-
 	//error_reporting(0);
 	if ( isset( $_REQUEST['p'] ) ) {
-		$page = mysqli_real_escape_string( $link, $_REQUEST['p'] );
+		$page = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['p'] ) );
 
 		if ( $page == "about" ) { $page_name = "About"; }
 		if ( $page == "dash" or $page == "home" or $page == "" ) { $page_name = "Dashboard"; }
