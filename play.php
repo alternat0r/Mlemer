@@ -11,7 +11,7 @@
 	if ( empty( $exer_description ) ) {
 		$exer_description = "Not available.";
 	}
-	$exer_long = $row['exer_long'];
+	$exer_long = strip_tags( mysqli_real_escape_string( $link, $row['exer_long'] ) );
 	if ( empty( $exer_long ) ) {
 		$exer_long = "Not available.";
 	}
