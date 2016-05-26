@@ -3,7 +3,9 @@
 	
 	if ( ENABLE_ERROR_MSG == "true" ) {
 		error_reporting( E_ALL );
-    	}
+	} else {
+	    	error_reporting( 0 );
+	}
 
 ?>
 			<h2 class="page-header">Dashboard</h2>
