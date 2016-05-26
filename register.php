@@ -1,9 +1,16 @@
 <?php 
 	require_once "inc/lib.php";
-
+	require_once "inc/config.php";
+	
+	if ( ENABLE_ERROR_MSG == "true" ) {
+		error_reporting( E_ALL );
+	} else {
+	    	error_reporting( 0 );
+	}
+	
 	$curr_ip = getHostByName(getHostName());
-    $curr_hostname = gethostname();
-    $curr_uid = GenUniqueID(); 
+	$curr_hostname = gethostname();
+    	$curr_uid = GenUniqueID(); 
 
 	/*if ( do_they_register_yet( $curr_ip, $curr_hostname, $curr_uid ) == true ) {
 		echo '<META http-equiv="refresh" content="0;URL=http://'.$curr_url['path'].'?p=home">';
