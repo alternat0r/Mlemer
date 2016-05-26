@@ -7,7 +7,11 @@
       $pg_title = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_title'] ) );
       $pg_company = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_company'] ), "<a>");
       $pg_about = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_about'] ) , "<a>");
-
+      
+      if ( empty( $pg_about ) ) {
+      	$pg_about = "";
+      }
+      
       //TODO: Update DB.
       update_config( $pg_productname, $pg_title, $pg_company, $pg_about );
       echo error_msg( "success", "SUCCESS!", "Configuration successfully updated." , "1");
@@ -31,7 +35,7 @@
   		</div>
 		<div class="form-group">
 			<label for="pg_about">About</label>
-			<textarea id="pg_about" name="pg_about" class="form-control" rows="5" placeholder="General description about the exercise or event." required="true"><?php echo htmlentities( GetAbout() ); ?></textarea>	
+			<textarea id="pg_about" name="pg_about" class="form-control" rows="5" placeholder="General description about the exercise or event."><?php echo htmlentities( GetAbout() ); ?></textarea>	
   		</div>
       <div class="text-right">
   		  <button type="submit" name="pgConfigSave" class="btn btn-primary">Save Changes</button>
