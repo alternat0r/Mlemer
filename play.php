@@ -1,5 +1,10 @@
 <?php
 	require_once "inc/lib.php";
+	require_once "inc/config.php";
+	
+	if ( ENABLE_ERROR_MSG == "true" ) {
+		error_reporting( E_ALL );
+	}
 
 	$exer_id = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['e'] ) );
 
