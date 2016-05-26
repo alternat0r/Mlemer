@@ -2,6 +2,10 @@
 	require_once "inc/config.php";
 	require_once "inc/lib.php";
 
+	if ( ENABLE_ERROR_MSG == "true" ) {
+		error_reporting( E_ALL );
+    	}
+
 	if (isset($_COOKIE["stayalive"])) {
 		//echo $_COOKIE["stayalive"];	
 	} else {
