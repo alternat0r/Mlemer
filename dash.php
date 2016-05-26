@@ -1,5 +1,10 @@
 <?php
 	require_once "inc/config.php";
+	
+	if ( ENABLE_ERROR_MSG == "true" ) {
+		error_reporting( E_ALL );
+    	}
+
 ?>
 			<h2 class="page-header">Dashboard</h2>
 			
