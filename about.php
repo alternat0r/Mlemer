@@ -3,6 +3,8 @@
 	
 	if ( ENABLE_ERROR_MSG == "true" ) {
 		error_reporting( E_ALL );
+	} else {
+	    	error_reporting( 0 );
 	}
 	
 	if(isset($_SESSION['login_user'])) {
