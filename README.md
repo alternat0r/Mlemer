@@ -72,6 +72,9 @@ require user admin
 
   * You can add multiple administrator username and password separated per line.
 
+Configure for extra security (optional):
+
+  * You may hide your 404 error message to prevent user from knowing your server info.
 
 ## Usage
 
