@@ -4,11 +4,11 @@
 	isset( $REQUEST['user_ip'] ) &&
 	isset( $REQUEST['user_hostname'] ) &&
 	isset( $REQUEST['user_activate'] ) ) {
-		$user_name = strip_tags( mysqli_real_escape_string( $link, $REQUEST['user_name'] );
-		$user_real = strip_tags( mysqli_real_escape_string( $link, $REQUEST['user_real'] );
-		$user_ip = strip_tags( mysqli_real_escape_string( $link, $REQUEST['user_ip'] );
-		$user_hostname = strip_tags( mysqli_real_escape_string( $link, $REQUEST['user_hostname'] );
-		$user_activate = strip_tags( mysqli_real_escape_string( $link, $REQUEST['user_activate'] );
+		$user_name = strip_tags( mysqli_real_escape_string( $link, $REQUEST['user_name'] ) );
+		$user_real = strip_tags( mysqli_real_escape_string( $link, $REQUEST['user_real'] ) );
+		$user_ip = strip_tags( mysqli_real_escape_string( $link, $REQUEST['user_ip'] ) );
+		$user_hostname = strip_tags( mysqli_real_escape_string( $link, $REQUEST['user_hostname'] ) );
+		$user_activate = strip_tags( mysqli_real_escape_string( $link, $REQUEST['user_activate'] ) );
 	}
 	
 ?>
