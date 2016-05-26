@@ -1,6 +1,12 @@
 <?php
-    error_reporting(0);
-    
+	require_once "inc/config.php";
+	
+	if ( ENABLE_ERROR_MSG == "true" ) {
+		error_reporting( E_ALL );
+	} else {
+	    error_reporting( 0 );
+	}
+
     if ( isset( $_POST['submit'] ) ) {
       if ( empty( $_POST['username'] ) || empty( $_POST['password'] ) ) {
         error_msg( "danger", "OPS!", "Username or Password is invalid" , "1");
