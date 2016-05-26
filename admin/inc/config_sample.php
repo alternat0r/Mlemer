@@ -1,5 +1,7 @@
 <?php
 	error_reporting(0);
+	
+	define( "ENABLE_ERROR_MSG", "true" );
 
 	$user_name = "<CHANGEME>";
 	$password = "<CHANGEME>";
