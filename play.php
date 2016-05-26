@@ -4,6 +4,8 @@
 	
 	if ( ENABLE_ERROR_MSG == "true" ) {
 		error_reporting( E_ALL );
+	} else {
+	    error_reporting( 0 );
 	}
 
 	$exer_id = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['e'] ) );
