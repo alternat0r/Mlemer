@@ -1,5 +1,13 @@
 <?php
 	require_once "inc/lib.php";
+	require_once "inc/config.php";
+	
+	if ( ENABLE_ERROR_MSG == "true" ) {
+		error_reporting( E_ALL );
+	} else {
+	    	error_reporting( 0 );
+	}
+	
 	$user_id = get_current_user_id();
 	remove_user_from_db( $user_id );
 	remove_user_from_answer( $user_id );
