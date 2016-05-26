@@ -1,4 +1,10 @@
 <?php 
+	require_once "inc/config.php";
+	
+	if ( ENABLE_ERROR_MSG == "true" ) {
+		error_reporting( E_ALL );
+	}
+	
 	if(isset($_SESSION['login_user'])) {
 		echo "STILL LOGGED IN" . $_SESSION['login_user'];
 	}
