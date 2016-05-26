@@ -35,7 +35,7 @@
   		</div>
 		<div class="form-group">
 			<label for="pg_about">About</label>
-			<textarea id="pg_about" name="pg_about" class="form-control" rows="5" placeholder="General description about the exercise or event."><?php echo htmlentities( GetAbout() ); ?></textarea>	
+			<textarea id="pg_about" name="pg_about" class="form-control" rows="5" placeholder="General description about the exercise or event OR leave it empty for default information."><?php echo htmlentities( GetAbout() ); ?></textarea>	
   		</div>
       <div class="text-right">
   		  <button type="submit" name="pgConfigSave" class="btn btn-primary">Save Changes</button>
