@@ -5,7 +5,7 @@
 	if ( ENABLE_ERROR_MSG == "true" ) {
 		error_reporting( E_ALL );
 	} else {
-	    error_reporting( 0 );
+		error_reporting( 0 );
 	}
 
 	$exer_id = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['e'] ) );
@@ -13,8 +13,8 @@
 	$sql = "SELECT * FROM exercise WHERE id='$exer_id';";
 	$result = mysqli_query( $link, $sql );
 	$row = mysqli_fetch_assoc( $result );
-	$exer_name = $row['exer_name'];
-	$exer_description = $row['exer_description'];
+	$exer_name = strip_tags( mysqli_real_escape_string( $link, $row['exer_name'] ) );
+	$exer_description = strip_tags( mysqli_real_escape_string( $link, $row['exer_description'] ) );
 	if ( empty( $exer_description ) ) {
 		$exer_description = "Not available.";
 	}
