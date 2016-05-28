@@ -1,4 +1,12 @@
 <?php
+	require_once "inc/config.php";
+	
+	if ( ENABLE_ERROR_MSG == "true" ) {
+		error_reporting( E_ALL );
+	} else {
+	    	error_reporting( 0 );
+	}
+	
 	if (isset( $REQUEST['user_name'] ) &&
 	isset( $REQUEST['user_real'] ) &&
 	isset( $REQUEST['user_ip'] ) &&
