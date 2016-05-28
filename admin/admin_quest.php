@@ -1,7 +1,13 @@
 <?php
 	require_once "../inc/config.php";
-    require_once "../inc/lib.php";
-
+    	require_once "../inc/lib.php";
+	
+	if ( ENABLE_ERROR_MSG == "true" ) {
+		error_reporting( E_ALL );
+	} else {
+	    	error_reporting( 0 );
+	}
+	
 	if ( isset( $_REQUEST['qQuestion'] ) && 
 		isset( $_REQUEST['qAnswer'] ) &&
 		isset( $_REQUEST['qPoint'] ) &&
@@ -16,7 +22,7 @@
 	}
 
 	if ( isset($_REQUEST['exer_id']) ) {
-		$exer_id = $_REQUEST['exer_id'];
+		$exer_id = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['exer_id'] ) );
 	} else {
 		$exer_id = "1";
 	}
