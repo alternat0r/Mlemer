@@ -3,7 +3,13 @@
     
 	require_once "inc/config.php";
 	require_once "../inc/lib.php";
-
+	
+	if ( ENABLE_ERROR_MSG == "true" ) {
+		error_reporting( E_ALL );
+	} else {
+	    	error_reporting( 0 );
+	}
+	
 	if ( isset( $_REQUEST['p'] ) ) {
 		$page = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['p'] ) );
 
