@@ -1,21 +1,27 @@
 <?php
-    require_once "./inc/config.php";
-    require_once "../inc/lib.php";
+    	require_once "./inc/config.php";
+    	require_once "../inc/lib.php";
+	
+	if ( ENABLE_ERROR_MSG == "true" ) {
+		error_reporting( E_ALL );
+	} else {
+	    	error_reporting( 0 );
+	}
 
-    if ( isset( $_REQUEST['pg_productname'] ) or isset( $_REQUEST['pg_title'] ) ) {
-      $pg_productname = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_productname'] ) );
-      $pg_title = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_title'] ) );
-      $pg_company = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_company'] ), "<a>");
-      $pg_about = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_about'] ) , "<a>");
-      
-      if ( empty( $pg_about ) ) {
-      	$pg_about = "";
-      }
-      
-      //TODO: Update DB.
-      update_config( $pg_productname, $pg_title, $pg_company, $pg_about );
-      echo error_msg( "success", "SUCCESS!", "Configuration successfully updated." , "1");
-    }
+	if ( isset( $_REQUEST['pg_productname'] ) or isset( $_REQUEST['pg_title'] ) ) {
+	      $pg_productname = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_productname'] ) );
+	      $pg_title = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_title'] ) );
+	      $pg_company = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_company'] ), "<a>");
+	      $pg_about = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['pg_about'] ) , "<a>");
+	      
+	      if ( empty( $pg_about ) ) {
+	      	$pg_about = "";
+	      }
+	      
+	      //TODO: Update DB.
+	      update_config( $pg_productname, $pg_title, $pg_company, $pg_about );
+	      echo error_msg( "success", "SUCCESS!", "Configuration successfully updated." , "1");
+	}
 
 ?>
 	<h2 class="page-header">Configuration</h2>
