@@ -1,6 +1,12 @@
 <?php
 	require_once "../inc/config.php";
-    require_once "../inc/lib.php";
+	require_once "../inc/lib.php";
+	
+	if ( ENABLE_ERROR_MSG == "true" ) {
+		error_reporting( E_ALL );
+	} else {
+	    	error_reporting( 0 );
+	}
 
 	if ( isset( $_REQUEST['inExerciseName'] ) && 
 		isset( $_REQUEST['inExerciseDesc'] ) && 
