@@ -5,7 +5,7 @@
 
 **SUCH FILES, MANY BUGS, MUCH CODE, NO WOW**
 
-**Mlemer** is a quiz, exercise, CTF or questionnaire system designed for trainer. It is designed meant to be simplified and easy to manage. This system is not suitable to be used for public access. It is designed for local network only and to assist trainer. Used at your own risk. 
+**Mlemer** is a quiz, exercise, CTF or questionnaire system designed for trainer. It is designed meant to be simplified and easy to manage. This system is not suitable to be used for public access. It is designed for local network only and to assist a trainer. Used at your own risk. 
 
 ## Table of Content
   1. [Requirement](#requirement)
@@ -30,7 +30,7 @@ The requirement to get started is fairly simple. You need the following:
 
 To install, follow these step:
 
-  * Download latest release.
+  * Download the latest release.
   * Extract into your web public directory (Eg: `C:\Wamp\www\mlemer` ).
   * Create MySQL database lets say `mlem_db`.
   * Import `mlem_db.sql` into your database.
