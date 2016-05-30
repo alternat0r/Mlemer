@@ -101,10 +101,12 @@
 						while( $row = @mysqli_fetch_assoc( $result ) ) {
 							if ( $row['activated'] == "1" ) {
 								$user_count++;
+								$exer_name =  strip_tags( mysqli_real_escape_string( $link, $row['exer_name'] ) );
+								$exer_desc =  strip_tags( mysqli_real_escape_string( $link, $row['exer_description'] ) );
 								echo "<div class=\"bs-callout bs-callout-info hoverDiv\" id=\"callout-input-needs-type\">\n";
 								echo "<a class=\"NoUnderLine\" href=\"javascript:void(0)\" onclick=\"window.location.href='?p=play&e=".$row['id']."'\">";
-								echo "	<h4>" . $row['exer_name'] . "</h4>";
-								echo "	<p>" . $row['exer_description'] . "</p>\n";
+								echo "	<h4>" . $exer_name . "</h4>";
+								echo "	<p>" . $exer_desc . "</p>\n";
 								echo "</a>";
 								echo "</div>\n";
 								
