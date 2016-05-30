@@ -1,11 +1,18 @@
 <?php
+	require_once "config.php";
+	
+	if ( ENABLE_ERROR_MSG == "true" ) {
+		error_reporting( E_ALL );
+	} else {
+	    	error_reporting( 0 );
+	}
 	
 	function GenUniqueID() {
-		$curr_ip = getHostByName(getHostName()); // @$_SERVER['REMOTE_ADDR'];
-    	$curr_hostname = gethostname();
+		$curr_ip = getHostByName( getHostName() ); // @$_SERVER['REMOTE_ADDR'];
+    		$curr_hostname = gethostname();
 
-    	$sha1 = sha1( $curr_ip . $curr_hostname );
-    	return $sha1;
+    		$sha1 = sha1( $curr_ip . $curr_hostname );
+    		return $sha1;
 	}
 
 	function GetCompanyName() {
@@ -84,7 +91,7 @@
 	function get_current_user_realname() {
 		global $link;
 		$curr_ip = getHostByName(getHostName()); // @$_SERVER['REMOTE_ADDR'];
-    	$curr_hostname = gethostname();
+    		$curr_hostname = gethostname();
 
 		$sql = "SELECT * FROM users WHERE user_ip='$curr_ip' AND user_hostname='$curr_hostname';";
 		$result = mysqli_query( $link, $sql );
@@ -97,7 +104,7 @@
 	function get_current_username() {
 		global $link;
 		$curr_ip = getHostByName( getHostName() ); // @$_SERVER['REMOTE_ADDR'];
-    	$curr_hostname = gethostname();
+    		$curr_hostname = gethostname();
 
 		$sql = "SELECT * FROM users WHERE user_ip='$curr_ip' AND user_hostname='$curr_hostname';";
 		$result = mysqli_query( $link, $sql );
@@ -110,7 +117,7 @@
 	function get_current_user_id() {
 		global $link;
 		$curr_ip = getHostByName( getHostName() ); // @$_SERVER['REMOTE_ADDR'];
-    	$curr_hostname = gethostname();
+    		$curr_hostname = gethostname();
 
 		$sql = "SELECT * FROM users WHERE user_ip='$curr_ip' AND user_hostname='$curr_hostname';";
 		$result = mysqli_query( $link, $sql );
@@ -123,7 +130,7 @@
 	function get_current_userpassword() {
 		global $link;
 		$curr_ip = getHostByName( getHostName() ); // @$_SERVER['REMOTE_ADDR'];
-    	$curr_hostname = gethostname();
+    		$curr_hostname = gethostname();
 
 		$sql = "SELECT * FROM users WHERE user_ip='$curr_ip' AND user_hostname='$curr_hostname';";
 		$result = mysqli_query( $link, $sql );
@@ -135,19 +142,6 @@
 
 	function update_config( $pg_product, $pg_title, $pg_company, $pg_about ) {
 		global $link;
-
-		/*$sql = "SELECT * FROM config";
-		$result = mysqli_query( $link, $sql );
-		$row = mysqli_fetch_assoc( $result );
-		$pg_product = $row['pg_product'];*/
-		//mysqli_query( $link, "UPDATE config SET pg_product='$pg_product';");
-		/*if ( !empty( $pg_product ) ) {
-			
-		} else {
-			mysqli_query( $link, "UPDATE config SET pg_product='Mlemer';");
-		}*/
-
-
 		mysqli_query( $link, "UPDATE config SET pg_product='$pg_product', pg_title='$pg_title', pg_company='$pg_company', pg_about='$pg_about';");
 	}
 
@@ -189,11 +183,11 @@
 	 * @param integer $maxlen
 	 * @return string
 	 */
-	function shorten($str, $maxlen) {
-	    if (strlen($str) <= $maxlen) return $str;
+	function shorten( $str, $maxlen ) {
+	    if ( strlen( $str ) <= $maxlen ) return $str;
 
-	    $newstr = substr($str, 0, $maxlen);
-	    if (substr($newstr, -1, 1) != ' ') $newstr = substr($newstr, 0, strrpos($newstr, " "));
+	    $newstr = substr( $str, 0, $maxlen );
+	    if ( substr( $newstr, -1, 1 ) != ' ') $newstr = substr($newstr, 0, strrpos( $newstr, " " ) );
 
 	    return $newstr . "...";
 	}
@@ -225,7 +219,7 @@
 	function count_registered_user() {
 		global $link;
 		$sql = "SELECT * FROM users";
-      	$user_count = "";
+      		$user_count = "";
 		$result = mysqli_query( $link, $sql );
 		while( $row = @mysqli_fetch_assoc( $result ) ) {
 			$user_count++;
@@ -308,8 +302,8 @@
 	function get_perplayer_total_point( $user_id ) {
 		global $link;
 		$sql = "SELECT * FROM users_answer WHERE user_id='$user_id';";
-      	$user_count = "";
-      	$total = "";
+      		$user_count = "";
+      		$total = "";
 		$result = mysqli_query( $link, $sql );
 		$total = "0"; //default
 		while( $row = @mysqli_fetch_assoc( $result ) ) {
@@ -351,7 +345,7 @@
 	function count_how_many_correct_answer( $user_id, $exer_id, $quest_id ) {
 		global $link;
 		$sql = "SELECT * FROM users_answer";
-      	$user_count = "";
+      		$user_count = "";
 		$result = mysqli_query( $link, $sql );
 		while( $row = @mysqli_fetch_assoc( $result ) ) {
 			$user_count++;
