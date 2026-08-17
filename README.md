@@ -65,7 +65,7 @@ This is still meant for a trusted local network, not the open internet: there's 
 ## Screenshot
 
 The player dashboard:
-![main-player-dash](https://cloud.githubusercontent.com/assets/1006000/15361660/faf92ab0-1d44-11e6-8d1e-c3fa18c5b621.png "Player dashboard")
+![main-player-dash](img/screenshot-dashboard.jpg "Player dashboard")
 
 ## Credit
 
