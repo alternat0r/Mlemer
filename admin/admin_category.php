@@ -1,30 +1,23 @@
 <?php
 	require_once "../inc/config.php";
     	require_once "../inc/lib.php";
-    
+
 	if ( ENABLE_ERROR_MSG == "true" ) {
 		error_reporting( E_ALL );
 	} else {
 	    	error_reporting( 0 );
 	}
 
-	if ( isset( $_REQUEST['inCatName'] ) && isset( $_REQUEST['inCatDesc'] ) && isset( $_REQUEST['AddNewCategory'] ) ) {
-		$inCatName = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['inCatName'] ) );
-		$inCatDesc = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['inCatDesc'] ) );
-		$btnAddCat = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['AddNewCategory'] ) );
-
-		admin_add_category( $inCatName, $inCatDesc );
+	if ( isset( $_POST['inCatName'] ) && isset( $_POST['inCatDesc'] ) && isset( $_POST['AddNewCategory'] ) ) {
+		csrf_verify();
+		admin_add_category( (string) $_POST['inCatName'], (string) $_POST['inCatDesc'] );
 	}
 
-	if ( isset( $_REQUEST['cat_id'] ) && isset( $_REQUEST['inCatName'] ) && isset( $_REQUEST['inCatDesc'] ) && isset( $_REQUEST['EditCategory'] ) ) {
-		$inCatId = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['cat_id'] ) );
-		$inCatName = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['inCatName'] ) );
-		$inCatDesc = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['inCatDesc'] ) );
-		$btnAddCat = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['EditCategory'] ) );
-
-		admin_edit_category( $inCatId, $inCatName, $inCatDesc );
+	if ( isset( $_POST['cat_id'] ) && isset( $_POST['inCatName'] ) && isset( $_POST['inCatDesc'] ) && isset( $_POST['EditCategory'] ) ) {
+		csrf_verify();
+		admin_edit_category( (int) $_POST['cat_id'], (string) $_POST['inCatName'], (string) $_POST['inCatDesc'] );
 	}
-	
+
 
 ?>
 
@@ -60,23 +53,22 @@
 						$result = mysqli_query( $link, $sql );
 						while( $row = @mysqli_fetch_assoc( $result ) ) {
 							$user_count++;
-							$cat_id = $row['id'];
-							$cat_name = $row['category_name'];
-							$cat_desc = $row['category_description'];
+							$cat_id = (int) $row['id'];
+							$cat_name = e( $row['category_name'] );
+							$cat_desc = e( $row['category_description'] );
 							echo "<tr>\n";
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
 							echo "	<td style=\"vertical-align: middle;\">" . $cat_name . "</td>\n";
-							echo "	<td style=\"vertical-align: middle;\" title=\"".$cat_desc."\">" . shorten( $cat_desc, 35) . "</td>\n";
+							echo "	<td style=\"vertical-align: middle;\" title=\"".$cat_desc."\">" . e( shorten( $row['category_description'], 35) ) . "</td>\n";
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">";
 							echo " 		<button type=\"button\" class=\"btn btn-default glyphicon glyphicon-pencil\" data-toggle=\"modal\" data-target=\"#BtnEditCategory".$cat_id."\" title=\"Edit Category\"></button>";
-							//echo "		<a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;";
 							echo " 		<button type=\"button\" class=\"btn btn-danger glyphicon glyphicon-trash\" data-toggle=\"modal\" data-target=\"#BtnDeleteCategory".$cat_id."\" title=\"Delete Category\"></button>";
-							//echo "		<a href=\"?catid=".$cat_id."\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
 							echo "</tr>\n";
 
 
 							// Delete category prompt
-							echo "<form method=\"post\" action=\"?catid=".$cat_id."\">";
+							echo "<form method=\"post\" action=\"?p=category\">";
+							echo csrf_field();
 							echo "<div class=\"modal fade\" id=\"BtnDeleteCategory".$cat_id."\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">";
 							echo "  <div class=\"modal-dialog\" role=\"document\">";
 							echo "    <div class=\"modal-content\">";
@@ -86,7 +78,7 @@
 							echo "      </div>";
 							echo "      <div class=\"modal-body\">";
 							echo "        <div class=\"form-group\">";
-							echo "			<input type=\"hidden\" name=\"cat_id\" value=\"".$cat_id."\">";
+							echo "			<input type=\"hidden\" name=\"catid\" value=\"".$cat_id."\">";
 							echo "			<label>By pressing '<code>Delete Now</code>' button you will permanently remove the '".$cat_name."' category.</label>";
 							echo "        </div>";
 							echo "      </div>";
@@ -99,7 +91,8 @@
 							echo "</div>";
 							echo "</form>";
 
-							echo "<form method=\"post\" action=\"\">";
+							echo "<form method=\"post\" action=\"?p=category\">";
+							echo csrf_field();
 							echo "<div class=\"modal fade\" id=\"BtnEditCategory".$cat_id."\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">";
 							echo "  <div class=\"modal-dialog\" role=\"document\">";
 							echo "    <div class=\"modal-content\">";
@@ -133,12 +126,13 @@
 	              </tbody>
 	            </table>
 	            </div>
-	            <h4>Total Category: <?php echo $user_count; ?></h4>
+	            <h4>Total Category: <?php echo (int) $user_count; ?></h4>
 	          </div>
 
 
 <!-- Modal Add Category-->
-<form method="post" action="">
+<form method="post" action="?p=category">
+<?php echo csrf_field(); ?>
 <div class="modal fade" id="BtnAddNewCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -164,4 +158,3 @@
   </div>
 </div>
 </form>
-

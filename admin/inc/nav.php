@@ -1,5 +1,6 @@
 <?php
-    require_once "inc/config.php";    
+    require_once "../inc/config.php";
+    require_once "../inc/lib.php";
 ?>
 
 <!-- Static navbar -->
@@ -24,7 +25,6 @@
               <li><a href="?p=users"><strong>Users</strong></a></li>
               <li><a href="?p=config"><strong>Config</strong></a></li>
               <li><a href="?p=exercise"><strong>Manager</strong></a></li>
-              <!-- <li class="divider-vertical"><a href="?p=logout"><strong>Log Out</strong></a></li> -->
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

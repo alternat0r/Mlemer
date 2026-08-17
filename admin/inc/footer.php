@@ -13,8 +13,7 @@
 			</div>
 		</div>
       </footer>
-      <script src="https://silviomoreto.github.io/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>    
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" integrity="sha384-ECTndYny330R2jlSXBiZkdXzAVi0Z/iDXJTwV6cp39HECmalqg6+b2sFZFf/Y2m6" crossorigin="anonymous"></script>
 
       	<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>

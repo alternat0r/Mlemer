@@ -1,5 +1,5 @@
 <?php
-	require_once "inc/config.php";
+	require_once "../inc/config.php";
 	
 	if ( ENABLE_ERROR_MSG == "true" ) {
 		error_reporting( E_ALL );

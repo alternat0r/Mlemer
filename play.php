@@ -1,28 +1,29 @@
 <?php
 	require_once "inc/lib.php";
 	require_once "inc/config.php";
-	
+
 	if ( ENABLE_ERROR_MSG == "true" ) {
 		error_reporting( E_ALL );
 	} else {
 		error_reporting( 0 );
 	}
 
-	$exer_id = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['e'] ) );
+	require_login();
 
-	$sql = "SELECT * FROM exercise WHERE id='$exer_id';";
-	$result = mysqli_query( $link, $sql );
-	$row = mysqli_fetch_assoc( $result );
-	$exer_name = strip_tags( mysqli_real_escape_string( $link, $row['exer_name'] ) );
-	$exer_description = strip_tags( mysqli_real_escape_string( $link, $row['exer_description'] ) );
-	if ( empty( $exer_description ) ) {
+	$exer_id = (int) ( $_REQUEST['e'] ?? 0 );
+
+	$result = db_query( "SELECT * FROM exercise WHERE id = ?", "i", $exer_id );
+	$row = $result ? mysqli_fetch_assoc( $result ) : false;
+
+	$exer_name = e( $row['exer_name'] ?? '' );
+	$exer_description = e( $row['exer_description'] ?? '' );
+	if ( $exer_description === '' ) {
 		$exer_description = "Not available.";
 	}
-	$exer_long = strip_tags( mysqli_real_escape_string( $link, $row['exer_long'] ) );
-	if ( empty( $exer_long ) ) {
+	$exer_long = e( $row['exer_long'] ?? '' );
+	if ( $exer_long === '' ) {
 		$exer_long = "Not available.";
 	}
-
 ?>
 
 
@@ -47,68 +48,66 @@
 	              <th>Answer</th>
 	            </tr>
             </thead>
-			<tbody>				
+			<tbody>
               <?php
-	              	$sql = "SELECT * FROM questionaire WHERE exercise_id='$exer_id'";
-	              	$user_count = "";
-					$result = mysqli_query( $link, $sql );
+	              	$result = db_query( "SELECT * FROM questionaire WHERE exercise_id = ?", "i", $exer_id );
+	              	$user_count = 0;
 
 					$js_valid = "";
-					while( $row = @mysqli_fetch_assoc( $result ) ) {
-						$user_count++;
-						$quest_id = $row['id'];
+					if ( $result ) {
+						while( $row = @mysqli_fetch_assoc( $result ) ) {
+							$user_count++;
+							$quest_id = (int) $row['id'];
 
-						$last_answer = get_last_answer( $exer_id, $quest_id );
+							$last_answer = e( get_last_answer( $exer_id, $quest_id ) );
 
-						echo "<tr>\n";
-						echo "	<td style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
-						echo "	<td width=\"70%\" style=\"vertical-align: middle;\">" . $row['question'] . "</td>\n";
-						if ( check_last_answer_is_correct_or_not( $exer_id, $quest_id ) == "yes" ) {
-							echo "	<td style=\"vertical-align: middle;\"><div style=\"color:#E6E6E6\" id=\"a".$user_count."\"><div class=\"glyphicon glyphicon-ok-circle\" title=\"Your answer is correct.\" style=\"color:#01DF3A\" ></div></div></td>\n";
-						} else {
-							echo "	<td style=\"vertical-align: middle;\"><div style=\"color:#E6E6E6\" id=\"a".$user_count."\"><div class=\"glyphicon glyphicon-question-sign\"  style=\"color:#E6E6E6\" ></div></div></td>\n";
+							echo "<tr>\n";
+							echo "	<td style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
+							echo "	<td width=\"70%\" style=\"vertical-align: middle;\">" . e( $row['question'] ) . "</td>\n";
+							if ( check_last_answer_is_correct_or_not( $exer_id, $quest_id ) == "yes" ) {
+								echo "	<td style=\"vertical-align: middle;\"><div style=\"color:#E6E6E6\" id=\"a".$user_count."\"><div class=\"glyphicon glyphicon-ok-circle\" title=\"Your answer is correct.\" style=\"color:#01DF3A\" ></div></div></td>\n";
+							} else {
+								echo "	<td style=\"vertical-align: middle;\"><div style=\"color:#E6E6E6\" id=\"a".$user_count."\"><div class=\"glyphicon glyphicon-question-sign\"  style=\"color:#E6E6E6\" ></div></div></td>\n";
+							}
+							echo "	<td style=\"text-align: center; vertical-align: middle; \">\n";
+							echo "		<div class=\"input-group\">\n";
+							echo "			<input class=\"form-control\" type=\"text\" id=\"userInput".$user_count."\" placeholder=\"Answer here\" value=\"".$last_answer."\" />\n";
+							echo "			<span class=\"input-group-btn\">\n";
+							echo "				<button".$user_count." type=\"button\" class=\"checkAnswer btn btn-default \" title=\"Click to check your answer\">\n";
+							echo "					<span class=\"glyphicon glyphicon-circle-arrow-right\"></span>&nbsp;\n";
+							echo "				</button".$user_count.">\n";
+							echo "			</span>\n";
+							echo "		</div>\n";
+							echo "	</td>\n";
+							echo "</tr>\n";
+
+							$js_valid .= "butt( \"".$exer_id."\", \"".$quest_id."\", \"button".$user_count."\", \"userInput".$user_count."\", \"a".$user_count."\");\n";
 						}
-						echo "	<td style=\"text-align: center; vertical-align: middle; \">\n";
-						echo "		<div class=\"input-group\">\n";
-						echo "			<input class=\"form-control\" type=\"text\" id=\"userInput".$user_count."\" placeholder=\"Answer here\" value=\"".$last_answer."\" />\n";
-						echo "			<span class=\"input-group-btn\">\n";
-						echo "				<button".$user_count." type=\"button\" class=\"checkAnswer btn btn-default \" title=\"Click to check your answer\">\n";
-						echo "					<span class=\"glyphicon glyphicon-circle-arrow-right\"></span>&nbsp;\n";
-						echo "				</button".$user_count.">\n";
-						echo "			</span>\n";
-						echo "		</div>\n";
-						echo "	</td>\n";
-						echo "</tr>\n";
-
-						$js_valid .= "butt( \"".$exer_id."\", \"".$quest_id."\", \"button".$user_count."\", \"userInput".$user_count."\", \"a".$user_count."\");\n";
 					}
 
               ?>
 			</tbody>
 		</table>
 	</div>
-			<?php 
-				if ( mysqli_num_rows( $result ) == 0 ) {
+			<?php
+				if ( $user_count === 0 ) {
 					echo error_msg( "warning", "OPS!", "There is no question available. Please ask administrator.", "0");
 				}
 			?>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" integrity="sha384-ECTndYny330R2jlSXBiZkdXzAVi0Z/iDXJTwV6cp39HECmalqg6+b2sFZFf/Y2m6" crossorigin="anonymous"></script>
 <script>
-$(document).ready(function() {    
+$(document).ready(function() {
 	<?php
-		/*for ($i=1; $i<$user_count+1; $i++) {
-			echo "	butt(\"button".$i."\", \"userInput".$i."\", \"a".$i."\");\n";
-		}*/
 		echo $js_valid;
 	?>
 });
 function butt( exer_id, quest_id, button, userInput, outputId ) {
     $(button).click(function() {
         var userInput1 = document.getElementById(userInput).value; // unserInput = to take user input
-        $.post("valid.php", { answer: userInput1, qid: quest_id, eid: exer_id },
+        $.post("valid.php", { answer: userInput1, qid: quest_id, eid: exer_id, csrf_token: "<?php echo csrf_token(); ?>" },
         function( data, status ) {
-           	document.getElementById(outputId).innerHTML = data; //a2 = place to display       
+           	document.getElementById(outputId).innerHTML = data; //a2 = place to display
         });
 
     });

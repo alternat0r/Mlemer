@@ -1,34 +1,27 @@
 <?php
 	require_once "../inc/config.php";
 	require_once "../inc/lib.php";
-	
+
 	if ( ENABLE_ERROR_MSG == "true" ) {
 		error_reporting( E_ALL );
 	} else {
 	    	error_reporting( 0 );
 	}
 
-	if ( isset( $_REQUEST['inExerciseName'] ) && 
-		isset( $_REQUEST['inExerciseDesc'] ) && 
-		isset( $_REQUEST['inExerciseDescLong'] ) &&
-		isset( $_REQUEST['cat_id'] ) &&
-		isset( $_REQUEST['activated'] ) ) {
+	if ( isset( $_POST['inExerciseName'] ) &&
+		isset( $_POST['inExerciseDesc'] ) &&
+		isset( $_POST['inExerciseDescLong'] ) &&
+		isset( $_POST['cat_id'] ) ) {
 
-		$inCatName = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['inExerciseName'] ) );
-		$inCatDesc = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['inExerciseDesc'] ) );
-		$inCatDescLong = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['inExerciseDescLong'] ) );
-		$inCatId = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['cat_id'] ) );
-		$inCatActive = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['activated'] ) );
-		if ( isset( $_REQUEST['activated'] ) ) {
-			$inCatActive = "1";
-		} else {
-			$inCatActive = "0";
-		}
+		csrf_verify();
+
+		$inCatName = (string) $_POST['inExerciseName'];
+		$inCatDesc = (string) $_POST['inExerciseDesc'];
+		$inCatDescLong = (string) $_POST['inExerciseDescLong'];
+		$inCatId = (int) $_POST['cat_id'];
+		$inCatActive = isset( $_POST['activated'] ) ? 1 : 0;
 
 		admin_add_exercise( $inCatName, $inCatDesc, $inCatDescLong, $inCatId, $inCatActive );
-		//die("just dai");
-		//echo "ADDED: ".$inCatName."-".$inCatDesc."-".$inCatDescLong."-".$inCatId."-".$inCatActive;
-		//printf("DONE! %s,%s,%s,%s,%s", $inCatName, $inCatDesc, $inCatDescLong, $inCatId, $inCatActive);
 	}
 ?>
 
@@ -68,12 +61,12 @@
 						$result = mysqli_query( $link, $sql );
 						while( $row = @mysqli_fetch_assoc( $result ) ) {
 							$user_count++;
-							$exer_id = $row['id'];
+							$exer_id = (int) $row['id'];
 							echo "<tr>\n";
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
-							echo "	<td style=\"vertical-align: middle;\">" . $row['exer_name'] . "</td>\n";
-							echo "	<td style=\"vertical-align: middle;\" title=\"".$row['exer_description']."\">" . shorten( $row['exer_description'], 35) . "</td>\n";
-							echo "	<td align=\"center\" style=\"vertical-align: middle;\">".count_available_question_by_exercise( $exer_id )."</td>\n";
+							echo "	<td style=\"vertical-align: middle;\">" . e( $row['exer_name'] ) . "</td>\n";
+							echo "	<td style=\"vertical-align: middle;\" title=\"".e( $row['exer_description'] )."\">" . e( shorten( $row['exer_description'], 35) ) . "</td>\n";
+							echo "	<td align=\"center\" style=\"vertical-align: middle;\">".(int) count_available_question_by_exercise( $exer_id )."</td>\n";
 
 							if ( $row['activated'] == "1" ) {
 								$activated = "<span class=\"glyphicon glyphicon-ok\" title=\"Activated\" style=\"color:green\"></span>";
@@ -81,19 +74,26 @@
 								$activated = "<span class=\"glyphicon glyphicon-ok\" title=\"Deactivated\" style=\"color:#E6E6E6\"></span>";
 							}
 							echo "	<td align=\"center\" style=\"vertical-align: middle;\">" . $activated . "</td>\n";
-							echo "	<td align=\"center\" style=\"vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"?exerid=".$exer_id."\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
+							echo "	<td align=\"center\" style=\"vertical-align: middle;\">";
+							echo "<form method=\"post\" action=\"?p=exercise\" style=\"display:inline\" onsubmit=\"return confirm('Delete this exercise permanently?');\">";
+							echo csrf_field();
+							echo "<input type=\"hidden\" name=\"exerid\" value=\"".$exer_id."\">";
+							echo "<button type=\"submit\" class=\"btn btn-danger glyphicon glyphicon-trash\"></button>";
+							echo "</form>";
+							echo "</td>\n";
 							echo "</tr>\n";
 						}
 	              ?>
 	              </tbody>
 	            </table>
 	            </div>
-	            <h4>Total Exercise: <?php echo $user_count; ?></h4>
+	            <h4>Total Exercise: <?php echo (int) $user_count; ?></h4>
 	          </div>
 
 
 <!-- Modal -->
-<form action="" method="post">
+<form action="?p=exercise" method="post">
+<?php echo csrf_field(); ?>
 <div class="modal fade" id="BtnAddNewExercise" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -121,7 +121,7 @@
 	              	$sql = "SELECT * FROM category";
 					$result = mysqli_query( $link, $sql );
 					while( $row = @mysqli_fetch_assoc( $result ) ) {
-							echo "	<option value=\"".$row['id']."\" name=\"cat_id\" selected=\"selected\">" . $row['category_name'] . "</option>\n";
+							echo "	<option value=\"".(int) $row['id']."\">" . e( $row['category_name'] ) . "</option>\n";
 					}
 	            ?>
 	        </select>

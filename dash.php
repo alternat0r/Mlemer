@@ -101,15 +101,16 @@
 						while( $row = @mysqli_fetch_assoc( $result ) ) {
 							if ( $row['activated'] == "1" ) {
 								$user_count++;
-								$exer_name =  strip_tags( mysqli_real_escape_string( $link, $row['exer_name'] ) );
-								$exer_desc =  strip_tags( mysqli_real_escape_string( $link, $row['exer_description'] ) );
+								$exer_name = e( $row['exer_name'] );
+								$exer_desc = e( $row['exer_description'] );
+								$exer_id_out = (int) $row['id'];
 								echo "<div class=\"bs-callout bs-callout-info hoverDiv\" id=\"callout-input-needs-type\">\n";
-								echo "<a class=\"NoUnderLine\" href=\"javascript:void(0)\" onclick=\"window.location.href='?p=play&e=".$row['id']."'\">";
+								echo "<a class=\"NoUnderLine\" href=\"javascript:void(0)\" onclick=\"window.location.href='?p=play&e=".$exer_id_out."'\">";
 								echo "	<h4>" . $exer_name . "</h4>";
 								echo "	<p>" . $exer_desc . "</p>\n";
 								echo "</a>";
 								echo "</div>\n";
-								
+
 							}
 						}
 						if ( $user_count == 0 ) {
@@ -140,8 +141,8 @@
 										if ( $row['user_realname'] != "Administrator" and $row['user_realname'] != "" ) {
 											echo "<tr>\n";
 											echo "	<td style=\"text-align: center;\">" . $user_count . "</td>\n";
-											echo "	<td>" . $row['user_realname'] . "</td>\n";
-											echo "	<td data-sortable=\"true\" style=\"text-align: center;\">".get_perplayer_total_point( $row['id'] )."</td>\n";
+											echo "	<td>" . e( $row['user_realname'] ) . "</td>\n";
+											echo "	<td data-sortable=\"true\" style=\"text-align: center;\">".(int) get_perplayer_total_point( $row['id'] )."</td>\n";
 											echo "</tr>\n";
 										}
 									}

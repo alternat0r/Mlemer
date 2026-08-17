@@ -1,16 +1,13 @@
-<?php 
+<?php
 	require_once "inc/config.php";
-	
+	require_once "inc/lib.php";
+
 	if ( ENABLE_ERROR_MSG == "true" ) {
 		error_reporting( E_ALL );
 	} else {
 	    	error_reporting( 0 );
 	}
-	
-	if(isset($_SESSION['login_user'])) {
-		echo "STILL LOGGED IN" . $_SESSION['login_user'];
-	}
-	
+
 	if ( empty( $pg_about ) ) {
 		$about = "<div class=\"row\">";
   		$about .= "<div class=\"col-md-6\">";
@@ -39,6 +36,6 @@
 	}
 ?>
 <p>
-	<h2 class="page-header">About <?php echo $pg_title; ?></h2>
+	<h2 class="page-header">About <?php echo e( $pg_title ); ?></h2>
 	<?php echo $about; ?>
 </p>

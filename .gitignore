@@ -1,3 +1,4 @@
 config.php
 inc/config.php
 admin/inc/config.php
+admin/.htpasswd

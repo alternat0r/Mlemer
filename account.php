@@ -1,61 +1,74 @@
 <?php
 	require_once "inc/lib.php";
 	require_once "inc/config.php";
-	
+
 	if ( ENABLE_ERROR_MSG == "true" ) {
 		error_reporting( E_ALL );
 	} else {
 	    	error_reporting( 0 );
 	}
 
-    $curr_ip = getHostByName(getHostName());
-      $curr_hostname = gethostname();
-      $curr_uid = GenUniqueID(); 
+	require_login();
 
-    /*if ( do_they_register_yet( $curr_ip, $curr_hostname, $curr_uid ) == true ) {
-      echo '<META http-equiv="refresh" content="0;URL=http://'.$curr_url['path'].'?p=home">';
-    }*/
+	$account_msg = "";
 
-    global $link;
-    if ( isset( $_REQUEST['submit'] ) ) {
-      if ( isset( $_REQUEST['username'] ) && isset( $_REQUEST['realname'] ) && isset( $_REQUEST['password'] ) ) {
+	if ( isset( $_POST['submit'] ) ) {
+		csrf_verify();
 
-        if ( isset( $_REQUEST['username'] ) or isset( $_REQUEST['password'] ) ) {
-          $regUsername = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['username'] ) );
-          $regRealname = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['realname'] ) );
-          $regPassword = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['password'] ) );
-        }
+		$regUsername = trim( (string) ( $_POST['username'] ?? '' ) );
+		$regRealname = trim( (string) ( $_POST['realname'] ?? '' ) );
+		$regPassword = (string) ( $_POST['password'] ?? '' );
 
-        $curr_ip = @$_SERVER['REMOTE_ADDR'];
-        $curr_uid = GenUniqueID();
-        mysqli_query( $link, "UPDATE users SET user_loginname='$regUsername', user_realname='$regRealname',user_password='$regPassword' WHERE user_uid='$curr_uid'");
-        //echo "SUCCESSFULLY REGISTER!";
-        echo '<META http-equiv="refresh" content="0;URL=http://'.$curr_url['path'].'?p=account">';
-        setcookie( "stayalive", $curr_uid, time() + 777600 ); // 9 days to live
-
-      }
-    }
+		if ( $regUsername === '' || $regRealname === '' ) {
+			$account_msg = error_msg( "danger", "OPS!", "Username and real name are required.", "1" );
+		} else {
+			$existing = db_query(
+				"SELECT id FROM users WHERE user_loginname = ? AND id != ? LIMIT 1",
+				"si", $regUsername, current_user_id()
+			);
+			if ( $existing && mysqli_num_rows( $existing ) > 0 ) {
+				$account_msg = error_msg( "danger", "OPS!", "That username is already taken.", "1" );
+			} else {
+				if ( $regPassword !== '' ) {
+					$hash = password_hash( $regPassword, PASSWORD_DEFAULT );
+					db_execute(
+						"UPDATE users SET user_loginname = ?, user_realname = ?, user_password = ? WHERE id = ?",
+						"sssi", $regUsername, $regRealname, $hash, current_user_id()
+					);
+				} else {
+					db_execute(
+						"UPDATE users SET user_loginname = ?, user_realname = ? WHERE id = ?",
+						"ssi", $regUsername, $regRealname, current_user_id()
+					);
+				}
+				$account_msg = error_msg( "success", "SUCCESS", "Your account has been updated.", "1" );
+			}
+		}
+	}
 ?>
 	<h2 class="page-header">
 		Account
 		<small>Here you can change password, username or remove account.</small>
 	</h2>
 
+	<?php echo $account_msg; ?>
+
   <div class="row">
     <div class="col-md-6">
-      <form action="" method="post">
+      <form action="?p=account" method="post">
+        <?php echo csrf_field(); ?>
         <div class="form-group">
             <label for="pg_productname">Username</label>
-            <input class="form-control" name="username" id="pg_productname" placeholder="Your user name for login purpose" value="<?php echo get_current_username(); ?>">
+            <input class="form-control" name="username" id="pg_productname" placeholder="Your user name for login purpose" value="<?php echo e( get_current_username() ); ?>">
           </div>
 
         <div class="form-group">
             <label for="pg_title">Real Name</label>
-            <input class="form-control" name="realname" id="pg_title" placeholder="Your Real Name (Your name will be displayed)" value="<?php echo get_current_user_realname(); ?>" required="true">
+            <input class="form-control" name="realname" id="pg_title" placeholder="Your Real Name (Your name will be displayed)" value="<?php echo e( get_current_user_realname() ); ?>" required="true">
           </div>
           <div class="form-group">
             <label for="pg_company">Password</label>
-            <input class="form-control" name="password" id="pg_company" type="password" placeholder="Enter a new password to change. Otherwise, leave it." value="<?php echo get_current_userpassword(); ?>">        
+            <input class="form-control" name="password" id="pg_company" type="password" placeholder="Enter a new password to change. Otherwise, leave it blank.">
           </div>
 
 
@@ -85,6 +98,7 @@
 
 <!-- Modal BtnRemoveAccount-->
 <form method="post" action="?p=removeaccount" >
+<?php echo csrf_field(); ?>
 <div class="modal fade" id="BtnRemoveAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -105,5 +119,3 @@
   </div>
 </div>
 </form>
-
-

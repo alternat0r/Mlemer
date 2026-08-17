@@ -1,38 +1,44 @@
-<?php 
+<?php
 	require_once "inc/lib.php";
 	require_once "inc/config.php";
-	
+
 	if ( ENABLE_ERROR_MSG == "true" ) {
 		error_reporting( E_ALL );
 	} else {
 	    	error_reporting( 0 );
 	}
-	
-	$curr_ip = getHostByName(getHostName());
-	$curr_hostname = gethostname();
-    	$curr_uid = GenUniqueID(); 
 
-	/*if ( do_they_register_yet( $curr_ip, $curr_hostname, $curr_uid ) == true ) {
-		echo '<META http-equiv="refresh" content="0;URL=http://'.$curr_url['path'].'?p=home">';
-	}*/
+	$register_error = "";
 
-	global $link;
-	if ( isset( $_REQUEST['submit'] ) ) {
-		if ( isset( $_REQUEST['username'] ) && isset( $_REQUEST['realname'] ) && isset( $_REQUEST['password'] ) ) {
+	if ( isset( $_POST['submit'] ) ) {
+		csrf_verify();
 
-			if ( isset( $_REQUEST['username'] ) or isset( $_REQUEST['password'] ) ) {
-				$regUsername = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['username'] ) );
-				$regRealname = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['realname'] ) );
-				$regPassword = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['password'] ) );
+		$regUsername = trim( (string) ( $_POST['username'] ?? '' ) );
+		$regRealname = trim( (string) ( $_POST['realname'] ?? '' ) );
+		$regPassword = (string) ( $_POST['password'] ?? '' );
+
+		if ( $regUsername === '' || $regRealname === '' || $regPassword === '' ) {
+			$register_error = error_msg( "danger", "OPS!", "Username, real name and password are all required.", "1" );
+		} else {
+			$existing = db_query( "SELECT id FROM users WHERE user_loginname = ? LIMIT 1", "s", $regUsername );
+			if ( $existing && mysqli_num_rows( $existing ) > 0 ) {
+				$register_error = error_msg( "danger", "OPS!", "That username is already taken.", "1" );
+			} else {
+				$hash = password_hash( $regPassword, PASSWORD_DEFAULT );
+				$new_id = db_execute(
+					"INSERT INTO users (user_loginname, user_realname, user_password, user_activated, user_ip, user_hostname, user_uid, user_point) VALUES (?, ?, ?, 1, '', '', ?, 0)",
+					"ssss", $regUsername, $regRealname, $hash, $regUsername
+				);
+
+				if ( $new_id ) {
+					session_regenerate_id( true );
+					$_SESSION['user_id'] = (int) $new_id;
+					header( "Location: ?p=home" );
+					exit;
+				} else {
+					$register_error = error_msg( "danger", "ERROR", "Registration failed. Please try again.", "1" );
+				}
 			}
-
-			$curr_ip = @$_SERVER['REMOTE_ADDR'];
-			$curr_uid = GenUniqueID();
-			mysqli_query( $link, "UPDATE users SET user_loginname='$regUsername', user_realname='$regRealname',user_password='$regPassword', user_point='0' WHERE user_uid='$curr_uid'");
-			//echo "SUCCESSFULLY REGISTER!";
-			echo '<META http-equiv="refresh" content="0;URL=http://'.$curr_url['path'].'?p=home">';
-			setcookie( "stayalive", $curr_uid, time() + 777600 ); // 9 days to live
-
 		}
 	}
 ?>
@@ -42,7 +48,10 @@
 		<small>You need to register first in order to proceed.</small>
 	</h2>
 
-	<form class="form-horizontal" action="" method="post">
+	<?php echo $register_error; ?>
+
+	<form class="form-horizontal" action="?p=register" method="post">
+	  <?php echo csrf_field(); ?>
 	  <div class="form-group">
 	    <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
 	    <div class="col-sm-10">
@@ -59,7 +68,7 @@
 	  <div class="form-group">
 	    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 	    <div class="col-sm-10">
-	      <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password (Optional)">
+	      <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password" required="true">
 	    </div>
 	  </div>
 	  <div class="form-group">

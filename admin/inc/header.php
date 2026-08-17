@@ -1,5 +1,6 @@
 <?php
-	session_start();	
+	// Session is started centrally by inc/config.php (already required by this
+	// point in every admin page).
 ?>
 
 <style>
@@ -64,14 +65,12 @@ body {
 }
 </style>
 
-<link rel="stylesheet" href="http://getbootstrap.com/assets/css/docs.min.css">
-
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 <!-- Include Bootstrap-select CSS, JS -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css" integrity="sha384-qFWfegk7iqHYj1Wp/FECIiNvs8CBdkDakBofVs/ujLjXzB0MjdWRcFoA5HdB5TqG" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js" integrity="sha384-gYEWPc4PqVsUcmUA/F1H9PPNjnNvS8CHniaAOtoRluGxpLVqO2dwtGnA/gK3NVAg" crossorigin="anonymous"></script>
 
 <style type="text/css">
 #bootstrapSelectForm .selectContainer .form-control-feedback {

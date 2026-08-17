@@ -1,31 +1,29 @@
 <?php
 	require_once "../inc/config.php";
     	require_once "../inc/lib.php";
-	
+
 	if ( ENABLE_ERROR_MSG == "true" ) {
 		error_reporting( E_ALL );
 	} else {
 	    	error_reporting( 0 );
 	}
-	
-	if ( isset( $_REQUEST['qQuestion'] ) && 
-		isset( $_REQUEST['qAnswer'] ) &&
-		isset( $_REQUEST['qPoint'] ) &&
-		isset( $_REQUEST['qExer'] ) ) {
 
-		$inqQuestion = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['qQuestion'] ) );
-		$inqAnswer = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['qAnswer'] ) );
-		$inqPoint = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['qPoint'] ) );
-		$inqExer = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['qExer'] ) );
+	if ( isset( $_POST['qQuestion'] ) &&
+		isset( $_POST['qAnswer'] ) &&
+		isset( $_POST['qPoint'] ) &&
+		isset( $_POST['qExer'] ) ) {
+
+		csrf_verify();
+
+		$inqQuestion = (string) $_POST['qQuestion'];
+		$inqAnswer = (string) $_POST['qAnswer'];
+		$inqPoint = (int) $_POST['qPoint'];
+		$inqExer = (int) $_POST['qExer'];
 
 		admin_add_question( $inqQuestion, $inqAnswer, $inqPoint, $inqExer );
 	}
 
-	if ( isset($_REQUEST['exer_id']) ) {
-		$exer_id = strip_tags( mysqli_real_escape_string( $link, $_REQUEST['exer_id'] ) );
-	} else {
-		$exer_id = "1";
-	}
+	$exer_id = isset( $_REQUEST['exer_id'] ) ? (int) $_REQUEST['exer_id'] : 1;
 ?>
 <h2 class="page-header">Manager</h2>
 
@@ -35,7 +33,7 @@
   <li role="presentation"><a href="?p=category">Category</a></li>
 </ul>
 
-	<form action="?p=quest&exer_id=<?php echo $exer_id; ?>&select=" method="post">
+	<form action="?p=quest" method="post">
 	<label for="selectE"><h3 class="sub-header">Select Exercise:</h3></label>
 	<div class="selectContainer">
         <select id="selectE" name="exer_id" class="form-control input-lg" onchange='if(this.value != 0) { this.form.submit(); }'>
@@ -46,9 +44,9 @@
 				while( $row = @mysqli_fetch_assoc( $result ) ) {
 					$exer_count++;
 					if ( $row['id'] == $exer_id ) {
-						echo "	<option value=\"".$row['id']."\" selected>" . $row['exer_name'] . "</option>\n";
+						echo "	<option value=\"".(int) $row['id']."\" selected>" . e( $row['exer_name'] ) . "</option>\n";
 					} else {
-						echo "	<option value=\"".$row['id']."\">" . $row['exer_name'] . "</option>\n";
+						echo "	<option value=\"".(int) $row['id']."\">" . e( $row['exer_name'] ) . "</option>\n";
 					}
 				}
             ?>
@@ -57,7 +55,7 @@
     <input type="submit" hidden="hidden">
     </form>
 
-    
+
 
 		<h3 class="sub-header">List of Question</h3>
 		<!-- Button trigger modal - Add New Exercise -->
@@ -80,36 +78,44 @@
 		              </thead>
 		              <tbody>
 		              <?php
-			              	$sql = "SELECT * FROM questionaire WHERE exercise_id='$exer_id'";
-			              	$user_count = "";
-							$result = mysqli_query( $link, $sql );
-							$q_count = mysqli_num_rows( $result );
-							while( $row = @mysqli_fetch_assoc( $result ) ) {
-								$user_count++;
-								$quest_id = $row['id'];
-								echo "<tr>\n";
-								echo "	<td style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
-								echo "	<td style=\"vertical-align: middle;\">" . shorten( $row['question'], 50) . "</td>\n";
-								echo "	<td style=\"vertical-align: middle;\">" . $row['answer'] . "</td>\n";
-								echo "	<td style=\"text-align: center; vertical-align: middle;\">".$row['point']."</td>\n";
-								echo "	<td style=\"text-align: center; vertical-align: middle;\"><a href=\"#\" class=\"btn btn-default glyphicon glyphicon-pencil\"></a>&nbsp;<a href=\"?questid=".$quest_id."\" class=\"btn btn-danger glyphicon glyphicon-trash\"></a></td>\n";
-								echo "</tr>\n";
+			              	$result = db_query( "SELECT * FROM questionaire WHERE exercise_id = ?", "i", $exer_id );
+			              	$user_count = 0;
+							$q_count = $result ? mysqli_num_rows( $result ) : 0;
+							if ( $result ) {
+								while( $row = @mysqli_fetch_assoc( $result ) ) {
+									$user_count++;
+									$quest_id = (int) $row['id'];
+									echo "<tr>\n";
+									echo "	<td style=\"vertical-align: middle;\">" . $user_count . "</td>\n";
+									echo "	<td style=\"vertical-align: middle;\">" . e( shorten( $row['question'], 50) ) . "</td>\n";
+									echo "	<td style=\"vertical-align: middle;\">" . e( $row['answer'] ) . "</td>\n";
+									echo "	<td style=\"text-align: center; vertical-align: middle;\">".(int) $row['point']."</td>\n";
+									echo "	<td style=\"text-align: center; vertical-align: middle;\">";
+									echo "<form method=\"post\" action=\"?p=quest&exer_id=".$exer_id."\" style=\"display:inline\" onsubmit=\"return confirm('Delete this question permanently?');\">";
+									echo csrf_field();
+									echo "<input type=\"hidden\" name=\"questid\" value=\"".$quest_id."\">";
+									echo "<button type=\"submit\" class=\"btn btn-danger glyphicon glyphicon-trash\"></button>";
+									echo "</form>";
+									echo "</td>\n";
+									echo "</tr>\n";
+								}
 							}
 		              ?>
 		              </tbody>
 		            </table>
 		        </div>
-		        <?php 
+		        <?php
 		        	if ( $q_count == 0 ) {
 		        		echo error_msg( "warning", "OPS!", "No question available. Please add some.", "0" );
 		        		$user_count = 0;
 		        	}
 		        ?>
-	            <h4>Total Question: <?php echo $user_count; ?></h4>
+	            <h4>Total Question: <?php echo (int) $user_count; ?></h4>
 	          </div>
 
 <!-- Modal -->
-<form action="" method="post">
+<form action="?p=quest&exer_id=<?php echo $exer_id; ?>" method="post">
+<?php echo csrf_field(); ?>
 <div class="modal fade" id="BtnAddNewQuestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -128,7 +134,7 @@
         </div>
         <div class="form-group">
 			<label for="inExerciseDesc">Worth Point:</label>
-        	<input class="form-control" type="text" id="inExerciseDesc" name="qPoint" placeHolder="Enter point number worth for answering this question. Example: 10" required="true"/>
+        	<input class="form-control" type="number" id="inExerciseDesc" name="qPoint" placeHolder="Enter point number worth for answering this question. Example: 10" required="true"/>
         </div>
 
 		<label for="selectE">Select Exercise:</label>
@@ -140,10 +146,10 @@
 					$result = mysqli_query( $link, $sql );
 					while( $row = @mysqli_fetch_assoc( $result ) ) {
 						$user_count++;
-						if ( $user_count == 1 ) {
-							echo "	<option value=\"".$row['id']."\" selected=\"selected\" name=\"qExer\">" . $row['exer_name'] . "</option>\n";
+						if ( $row['id'] == $exer_id ) {
+							echo "	<option value=\"".(int) $row['id']."\" selected=\"selected\">" . e( $row['exer_name'] ) . "</option>\n";
 						} else {
-							echo "	<option value=\"".$row['id']."\" name=\"qExer\">" . $row['exer_name'] . "</option>\n";
+							echo "	<option value=\"".(int) $row['id']."\">" . e( $row['exer_name'] ) . "</option>\n";
 						}
 					}
 	            ?>
